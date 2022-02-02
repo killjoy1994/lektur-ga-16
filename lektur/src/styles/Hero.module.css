@@ -1,4 +1,6 @@
 .hero {
+  height: 90vh;
+  background-image: url("../assests/hero-bg.png");
   padding: 4.725em;
   display: flex;
   background-color: lime;
@@ -9,5 +11,25 @@
 .content-container {
   width: 100%;
   min-height: 400px;
-  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.left {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.left h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.right {
+  width: 50%;
+  background: white;
 }
