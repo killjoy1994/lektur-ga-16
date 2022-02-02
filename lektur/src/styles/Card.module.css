@@ -1,6 +1,6 @@
 .card {
-  width: 220px;
-  min-height: 250px;
+  width: 100%;
+  min-height: 300px;
   line-height: 1.2;
 }
 
@@ -10,29 +10,34 @@
   object-position: center;
 }
 
+.card-body {
+  padding: 8px 6px;
+}
+
 .card-title {
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 0.825rem;
 }
 
 .author {
-  font-size: 1rem;
+  font-size: 0.825rem;
   color: rgba(153, 153, 153, 1);
 }
 
 .amount {
   margin: 6px 0 8px;
+  font-size: 0.725rem;
   display: flex;
   gap: 15px;
   color: rgba(153, 153, 153, 1);
 }
 
 .card-text {
-  font-size: 0.8rem;
+  font-size: 0.725rem;
 }
 
 .card-category {
   padding: 12px 10px;
-  font-size: 1.35rem;
+  font-size: 1rem;
   background: rgba(240, 166, 62, 0.2);
 }

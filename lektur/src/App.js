@@ -1,14 +1,11 @@
 import "./App.css";
 
-import Card from "./components/CourseCards/Card";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <Card />
-      <div class="alert alert-primary" role="alert">
-        A simple primary alert—check it out!
-      </div>
+      <Home />
     </div>
   );
 }
