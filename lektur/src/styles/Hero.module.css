@@ -1,0 +1,13 @@
+.hero {
+  padding: 4.725em;
+  display: flex;
+  background-color: lime;
+  align-items: center;
+  justify-self: center;
+}
+
+.content-container {
+  width: 100%;
+  min-height: 400px;
+  background-color: aqua;
+}

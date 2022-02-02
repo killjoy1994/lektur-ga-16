@@ -1,14 +1,14 @@
 import React from "react";
 
 import styles from "../styles/Home.module.css";
-import Cards from "../components/CourseCards/Cards";
 import MainContent from "../components/MainContent/MainContent";
+import Hero from "../components/Hero/Hero";
 
 const Home = () => {
   return (
     <div>
       <div className={styles.header}></div>
-      <div class={styles.hero}></div>
+      <Hero />
       <MainContent />
     </div>
   );
