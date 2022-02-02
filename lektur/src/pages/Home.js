@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import MainContent from "../components/MainContent/MainContent";
 import Hero from "../components/Hero/Hero";
+import BannerBottom from "../components/BannerBottom/BannerBottom";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <div className={styles.header}></div>
       <Hero />
       <MainContent />
+      <BannerBottom />
     </div>
   );
 };

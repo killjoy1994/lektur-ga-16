@@ -9,7 +9,7 @@ const Hero = () => {
       <div className={styles["content-container"]}>
         <div className={styles.left}>
           <h1>Bring Your Class At Home</h1>
-          <a href="" className={styles["hero-btn"]}>
+          <a href="/" className={styles["hero-btn"]}>
             Enroll Now
           </a>
         </div>
