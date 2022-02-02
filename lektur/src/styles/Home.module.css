@@ -9,3 +9,9 @@
   width: 100%;
   background-color: limegreen;
 }
+
+.footer {
+  height: 120px;
+  width: 100vw;
+  background-color: salmon;
+}

@@ -12,6 +12,7 @@ const Home = () => {
       <Hero />
       <MainContent />
       <BannerBottom />
+      <div className={styles.footer}></div>
     </div>
   );
 };
