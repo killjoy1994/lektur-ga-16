@@ -1,0 +1,38 @@
+.card {
+  width: 220px;
+  min-height: 250px;
+  line-height: 1.2;
+}
+
+.card-image {
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-title {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.author {
+  font-size: 1rem;
+  color: rgba(153, 153, 153, 1);
+}
+
+.amount {
+  margin: 6px 0 8px;
+  display: flex;
+  gap: 15px;
+  color: rgba(153, 153, 153, 1);
+}
+
+.card-text {
+  font-size: 0.8rem;
+}
+
+.card-category {
+  padding: 12px 10px;
+  font-size: 1.35rem;
+  background: rgba(240, 166, 62, 0.2);
+}
