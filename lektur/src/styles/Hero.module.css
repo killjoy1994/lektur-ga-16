@@ -96,19 +96,19 @@
   .left {
     width: 100%;
     gap: 10px;
-    position: relative;
+    /* position: relative; */
   }
 
   .left h1 {
-    font-size: 2.25rem;
+    font-size: calc(5.25 * 1vw);
     font-weight: 700;
     margin: auto;
+    text-align: center;
   }
 
   .hero-btn {
     position: absolute;
-    right: 0;
-    top: 475%;
+    top: 125%;
   }
 
   .right {
