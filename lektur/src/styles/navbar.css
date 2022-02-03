@@ -1,0 +1,46 @@
+.navbar{
+    height: 72px;
+     background: #FFFFFF;
+     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo-nav{
+    height: auto;
+    width: 132px;
+    margin-bottom: 10px
+}
+.navbar-search{
+    border: 1px solid black;
+}
+.searching{
+    width: 500px;
+     border: none;
+}
+.form-search{
+    display: flex;
+}
+.btn-search{
+    border:none; 
+    background: none;
+}
+.navbar-right{
+    gap: 1rem;
+}
+.no-login{
+    gap: 1rem;
+}
+.navbar-right a{
+    color: black;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1024px) {
+    .logo-nav{
+        height: auto;
+        width: 100px;
+    }
+
+    .searching{
+        width: 300px;
+    }
+   
+}
