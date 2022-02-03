@@ -4,6 +4,10 @@
   line-height: 1.2;
 }
 
+.card:hover {
+  box-shadow: 10px 9px 11px -3px rgba(181, 173, 173, 0.79);
+}
+
 .card-image {
   height: 120px;
   object-fit: cover;
