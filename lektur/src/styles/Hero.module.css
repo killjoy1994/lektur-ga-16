@@ -1,0 +1,118 @@
+.hero {
+  min-height: 90vh;
+  background-image: url("../assests/hero-bg.png");
+  padding: 4.725em;
+  display: flex;
+  background-color: lime;
+  align-items: center;
+  justify-self: center;
+}
+
+.content-container {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Left Side (Title, Button) */
+
+.left {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.left h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #16213b;
+}
+
+.hero-btn {
+  padding: 0.5em 2em;
+  border-radius: 2px;
+  background-color: #16213b;
+  color: #fff;
+}
+
+.hero-btn:hover {
+  color: #fff;
+  filter: brightness(125%);
+}
+
+/* Right Side (Video Player etc) */
+
+.right {
+  width: 50%;
+  background: white;
+}
+
+.video-detail {
+  padding: 16px;
+  height: 30%;
+}
+
+.description {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.description-left h3 {
+  font-size: 1.105rem;
+  font-weight: 600;
+}
+
+.amount {
+  color: #3e89ae;
+  font-weight: 600;
+}
+
+.author {
+  color: rgba(153, 153, 153, 1);
+}
+
+.description-right {
+  text-align: end;
+  color: rgba(239, 156, 39, 1);
+}
+
+/* Media Query */
+@media (max-width: 720px) {
+  .content-container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    gap: 10px;
+    position: relative;
+  }
+
+  .left h1 {
+    font-size: calc(5.25 * 1vw);
+    font-weight: 700;
+    margin: auto;
+    text-align: center;
+  }
+
+  .hero-btn {
+    margin: auto;
+    padding: 4px 12px;
+  }
+
+  .right {
+    width: 100%;
+    margin: auto;
+  }
+}

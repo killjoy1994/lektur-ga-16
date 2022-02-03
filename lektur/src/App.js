@@ -1,16 +1,14 @@
-import "./styles.css";
-import Footer from "./components/Footer";
-import Navbar from "./components/Header/Navbar";
-// import Navbar2  from "./components/Header/Navbar2";
+import "./App.css";
+// import Footer from "./components/Footer";
+import Home from "./pages/Home";
+
+// import Navbar from "./components/Header/Navbar";
 function App() {
   return (
     <div className="App">
-      <header>
-        <Navbar />
-        {/* <Navbar2/> */}
-      </header>
-      <h1 style={{ height: "100vh" }}>content</h1>
-      <Footer />
+      {/* <Navbar /> */}
+      <Home />
+      {/* <Footer /> */}
     </div>
   );
 }

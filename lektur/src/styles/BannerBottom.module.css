@@ -1,0 +1,69 @@
+.banner-bottom {
+  width: 100vw;
+  height: 380px;
+  display: flex;
+}
+
+/* Left side */
+
+.left {
+  background-image: url("../assests/banner-background.png");
+  width: 40%;
+  padding-left: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.title {
+  color: #16213b;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.btn {
+  padding: 6px 18px;
+  color: #fff;
+  border-radius: 2px;
+  background-color: #16213b;
+}
+
+.btn:hover {
+  color: #fff;
+  filter: brightness(125%);
+}
+
+/* Right side */
+
+.right {
+  width: 60%;
+}
+
+.right img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  /* object-position: 50% 0; */
+}
+
+/* Media Query */
+@media (max-width: 560px) {
+  .right img {
+    display: none;
+  }
+
+  .left {
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
+
+  .right {
+    position: absolute;
+    top: -99999;
+  }
+}
