@@ -31,8 +31,8 @@ const Footer = () => {
           </h4>
           <br />
           <p>
-            Lektur &copy; 2022
-            <span className="all-rights">All rights reserved</span>
+            Lektur &copy; 2022. 
+            <span className="all-rights"> All rights reserved</span>
           </p>
         </div>
       </div>

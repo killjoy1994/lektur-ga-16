@@ -1,5 +1,6 @@
 import { Dropdown } from "react-bootstrap";
 import logo from "../../assests/logo.png";
+// import user from '../../assests/user.png'
 import search from "../../assests/icon-seacrh.png";
 
 
@@ -33,24 +34,33 @@ const Navbar = () => {
             </Dropdown>
           </div>
           <div className="navbar-right">
+            {/* NoLogin */}
             <ul className="navbar-nav no-login">
               <li className="nav-item">
-                <a className="nav-link active text-dark" href="#">
-                  For Teacher
-                </a>
+              <a className="nav-link " href="#">
+              For Teacher
+              </a>
               </li>
-              <div className="garis my-auto" style={{ height: "36px", border: "1px solid black" }}></div>
+              <div className="garis my-auto"></div>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Login
-                </a>
+              <a className="nav-link" href="#">
+              Login
+              </a>
               </li>
-              <button type="button" className="btn btn-dark">
-                Sign Up
+              <button type="button" className="btn btn-signup">
+              Sign Up
               </button>
             </ul>
-          </div>
+
           {/* IsLogin */}
+            {/* <ul className="navbar-nav is-login">
+                <div className="garis my-auto"></div>
+                <li className="nav-item">
+                 <img src={user} alt="user" height='40px'/> Jhon Dhoe
+                </li>
+               
+              </ul> */}
+          </div>
         </div>
       </nav>
     </div>

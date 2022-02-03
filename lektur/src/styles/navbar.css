@@ -25,12 +25,25 @@
 .navbar-right{
     gap: 1rem;
 }
-.no-login{
+.no-login, .is-login{
     gap: 1rem;
 }
 .navbar-right a{
     color: black;
-    font-weight: bold;
+    /* font-weight: bold; */
+}
+.garis{
+    height: 36px; 
+    border: 1px solid black;
+}
+.btn-signup{
+    background: black;
+    color: white;
+}
+.btn-signup:hover{
+    background: white;
+    color: black;
+    border: 1px solid black;
 }
 
 @media only screen and (max-width: 1024px) {
