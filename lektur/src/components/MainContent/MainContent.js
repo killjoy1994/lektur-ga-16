@@ -7,7 +7,7 @@ import CategoryGroup from "./CategoryGroup";
 const MainContent = () => {
   return (
     <div className={styles["main-content"]}>
-      <h2 className={styles.title}>What to learn next</h2>
+      <h2 className={styles.title}>What To Learn Next</h2>
       <CategoryGroup />
       <Cards />
     </div>

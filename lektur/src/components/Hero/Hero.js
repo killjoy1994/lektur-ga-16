@@ -14,7 +14,14 @@ const Hero = () => {
           </a>
         </div>
         <div className={styles.right}>
-          <ReactPlayer className={styles["react-player"]} url="https://www.youtube.com/watch?v=ysz5S6PUM-U" width="100%" height="70%" />
+          <ReactPlayer
+            className={styles["react-player"]}
+            controls
+            url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+            width="100%"
+            height="70%"
+            playing={true}
+          />
           <div className={styles["video-detail"]}>
             <div className={styles.description}>
               <div className={styles["description-left"]}>
