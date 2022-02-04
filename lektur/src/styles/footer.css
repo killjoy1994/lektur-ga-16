@@ -1,0 +1,142 @@
+.footer {
+  background: white;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-section {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  text-align: left;
+}
+
+.footer-section p {
+  line-height: 8px;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-section h4 {
+  line-height: 17px;
+  font-size: 14px;
+  color: #EF9C27;
+  font-weight: bold;
+}
+
+.footer-section.course {
+  display: flex;
+  flex-direction: column;
+  padding-left: 100px;
+}
+
+.footer-section.teach {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section.resource {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section.copyright {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-top: 36px;
+  padding-bottom: 91px;
+  padding-right: 100px;
+}
+
+.footer-section.copyright h4 span {
+  font-size: 30px;
+  color: black;
+  border-bottom: 1px solid #EF9C27;
+  border-width: thick;
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer-section {
+    margin-top: 28px;
+  }
+  .footer-section p {
+    font-size: 14px;
+    line-height: 12px;
+  }
+  .footer-section a:hover {
+    color: blue;
+    margin-left: 100px;
+  }
+
+  .footer-section.course {
+    padding-left: 25px;
+  }
+
+  .footer-section h4 {
+    line-height: 2px;
+    font-size: 15px;
+  }
+
+  .footer-section.teach {
+    padding-left: 25px;
+  }
+
+  .footer-section.resource {
+    padding-left: 20px;
+  }
+
+  .footer-section.copyright {
+    padding-right: 25px;
+    padding-bottom: 70px;
+  }
+  .footer-section.copyright .all-rights {
+    display: block;
+    padding-top: 12px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .footer-section.course {
+      padding-left: 25px;
+    }
+
+    .footer-section p {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .footer-section.copyright {
+      padding-right: 25px;
+    }
+
+    @media only screen and (max-width: 360px) {
+      .footer-section p {
+        font-size: 12px;
+        line-height: 18px;
+      }
+      .footer-section h4 {
+        font-size: 12px;
+        line-height: 8px;
+      }
+
+      .footer-section.copyright {
+        padding-right: 0px;
+        padding-bottom: 70px;
+      }
+
+      .footer-section.copyright h4 span {
+        font-size: 14px;
+      }
+
+      .footer-section.course {
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+      }
+    }
+  }
+}
