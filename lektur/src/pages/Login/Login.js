@@ -6,6 +6,9 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 
+import Navbar from '../../components/Header/Navbar';
+import Footer from '../../components/Footer';
+
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().required('Required')
@@ -49,6 +52,8 @@ export default function FormLogin () {
 
 
     return (
+       <>
+        <Navbar />
         <Formik
         initialValues={{
             email: '',
@@ -68,12 +73,12 @@ export default function FormLogin () {
                             <div className='welcome-login'>Welcome back!</div>
                             <div className='yourAccount-login mb-5'>Login to your account</div>
                         </div>
-                        <form>
+                        <Form>
                             <p className='email'>
                                 Email <span>*</span>
                             </p>
                             <div className='email-password-field mb-5'>
-                                <input 
+                                <Field 
                                     type='email'
                                     placeholder='john@doe.com'
                                     name='email'
@@ -88,17 +93,17 @@ export default function FormLogin () {
                                 Password<span>*</span>
                             </p>
                             <div className='email-password-field'>
-                                <input 
+                                <Field
                                     type="password"
                                     placeholder="********"
                                     name="password"
                                     className='login-password'
                                 />
-                                {errors.password && touched.password &&
+                            </div>
+                            {errors.password && touched.password &&
                                 <div className='text-danger'>
                                 {errors.password}
                                 </div>}
-                            </div>
                             <div className='forget-pass'>Forgot Password?</div>
                             <div className='btn-login d-flex justify-content-flex-end pb-60'>
                                 <Button type='submit' className='login-button color-#ffffff border-radius-1'>
@@ -111,10 +116,12 @@ export default function FormLogin () {
                                     <span>Create an account</span>
                                 </Link>
                             </div>
-                        </form>
+                        </Form>
                     </div>
                 </div>
             )}
         </Formik>
+        <Footer />
+       </>
     );
 }
