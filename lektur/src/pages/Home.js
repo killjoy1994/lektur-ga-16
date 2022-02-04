@@ -7,18 +7,15 @@ import BannerBottom from "../components/BannerBottom/BannerBottom";
 import Navbar from "../components/Header/Navbar";
 import Footer from "../components/Footer";
 
-
 const Home = () => {
   return (
-    <div>
-      <div className={styles.header}></div>
-      <Navbar/>
+    <>
+      <Navbar />
       <Hero />
       <MainContent />
       <BannerBottom />
-      <div className={styles.footer}></div>
-      <Footer/>
-    </div>
+      <Footer />
+    </>
   );
 };
 
