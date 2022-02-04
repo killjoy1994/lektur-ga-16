@@ -1,6 +1,8 @@
 .hero {
   min-height: 90vh;
   background-image: url("../assests/hero-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 4.725em;
   display: flex;
   background-color: lime;
@@ -24,11 +26,11 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .left h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #16213b;
 }
@@ -50,11 +52,21 @@
 .right {
   width: 50%;
   background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right p,
+h3 {
+  margin: 0;
 }
 
 .video-detail {
+  width: 100%;
   padding: 16px;
-  height: 30%;
+  min-height: 30%;
 }
 
 .description {
@@ -85,6 +97,21 @@
 }
 
 /* Media Query */
+/* @media (min-width: 1399px) {
+  .content-container {
+    justify-content: stretch;
+  }
+
+  .left {
+    align-items: center;
+  }
+
+  .right {
+    width: 700px;
+    height: 600px;
+  }
+} */
+
 @media (max-width: 720px) {
   .content-container {
     width: 80%;
@@ -100,15 +127,15 @@
   }
 
   .left h1 {
-    font-size: 2.25rem;
+    font-size: calc(5.25 * 1vw);
     font-weight: 700;
     margin: auto;
+    text-align: center;
   }
 
   .hero-btn {
-    position: absolute;
-    right: 0;
-    top: 475%;
+    margin: auto;
+    padding: 4px 12px;
   }
 
   .right {
