@@ -164,9 +164,9 @@
   margin-bottom: 30px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .main {
-    max-width: 1500px;
+    width: 1400px;
     margin: auto;
   }
 }
