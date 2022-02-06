@@ -49,13 +49,94 @@
 }
 
 .description p {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: normal;
 }
 
 /* Aside */
 .aside {
-  background-color: blueviolet;
   flex-basis: 35%;
-  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-list {
+  height: 450px;
+  padding: 40px 18px;
+  border: 2px solid rgba(229, 229, 229, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content-list h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.content-list ul {
+  /* background-color: lime; */
+  flex-grow: 2;
+}
+
+.content-list li {
+  padding: 16px 18px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.content-list span {
+  margin-right: 12px;
+}
+
+.playing {
+  background-color: rgba(234, 247, 254, 1);
+}
+
+.lock {
+  background-color: rgba(245, 245, 245, 1);
+}
+
+/* Read materials */
+.read-materials {
+  margin-top: 50px;
+  max-height: 180px;
+  padding: 12px 18px;
+  border: 2px solid rgba(229, 229, 229, 1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.read-materials h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.read-materials label {
+  font-size: 0.8rem;
+}
+
+.btn-aside {
+  width: 100%;
+  padding: 8px 18px;
+  background: rgba(62, 137, 174, 1);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-aside:hover {
+  filter: brightness(115%);
+}
+
+/* rounder checkbox */
+.rounded {
+  border-radius: 50%;
 }

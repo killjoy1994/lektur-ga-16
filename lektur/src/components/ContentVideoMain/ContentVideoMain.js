@@ -3,6 +3,11 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
 
 import styles from "../../styles/ContentVideoMain.module.css";
+import playBlue from "../../assests/play-blue.svg";
+import playWhite from "../../assests/play-white.svg";
+import play from "../../assests/on-play.svg";
+import lock from "../../assests/lock.svg";
+import check from "../../assests/green-check.svg";
 
 const ContentVideoMain = () => {
   return (
@@ -30,9 +35,72 @@ const ContentVideoMain = () => {
               </p>
             </div>
           </section>
-          <aside className={styles.aside}></aside>
+          <aside className={styles.aside}>
+            <div className={styles["content-list"]}>
+              <h2>Content</h2>
+              <ul>
+                <li className={styles.playing}>
+                  <span>
+                    <img src={playBlue} alt="on play" />
+                  </span>
+                  Lesson #1: What is React
+                </li>
+                <li>
+                  <span>
+                    <img src={play} alt="play" />
+                  </span>
+                  Lesson #2: Create React App
+                </li>
+                <li>
+                  <span>
+                    <img src={play} alt="play" />
+                  </span>
+                  Lesson #3: Css in Reset
+                </li>
+                <li className={styles.lock}>
+                  <span>
+                    <img src={lock} alt="lock" />
+                  </span>
+                  Lesson #4: Lorem Ipsum
+                </li>
+                <li className={styles.lock}>
+                  <span>
+                    <img src={lock} alt="lock" />
+                  </span>
+                  Lesson #5: Lorem Ipsum
+                </li>
+                <li className={styles.lock}>
+                  <span>
+                    <img src={lock} alt="lock" />
+                  </span>
+                  Lesson #6: Lorem Ipsum
+                </li>
+              </ul>
+            </div>
+            <div className={styles["read-materials"]}>
+              <h2>What’s Next?</h2>
+              <div class="check-box-form">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Read course material : <a href="#">React and Open Source.pdf</a>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Read course material : <a href="#">React and Open Source 2.pdf</a>
+                  </label>
+                </div>
+              </div>
+              <button className={styles["btn-aside"]}>
+                <img src={playWhite} alt="next button" />
+                Next Lesson: Create React App
+              </button>
+            </div>
+          </aside>
         </div>
-        {/* Course Video And Play list start*/}
+        {/* Course Video And Play list end*/}
       </div>
     </main>
   );
