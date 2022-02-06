@@ -1,10 +1,41 @@
 .main {
-  margin: 0;
+  padding: 15px;
   background-color: salmon;
-  height: 600px;
+  min-height: 600px;
 }
 
-.main-top {
+.container {
+  width: 100%;
   background-color: aqua;
-  min-height: 600px;
+  min-height: 500px;
+}
+
+.course-wrapper {
+  display: flex;
+}
+
+/* Content */
+
+.content {
+  background-color: #fff;
+  flex-grow: 1;
+  min-height: 400px;
+}
+
+.breadcrumb ol {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+/* Aside */
+.aside {
+  background-color: blueviolet;
+  flex-grow: 1;
+  min-height: 400px;
 }
