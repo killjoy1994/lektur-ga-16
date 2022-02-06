@@ -1,5 +1,5 @@
 .hero {
-  min-height: 90vh;
+  height: 90vh;
   background-image: url("../assests/hero-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -97,20 +97,17 @@ h3 {
 }
 
 /* Media Query */
-/* @media (min-width: 1399px) {
-  .content-container {
-    justify-content: stretch;
-  }
 
-  .left {
-    align-items: center;
+@media (min-width: 1600px) {
+  .hero {
+    height: 70%;
   }
 
   .right {
-    width: 700px;
+    width: 900px;
     height: 600px;
   }
-} */
+}
 
 @media (max-width: 720px) {
   .content-container {
