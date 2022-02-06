@@ -1,25 +1,17 @@
 .main {
   padding: 15px;
-  background-color: salmon;
-  min-height: 600px;
+  /* background-color: salmon; */
 }
 
 .container {
   width: 100%;
-  background-color: aqua;
-  min-height: 500px;
+  /* background-color: aqua; */
 }
 
 .course-wrapper {
   display: flex;
-}
-
-/* Content */
-
-.content {
-  background-color: #fff;
-  flex-grow: 1;
-  min-height: 400px;
+  gap: 15px;
+  min-height: 550px;
 }
 
 .breadcrumb ol {
@@ -30,12 +22,40 @@
 .title {
   font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* Content */
+
+.content {
+  background-color: #fff;
+  flex-basis: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.description {
+  border: 2px solid rgba(229, 229, 229, 1);
+  padding: 12px 10px;
+  border-radius: 4px;
+}
+
+.description h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.description p {
+  font-size: 0.7rem;
+  font-weight: normal;
 }
 
 /* Aside */
 .aside {
   background-color: blueviolet;
-  flex-grow: 1;
-  min-height: 400px;
+  flex-basis: 35%;
+  min-height: 450px;
 }

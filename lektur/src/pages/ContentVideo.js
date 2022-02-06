@@ -9,7 +9,7 @@ const ContentVideo = () => {
     <div>
       <Navbar />
       <ContentVideoMain />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
