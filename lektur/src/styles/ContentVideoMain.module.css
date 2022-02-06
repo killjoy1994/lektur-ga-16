@@ -140,3 +140,10 @@
 .rounded {
   border-radius: 50%;
 }
+
+/* Cards */
+.cards {
+  background-color: lightgreen;
+  width: 100%;
+  height: 170px;
+}

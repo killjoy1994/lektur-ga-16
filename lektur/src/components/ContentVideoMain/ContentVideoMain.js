@@ -102,6 +102,7 @@ const ContentVideoMain = () => {
         </div>
         {/* Course Video And Play list end*/}
       </div>
+      <div className={styles.cards}></div>
     </main>
   );
 };
