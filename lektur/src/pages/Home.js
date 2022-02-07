@@ -5,6 +5,7 @@ import Hero from "../components/Hero/Hero";
 import BannerBottom from "../components/BannerBottom/BannerBottom";
 import Navbar from "../components/Header/Navbar";
 import Footer from "../components/Footer";
+import styles from "../styles/Home.module.css";
 
 const Home = () => {
   return (
