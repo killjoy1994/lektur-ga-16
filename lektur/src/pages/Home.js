@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className={styles.main}>
         <Hero />
         <MainContent />
         <BannerBottom />
