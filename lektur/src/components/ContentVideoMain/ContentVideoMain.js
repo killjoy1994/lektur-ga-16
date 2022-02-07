@@ -25,29 +25,29 @@ const ContentVideoMain = () => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <Breadcrumb className={styles.breadcrumb}>
-          <Breadcrumb.Item href="#" active>
-            React Crash Cource
-          </Breadcrumb.Item>
-          <Breadcrumb.Item href="#">Lesson #1 : What is React?</Breadcrumb.Item>
-        </Breadcrumb>
-        <h1 className={styles.title}>Lesson #1 : What is React?</h1>
-        {/* Course Video And Play list start*/}
+        {/* Header start */}
+        <header className={styles.header}>
+          <Breadcrumb className={styles.breadcrumb}>
+            <Breadcrumb.Item href="#" active>
+              React Crash Cource
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href="#">Lesson #1 : What is React?</Breadcrumb.Item>
+          </Breadcrumb>
+          <h1 className={styles.title}>Lesson #1 : What is React?</h1>
+        </header>
+        {/* Header end */}
+
+        {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
-            <ReactPlayer controls url="https://www.youtube.com/watch?v=ysz5S6PUM-U" width="100%" height="450px" playing={true} />
-            <div className={styles.description}>
-              <h2>Description</h2>
-              <p>
-                Nascetur consequat quam tellus sed convallis amet, nunc. Venenatis, eget faucibus iaculis facilisi pellentesque eleifend mattis vel.
-                Nunc euismod morbi lectus aliquam pretium, pharetra, tellus orci. Lobortis at nulla dictum risus amet. Nunc dolor sit vitae arcu
-                facilisis eu. Tortor, turpis arcu in est. Ullamcorper fringilla ut tempus nulla dolor lorem proin porta neque. Neque eu lorem ultrices
-                id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet. Vitae sodales
-                rhoncus, et ut ut. Amet, porttitor adipiscing nullam mauris. Lobortis interdum imperdiet mauris pharetra risus proin etiam est.
-              </p>
-            </div>
-          </section>
-          <aside className={styles.aside}>
+            <ReactPlayer
+              className={styles["video-player"]}
+              controls
+              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+              width="100%"
+              height="450px"
+              playing={true}
+            />
             <div className={styles["content-list"]}>
               <h2>Content</h2>
               <ul>
@@ -89,9 +89,21 @@ const ContentVideoMain = () => {
                 </li>
               </ul>
             </div>
+          </section>
+          <section className={styles["description-wrapper"]}>
+            <div className={styles.description}>
+              <h2>Description</h2>
+              <p>
+                Nascetur consequat quam tellus sed convallis amet, nunc. Venenatis, eget faucibus iaculis facilisi pellentesque eleifend mattis vel.
+                Nunc euismod morbi lectus aliquam pretium, pharetra, tellus orci. Lobortis at nulla dictum risus amet. Nunc dolor sit vitae arcu
+                facilisis eu. Tortor, turpis arcu in est. Ullamcorper fringilla ut tempus nulla dolor lorem proin porta neque. Neque eu lorem ultrices
+                id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet. Vitae sodales
+                rhoncus, et ut ut. Amet, porttitor adipiscing nullam mauris. Lobortis interdum imperdiet mauris pharetra risus proin etiam est.
+              </p>
+            </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
-              <div class="check-box-form">
+              <div class="check-box-form" className={styles.rounded}>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                   <label class="form-check-label" for="flexCheckDefault">
@@ -110,51 +122,56 @@ const ContentVideoMain = () => {
                 Next Lesson: Create React App
               </button>
             </div>
-          </aside>
+          </section>
         </div>
-        {/* Course Video And Play list end*/}
+        {/* Video player and description end*/}
       </div>
+
+      {/* Cards gallery start */}
       <div className={styles.cards}>
-        <h2>Related Course</h2>
-        <div className={styles["card-list"]}>
-          <Card
-            src={dummyData.src}
-            title={dummyData.title}
-            author={dummyData.author}
-            videos={dummyData.videos}
-            materials={dummyData.materials}
-            description={dummyData.description}
-            category={dummyData.category}
-          />
-          <Card
-            src={dummyData.src}
-            title={dummyData.title}
-            author={dummyData.author}
-            videos={dummyData.videos}
-            materials={dummyData.materials}
-            description={dummyData.description}
-            category={dummyData.category}
-          />
-          <Card
-            src={dummyData.src}
-            title={dummyData.title}
-            author={dummyData.author}
-            videos={dummyData.videos}
-            materials={dummyData.materials}
-            description={dummyData.description}
-            category={dummyData.category}
-          />
-          <Card
-            src={dummyData.src}
-            title={dummyData.title}
-            author={dummyData.author}
-            videos={dummyData.videos}
-            materials={dummyData.materials}
-            description={dummyData.description}
-            category={dummyData.category}
-          />
+        <div className={styles["card-container"]}>
+          <h2>Related Course</h2>
+          <div className={styles["card-list"]}>
+            <Card
+              src={dummyData.src}
+              title={dummyData.title}
+              author={dummyData.author}
+              videos={dummyData.videos}
+              materials={dummyData.materials}
+              description={dummyData.description}
+              category={dummyData.category}
+            />
+            <Card
+              src={dummyData.src}
+              title={dummyData.title}
+              author={dummyData.author}
+              videos={dummyData.videos}
+              materials={dummyData.materials}
+              description={dummyData.description}
+              category={dummyData.category}
+            />
+            <Card
+              src={dummyData.src}
+              title={dummyData.title}
+              author={dummyData.author}
+              videos={dummyData.videos}
+              materials={dummyData.materials}
+              description={dummyData.description}
+              category={dummyData.category}
+            />
+            <Card
+              src={dummyData.src}
+              title={dummyData.title}
+              author={dummyData.author}
+              videos={dummyData.videos}
+              materials={dummyData.materials}
+              description={dummyData.description}
+              category={dummyData.category}
+            />
+          </div>
         </div>
       </div>
+      {/* Cards gallery end */}
     </main>
   );
 };
