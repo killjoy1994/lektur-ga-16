@@ -1,8 +1,8 @@
 .page-login {
-  /* background-image: url("../assets/Rectangle4.png"); */
+  background-image: url("../assests/hero-bg.png");
   width: 100%;
   height: 470px;
-  /* background-size: cover; */
+  background-size: cover;
   /* position: absolute; */
   background: #ffffff;
   padding: 50px;
@@ -15,6 +15,14 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+/* .form-login-hero {
+  background-image: url("../assests/hero-bg.png");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  padding: 120px;
+} */
 
 .form-login {
   width: 531px;
@@ -100,13 +108,21 @@
 
 .login-button {
   border-radius: 1px;
-  padding: 8px 20px;
+  padding: 5px 25px;
+  letter-spacing: 1px;
   background: #16213b;
   border: none;
   color: #ffffff;
   font-weight: bold;
   cursor: pointer;
 }
+
+.login-button:hover {
+  filter: brightness(125%);
+  color: #ffffff;
+  background: #16213b;
+}
+
 
 @media screen and (max-width: 360px){
   .btn-login{

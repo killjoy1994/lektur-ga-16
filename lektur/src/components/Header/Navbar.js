@@ -3,7 +3,6 @@ import logo from "../../assests/logo.png";
 // import user from '../../assests/user.png'
 import search from "../../assests/icon-seacrh.png";
 
-
 const Navbar = () => {
   return (
     <div>
@@ -20,7 +19,7 @@ const Navbar = () => {
               </button>
             </form>
           </div>
-          
+
           <div className="mx-auto"></div>
 
           <div className="navbar-categori">
@@ -37,22 +36,22 @@ const Navbar = () => {
             {/* NoLogin */}
             <ul className="navbar-nav no-login">
               <li className="nav-item">
-              <a className="nav-link " href="#">
-              For Teacher
-              </a>
+                <a className="nav-link " href="#">
+                  For Teacher
+                </a>
               </li>
               <div className="garis my-auto"></div>
               <li className="nav-item">
-              <a className="nav-link" href="#">
-              Login
-              </a>
+                <a className="nav-link" href="#">
+                  Login
+                </a>
               </li>
               <button type="button" className="btn btn-signup">
-              Sign Up
+                Sign Up
               </button>
             </ul>
 
-          {/* IsLogin */}
+            {/* IsLogin */}
             {/* <ul className="navbar-nav is-login">
                 <div className="garis my-auto"></div>
                 <li className="nav-item">

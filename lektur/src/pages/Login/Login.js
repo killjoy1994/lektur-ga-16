@@ -68,55 +68,57 @@ export default function FormLogin () {
             {({ errors, touched }) => (
                 // <div className="d-flex justify-content-center align-items-center vh-100">
                 <div className='page-login d-flex justify-content-center align-items-center vh-100'>
-                    <div className="form-login">
-                        <div className='header-login'>
-                            <div className='welcome-login'>Welcome back!</div>
-                            <div className='yourAccount-login mb-5'>Login to your account</div>
+                    <div className='form-login-hero'>
+                        <div className="form-login">
+                            <div className='header-login'>
+                                <div className='welcome-login'>Welcome back!</div>
+                                <div className='yourAccount-login mb-5'>Login to your account</div>
+                            </div>
+                            <Form>
+                                <p className='email'>
+                                    Email <span>*</span>
+                                </p>
+                                <div className='email-password-field mb-5'>
+                                    <Field 
+                                        type='email'
+                                        placeholder='john@doe.com'
+                                        name='email'
+                                        className='login-email'
+                                    />
+                                </div>
+                                    {errors.email && touched.email && 
+                                    <div className='text-danger'>
+                                    {errors.email}
+                                    </div>}
+                                <p className='password'>
+                                    Password<span>*</span>
+                                </p>
+                                <div className='email-password-field'>
+                                    <Field
+                                        type="password"
+                                        placeholder="********"
+                                        name="password"
+                                        className='login-password'
+                                    />
+                                </div>
+                                    {errors.password && touched.password &&
+                                    <div className='text-danger'>
+                                    {errors.password}
+                                    </div>}
+                                <div className='forget-pass'>Forgot Password?</div>
+                                <div className='btn-login d-flex justify-content-flex-end pb-60'>
+                                    <Button type='submit' className='login-button color-#ffffff border-radius-1'>
+                                    {reqLoading ? <Spinner animation="border"/> : "Login"}
+                                    </Button>
+                                </div>
+                                <div className='register-redirect'>
+                                    New user?{" "}
+                                    <Link to='/register'>
+                                        <span>Create an account</span>
+                                    </Link>
+                                </div>
+                            </Form>
                         </div>
-                        <Form>
-                            <p className='email'>
-                                Email <span>*</span>
-                            </p>
-                            <div className='email-password-field mb-5'>
-                                <Field 
-                                    type='email'
-                                    placeholder='john@doe.com'
-                                    name='email'
-                                    className='login-email'
-                                />
-                            </div>
-                                {errors.email && touched.email && 
-                                <div className='text-danger'>
-                                {errors.email}
-                                </div>}
-                            <p className='password'>
-                                Password<span>*</span>
-                            </p>
-                            <div className='email-password-field'>
-                                <Field
-                                    type="password"
-                                    placeholder="********"
-                                    name="password"
-                                    className='login-password'
-                                />
-                            </div>
-                            {errors.password && touched.password &&
-                                <div className='text-danger'>
-                                {errors.password}
-                                </div>}
-                            <div className='forget-pass'>Forgot Password?</div>
-                            <div className='btn-login d-flex justify-content-flex-end pb-60'>
-                                <Button type='submit' className='login-button color-#ffffff border-radius-1'>
-                                {reqLoading ? <Spinner animation="border"/> : "Login"}
-                                </Button>
-                            </div>
-                            <div className='register-redirect'>
-                                New user?{" "}
-                                <Link to='/register'>
-                                    <span>Create an account</span>
-                                </Link>
-                            </div>
-                        </Form>
                     </div>
                 </div>
             )}

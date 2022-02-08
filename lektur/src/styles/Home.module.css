@@ -1,17 +1,9 @@
-/* .header {
-  height: 72px;
-  width: 100vw;
-  background-color: salmon;
-} */
-
 .hero {
   height: 500px;
   width: 100%;
   background-color: limegreen;
 }
 
-/* .footer {
-  height: 120px;
-  width: 100vw;
-  background-color: salmon;
-} */
+a {
+  text-decoration: none;
+}
