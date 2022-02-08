@@ -1,12 +1,38 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+cache:
+  paths:
+    - node_modules/
+
 stages:
-- test
-sast:
-  stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
+  - init
+  - deploy_dev
+  - deploy_prod
+
+init:
+  stage: init
+  image: node:14.17.1
+  script:
+    - npm install
+
+deploy_dev:
+  image: node:14.17.1
+  stage: deploy_dev
+  script:
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$DEV_APP_NAME.git HEAD:main
+    - echo "Deployed to dev server"
+  environment:  
+    name: dev
+    url: https://$DEV_APP_NAME.herokuapp.com/
+  only:
+    - development
+
+deploy_production:
+  image: node:14.17.1
+  stage: deploy_prod
+  script:
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$APP_NAME.git HEAD:main
+    - echo "Deployed to production server"
+  environment:  
+    name: production
+    url: https://$APP_NAME.herokuapp.com/
+  only:
+    - main
