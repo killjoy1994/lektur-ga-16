@@ -16,8 +16,8 @@ function Detail() {
     category: "Art & Humanity",
   };
   return (
-    <div className="main-course" style={{ background: "#fffafa", height: "150vh" }}>
-    {/* <div className="main-course" style={{ background: "#E5E5E5", height: "150vh" }}> */}
+    <div className={styles.main}>
+      {/* <div className={styles.main} style={{ background: "#E5E5E5", height: "150vh" }}> */}
       <div className={styles.banner_detail} style={{ backgroundImage: `url(${bg})` }}>
         <div className={styles.contents}>
           <div className={`${styles.detail_content}`}>
@@ -89,55 +89,19 @@ function Detail() {
         </div>
       </div>
 
-      <div className="card" style={{ height: "587px", width: "100%", boxSizing: 'border-box'}}>
-        <div className={styles.wrapper_cards}>
-        <div className={styles.cards}>
-            <Card 
-            className={styles.card} 
-            src={dummyData.src} 
-            title={dummyData.title} 
-            author={dummyData.author} 
-            videos={dummyData.videos} 
-            materials={dummyData.materials} 
-            description={dummyData.description} 
-            category={dummyData.category} />
-        </div>
-        <div className={styles.cards}>
-            <Card 
-            className={styles.card} 
-            src={dummyData.src} 
-            title={dummyData.title} 
-            author={dummyData.author} 
-            videos={dummyData.videos} 
-            materials={dummyData.materials} 
-            description={dummyData.description} 
-            category={dummyData.category} />
-        </div>
-        <div className={styles.cards}>
-            <Card 
-            className={styles.card} 
-            src={dummyData.src} 
-            title={dummyData.title} 
-            author={dummyData.author} 
-            videos={dummyData.videos} 
-            materials={dummyData.materials} 
-            description={dummyData.description} 
-            category={dummyData.category} />
-        </div>
-        <div className={styles.cards}>
-            <Card 
-            className={styles.card} 
-            src={dummyData.src} 
-            title={dummyData.title} 
-            author={dummyData.author} 
-            videos={dummyData.videos} 
-            materials={dummyData.materials} 
-            description={dummyData.description} 
-            category={dummyData.category} />
-        </div>
-
+      {/* Cards gallery start */}
+      <div className={styles.cards}>
+        <div className={styles["card-container"]}>
+          <h2>Related Course</h2>
+          <div className={styles["card-list"]}>
+            <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
+            <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
+            <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
+            <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
+          </div>
         </div>
       </div>
+      {/* Cards gallery end */}
       <div>
         <Modal show={popUpDetail} onHide={() => setPopUpDetail(false)} size="lg" centered>
           <Modal.Header closeButton></Modal.Header>
