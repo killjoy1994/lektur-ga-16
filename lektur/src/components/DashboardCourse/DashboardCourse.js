@@ -59,7 +59,28 @@ const DashboardCourse = () => {
             {content}
           </div>
         </div>
-        <div className={styles["right-box"]}></div>
+        <div className={styles["right-box"]}>
+          <div className={styles["right-box-header"]}>
+            <h3>Courses</h3>
+            <h3>Assesment</h3>
+          </div>
+          <div className={styles["right-box-body"]}>
+            <div className={styles["course-control"]}>
+              <div className={styles["course-control-left"]}>
+                <div className={styles["img-course-wrapper"]}>
+                  <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+                </div>
+                <div className={styles["course-detail"]}>
+                  <h3>React Crash Course</h3>
+                  <p>By Traversy Media</p>
+                  <a href="#">See course materials</a>
+                </div>
+              </div>
+              <div className={styles["course-control-right"]}></div>
+            </div>
+            <div class={styles["course-control"]}></div>
+          </div>
+        </div>
       </div>
     </main>
   );
