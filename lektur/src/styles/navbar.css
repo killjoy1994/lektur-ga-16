@@ -1,5 +1,5 @@
 .navbar{
-    height: 72px;
+    min-height: 72px;
      background: #FFFFFF;
      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -30,7 +30,7 @@
 }
 .navbar-right a{
     color: black;
-    /* font-weight: bold; */
+    
 }
 .garis{
     height: 36px; 
