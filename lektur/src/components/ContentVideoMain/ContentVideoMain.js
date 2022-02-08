@@ -7,7 +7,7 @@ import playBlue from "../../assests/play-blue.svg";
 import playWhite from "../../assests/play-white.svg";
 import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
-import check from "../../assests/green-check.svg";
+// import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
 
 let dummyData = {

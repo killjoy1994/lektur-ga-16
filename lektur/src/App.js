@@ -1,11 +1,14 @@
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import ContentVideo from "./pages/ContentVideo";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <ContentVideo />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
