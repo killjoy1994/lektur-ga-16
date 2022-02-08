@@ -142,15 +142,19 @@ p {
 }
 
 .course-control {
+  display: flex;
   padding-bottom: 30px;
   width: 100%;
-  min-height: 150px;
+  min-height: 100px;
   border-bottom: 1px solid #ddd;
 }
+
+/* course-control left side */
 
 .course-control-left {
   display: flex;
   gap: 18px;
+  width: 50%;
 }
 
 .img-course-wrapper {
@@ -182,7 +186,39 @@ p {
   font-weight: 700;
 }
 
+/* Course control right side */
+.course-control-right {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.completed-task {
+  color: rgba(153, 153, 153, 1);
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
 /* Progress Bar */
+.progress {
+  width: 80%;
+  height: 8px;
+  border-radius: 0;
+  background-color: rgba(240, 166, 62, 0.2);
+}
+
+.progress div {
+  background-color: rgba(239, 156, 39, 1);
+}
+
+.progress-btn {
+  justify-self: flex-end;
+  border: none;
+  background-color: rgba(62, 137, 174, 1);
+  color: white;
+}
 
 /* Media Queries */
 @media (min-width: 1400px) {

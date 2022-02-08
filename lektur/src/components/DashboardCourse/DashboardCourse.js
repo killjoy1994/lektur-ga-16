@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import { ProgressBar } from "react-bootstrap";
 
 import styles from "../../styles/DashboardCourse.module.css";
+import playWhite from "../../assests/play-white.svg";
 
 const DashboardCourse = () => {
   const [edit, setEdit] = useState(false);
@@ -76,7 +78,13 @@ const DashboardCourse = () => {
                   <a href="#">See course materials</a>
                 </div>
               </div>
-              <div className={styles["course-control-right"]}></div>
+              <div className={styles["course-control-right"]}>
+                <ProgressBar now={20} className={styles.progress} />
+                <p className={styles["completed-task"]}>2/15 Course Complete</p>
+                <button className={styles["progress-btn"]}>
+                  <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
+                </button>
+              </div>
             </div>
             <div class={styles["course-control"]}></div>
           </div>
