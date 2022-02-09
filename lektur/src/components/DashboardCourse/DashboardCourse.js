@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { ProgressBar } from "react-bootstrap";
+// import { ProgressBar } from "react-bootstrap";
 
 import styles from "../../styles/DashboardCourse.module.css";
 import playWhite from "../../assests/play-white.svg";
 
 const DashboardCourse = () => {
   const [edit, setEdit] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("courses");
 
   //   Handle submit on profile change
   const submitHandler = (e) => {
@@ -46,9 +47,53 @@ const DashboardCourse = () => {
       </button>
     </form>
   );
-
   content = !edit ? userData : userForm;
+
   /* Conditional render for User Profile end */
+
+  let courses = (
+    <>
+      <div className={styles["course-control"]}>
+        <div className={styles["course-control-left"]}>
+          <div className={styles["img-course-wrapper"]}>
+            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+          </div>
+          <div className={styles["course-detail"]}>
+            <h3>React Crash Course</h3>
+            <p>By Traversy Media</p>
+            <a href="#">See course materials</a>
+          </div>
+        </div>
+        <div className={styles["course-control-right"]}>
+          {/* <ProgressBar now={20} className={styles.progress} /> */}
+          <div className={styles.progress}>
+            <div className={styles["progress-bar"]}></div>
+          </div>
+          <p className={styles["completed-task"]}>2/15 Course Complete</p>
+          <button className={styles["progress-btn"]}>
+            <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
+          </button>
+        </div>
+      </div>
+      <div class={styles["course-control"]}>
+        <div className={styles["course-control-left"]}>
+          <div className={styles["img-course-wrapper"]}>
+            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+          </div>
+          <div className={styles["course-detail"]}>
+            <h3>React Crash Course</h3>
+            <p>By Traversy Media</p>
+          </div>
+        </div>
+        <div className={styles["course-control-right"]}>
+          <p className={styles.approval}>Waiting Approval</p>
+        </div>
+      </div>
+    </>
+  );
+
+  /* Conditional render for selected courses/assessment */
+  let assessment;
 
   return (
     <main className={styles.dashboard}>
@@ -63,44 +108,24 @@ const DashboardCourse = () => {
         </div>
         <div className={styles["right-box"]}>
           <div className={styles["right-box-header"]}>
-            <h3>Courses</h3>
-            <h3>Assesment</h3>
+            <h3
+              style={{ fontWeight: selectedTitle === "courses" ? "700" : "400" }}
+              onClick={() => {
+                setSelectedTitle("courses");
+              }}
+            >
+              Courses
+            </h3>
+            <h3
+              style={{ fontWeight: selectedTitle === "assessment" ? "700" : "400" }}
+              onClick={() => {
+                setSelectedTitle("assessment");
+              }}
+            >
+              Assesment
+            </h3>
           </div>
-          <div className={styles["right-box-body"]}>
-            <div className={styles["course-control"]}>
-              <div className={styles["course-control-left"]}>
-                <div className={styles["img-course-wrapper"]}>
-                  <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
-                </div>
-                <div className={styles["course-detail"]}>
-                  <h3>React Crash Course</h3>
-                  <p>By Traversy Media</p>
-                  <a href="#">See course materials</a>
-                </div>
-              </div>
-              <div className={styles["course-control-right"]}>
-                <ProgressBar now={20} className={styles.progress} />
-                <p className={styles["completed-task"]}>2/15 Course Complete</p>
-                <button className={styles["progress-btn"]}>
-                  <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
-                </button>
-              </div>
-            </div>
-            <div class={styles["course-control"]}>
-              <div className={styles["course-control-left"]}>
-                <div className={styles["img-course-wrapper"]}>
-                  <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
-                </div>
-                <div className={styles["course-detail"]}>
-                  <h3>React Crash Course</h3>
-                  <p>By Traversy Media</p>
-                </div>
-              </div>
-              <div className={styles["course-control-right"]}>
-                <p className={styles.approval}>Waiting Approval</p>
-              </div>
-            </div>
-          </div>
+          <div className={styles["right-box-body"]}>{courses}</div>
         </div>
       </div>
     </main>
