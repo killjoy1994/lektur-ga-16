@@ -15,7 +15,7 @@ const DashboardCourse = () => {
     setEdit(false);
   };
 
-  // Conditional render for User Profile start
+  /* Conditional render for User Profile start */
   let content;
   const userData = (
     <div className={styles["user-data"]}>
@@ -48,7 +48,7 @@ const DashboardCourse = () => {
   );
 
   content = !edit ? userData : userForm;
-  // Conditional render for User Profile end
+  /* Conditional render for User Profile end */
 
   return (
     <main className={styles.dashboard}>

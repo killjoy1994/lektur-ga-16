@@ -123,6 +123,10 @@
   border-radius: 4px;
 }
 
+.right-box p {
+  margin: 0;
+}
+
 .right-box-header {
   display: flex;
   justify-content: center;
