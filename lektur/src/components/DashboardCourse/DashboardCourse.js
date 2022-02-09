@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import styles from "../../styles/DashboardCourse.module.css";
 import playWhite from "../../assests/play-white.svg";
+import editIcon from "../../assests/edit-icon-orange.svg";
 
 const DashboardCourse = () => {
   const [edit, setEdit] = useState(false);
@@ -101,7 +102,8 @@ const DashboardCourse = () => {
         <div className={styles["left-box"]}>
           <div className={styles["user-profile"]}>
             <div className={styles["img-wrapper"]}>
-              <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" />
+              <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" className={styles["user-avatar"]} />
+              {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
             </div>
             {content}
           </div>
