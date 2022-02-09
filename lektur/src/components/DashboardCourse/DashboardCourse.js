@@ -52,6 +52,7 @@ const DashboardCourse = () => {
 
   /* Conditional render for User Profile end */
 
+  /* Pas di bagian courses start */
   let courses = (
     <>
       <div className={styles["course-control"]}>
@@ -93,8 +94,68 @@ const DashboardCourse = () => {
     </>
   );
 
-  /* Conditional render for selected courses/assessment */
-  let assessment;
+  /* Pas di bagian courses end */
+
+  /* Pas di bagian assesment start*/
+  let assessment = (
+    <div className={styles["assessment-wrapper"]}>
+      {/* Taken test start*/}
+      <div className={styles["assessment-control"]}>
+        <div className={styles.detail}>
+          <h3 className={styles.title}>React Crash Course</h3>
+          <p className={styles.author}>Traversy Media</p>
+          <p className={styles.date}>Completed at: 28 January 2021 08:00pm</p>
+        </div>
+        <div className={styles.completed}>
+          <p className={styles.number}>73%</p>
+          <p className={styles["correct-amount"]}>11/15 Question Correct</p>
+        </div>
+      </div>
+      <div className={styles["assessment-control"]}>
+        <div className={styles.detail}>
+          <h3 className={styles.title}>React Crash Course</h3>
+          <p className={styles.author}>Traversy Media</p>
+          <p className={styles.date}>Completed at: 28 January 2021 08:00pm</p>
+        </div>
+        <div className={styles.completed}>
+          <p className={styles.number}>73%</p>
+          <p className={styles["correct-amount"]}>11/15 Question Correct</p>
+        </div>
+      </div>
+      {/* Taken test end */}
+
+      {/* Untaken test start */}
+      <div className={styles["assessment-control"]}>
+        <div className={styles.detail}>
+          <h3 className={styles.title}>Create Cinematic Music Video</h3>
+          <p className={styles.author}>John Doe</p>
+          <p className={styles.date}>Completed at: -</p>
+        </div>
+        <div className={styles.completed}>
+          <p className={styles["correct-amount"]}>No result yet</p>
+          <a href="#" className={styles["btn-take-test"]}>
+            Take test
+          </a>
+        </div>
+      </div>
+      <div className={styles["assessment-control"]}>
+        <div className={styles.detail}>
+          <h3 className={styles.title}>Create Cinematic Music Video</h3>
+          <p className={styles.author}>John Doe</p>
+          <p className={styles.date}>Completed at: -</p>
+        </div>
+        <div className={styles.completed}>
+          <p className={styles["correct-amount"]}>No result yet</p>
+          <a href="#" className={styles["btn-take-test"]}>
+            Take test
+          </a>
+        </div>
+      </div>
+      {/* Untaken test end */}
+    </div>
+  );
+
+  /* Pas di bagian assessment end*/
 
   return (
     <main className={styles.dashboard}>
@@ -127,7 +188,7 @@ const DashboardCourse = () => {
               Assesment
             </h3>
           </div>
-          <div className={styles["right-box-body"]}>{courses}</div>
+          <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
         </div>
       </div>
     </main>
