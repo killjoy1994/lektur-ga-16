@@ -215,7 +215,7 @@
 
 .progress-btn {
   width: 70%;
-  margin-top: 65px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,6 +225,10 @@
   border: none;
   background-color: rgba(62, 137, 174, 1);
   color: white;
+}
+
+.progress-btn:hover {
+  filter: brightness(120%);
 }
 
 .approval {
