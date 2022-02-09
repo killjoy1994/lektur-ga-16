@@ -207,6 +207,7 @@
 
 /* Progress Bar */
 .progress {
+  margin-top: 8px;
   width: 70%;
   height: 8px;
   border-radius: 0;
