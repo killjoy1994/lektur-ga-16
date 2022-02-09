@@ -86,7 +86,20 @@ const DashboardCourse = () => {
                 </button>
               </div>
             </div>
-            <div class={styles["course-control"]}></div>
+            <div class={styles["course-control"]}>
+              <div className={styles["course-control-left"]}>
+                <div className={styles["img-course-wrapper"]}>
+                  <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+                </div>
+                <div className={styles["course-detail"]}>
+                  <h3>React Crash Course</h3>
+                  <p>By Traversy Media</p>
+                </div>
+              </div>
+              <div className={styles["course-control-right"]}>
+                <p className={styles.approval}>Waiting Approval</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
