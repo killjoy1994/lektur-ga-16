@@ -159,9 +159,9 @@ select:hover {
   padding: 120px;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 500px){
   .signup{
-    width: 330px;
+    width: 320px;
   }
 
   .email-password-username-field{
