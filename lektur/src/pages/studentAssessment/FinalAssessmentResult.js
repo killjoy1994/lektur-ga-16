@@ -4,8 +4,10 @@ import correct from "../../assests/correct.png";
 import wrong from "../../assests/wrong.png";
 
 function FinalAssessmentResult() {
+  const benar = "pilihanC";
+
   return (
-    <div style={{ background: "#fffafa", height: "180vh" }}>
+    <div className={styles.wrapper_assessment}>
       <header className={styles.container_head}>
         <Breadcrumb className={styles.breadcrumb}>
           <Breadcrumb.Item href="#" active>
@@ -34,37 +36,22 @@ function FinalAssessmentResult() {
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check" style={{ marginLeft: "-21px" }}>
-              <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
-              {/* <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3"/> */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            {benar === "pilihanC" ? <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} /> : <input type="radio" name="soal1" id="pilihanC" value="C" />}
+            <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              Et mattis lacus fermentum id nec
+            </label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
@@ -75,37 +62,23 @@ function FinalAssessmentResult() {
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check" style={{ marginLeft: "-21px" }}>
-              <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
-              {/* <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3"/> */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
+            {/* <input type="radio" name="soal1" id="pilihanC" value="C" /> */}
+            <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              Et mattis lacus fermentum id nec
+            </label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
@@ -116,37 +89,54 @@ function FinalAssessmentResult() {
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check" style={{ marginLeft: "-21px" }}>
-              <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
-              {/* <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3"/> */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
+            {/* <input type="radio" name="soal1" id="pilihanC" value="C" /> */}
+            <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              Et mattis lacus fermentum id nec
+            </label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+          </div>
+        </div>
+
+        <div className={styles.question_list}>
+          <div className={styles.box_question}>
+            <p>1.</p>
+            <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
+            <p className={`ms-auto ${styles.correction_wrong}`}>Wrong</p>
+          </div>
+          <p className={styles.answer}>Answer</p>
+          <div className={styles.answer_list}>
+            <img src={wrong} alt="ceklist" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <img src={correct} alt="ceklist" />
+            <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              Et mattis lacus fermentum id nec
+            </label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+          </div>
+          <div className={styles.remark}>
+            <p>Remark</p>
+            <p>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
         </div>
         <div className={styles.question_list}>
@@ -157,44 +147,29 @@ function FinalAssessmentResult() {
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check" style={{ marginLeft: "-21px" }}>
-              <img src={wrong} alt="ceklist" style={{ marginRight: "10px" }} />
-              {/* <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3"/> */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check" style={{ marginLeft: "-21px" }}>
-              <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
-              {/* <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3"/> */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" disabled />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <img src={wrong} alt="ceklist" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <img src={correct} alt="ceklist" />
+            <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              Et mattis lacus fermentum id nec
+            </label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
           <div className={styles.remark}>
             <p>Remark</p>
             <p>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
         </div>
+       
       </div>
     </div>
   );

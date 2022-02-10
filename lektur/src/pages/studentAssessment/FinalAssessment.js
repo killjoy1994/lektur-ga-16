@@ -1,6 +1,8 @@
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import styles from "../../styles/FinalAssessment.module.css";
-{/* <CustomRadio checked={true} correct={false} /> */}
+{
+  /* <CustomRadio checked={true} correct={false} /> */
+}
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
   return (
@@ -16,201 +18,122 @@ function FinalAssessment() {
       </header>
       <div className={styles.assessment_box}>
         <h6>5 Questions</h6>
+
         <div className={styles.question_list}>
           <div className={styles.box_question}>
-            1.
+            <p>1.</p>
             <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              {/* {correct ===  'exampleRadios1' ? 'x' :  */}
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-              {/* // } */}
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
-              <label className="form-check-label" for="exampleRadios2">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" />
-              <label className="form-check-label" for="exampleRadios3">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4" />
-              <label className="form-check-label" for="exampleRadios4">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5" />
-              <label className="form-check-label" for="exampleRadios5">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            {/* {correct ===  'exampleRadios1' ? 'x' :  */}
+            <input type="radio" name="soal1" id="pilihanA" value="A" />
+            {/* // } */}
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanB" value="B" />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanC" value="C" />
+            <label for="pilihanC">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanD" value="D" />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal1" id="pilihanE" value="E" />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
           <div className={styles.box_question}>
-            2.
+            <p>2.</p>
             <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option6" />
-              <label className="form-check-label" for="exampleRadios6">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios7" value="option7" />
-              <label className="form-check-label" for="exampleRadios7">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios8" value="option8" />
-              <label className="form-check-label" for="exampleRadios8">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios9" value="option9" />
-              <label className="form-check-label" for="exampleRadios9">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios10" value="option10" />
-              <label className="form-check-label" for="exampleRadios10">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal2" id="pilihanA" value="A" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal2" id="pilihanB" value="B" />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal2" id="pilihanC" value="C" />
+            <label for="pilihanC">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal2" id="pilihanD" value="D" />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal2" id="pilihanE" value="E" />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
           <div className={styles.box_question}>
-            3.
+            <p>3.</p>
             <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal3" id="pilihanA" value="A" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal3" id="pilihanB" value="B" />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal3" id="pilihanC" value="C" />
+            <label for="pilihanC">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal3" id="pilihanD" value="D" />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal3" id="pilihanE" value="E" />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
           <div className={styles.box_question}>
-            4.
+            <p>4.</p>
             <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal4" id="pilihanA" value="A" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal4" id="pilihanB" value="B" />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal4" id="pilihanC" value="C" />
+            <label for="pilihanC">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal4" id="pilihanD" value="D" />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal4" id="pilihanE" value="E" />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
         <div className={styles.question_list}>
           <div className={styles.box_question}>
-            5.
+            <p>5.</p>
             <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
           <p className={styles.answer}>Answer</p>
           <div className={styles.answer_list}>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option3" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option4" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option5" />
-              <label className="form-check-label" for="exampleRadios1">
-                Et mattis lacus fermentum id nec
-              </label>
-            </div>
+            <input type="radio" name="soal5" id="pilihanA" value="A" />
+            <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal5" id="pilihanB" value="B" />
+            <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal5" id="pilihanC" value="C" />
+            <label for="pilihanC">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal5" id="pilihanD" value="D" />
+            <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+            <br />
+            <input type="radio" name="soal5" id="pilihanE" value="E" />
+            <label for="pilihanE">Et mattis lacus fermentum id nec</label>
           </div>
         </div>
       </div>
