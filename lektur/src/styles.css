@@ -1,0 +1,23 @@
+@import './styles/BannerBottom.module.css';
+@import './styles/Card.module.css';
+@import './styles/Cards.module.css';
+@import './styles/CategoryGroup.module.css';
+@import './styles/CourseContentModal.module.css';
+@import './styles/Hero.module.css';
+@import './styles/Home.module.css';
+@import './styles/Login.css';
+@import './styles/MainContent.module.css';
+@import './styles/Signup.css';
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  zoom: 80%;
+}

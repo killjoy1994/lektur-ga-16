@@ -1,13 +1,14 @@
-.navbar{
-    min-height: 72px;
-     background: #FFFFFF;
-     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+.navbar {
+  min-height: 72px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .logo-nav {
   height: auto;
   width: 132px;
   margin-bottom: 10px;
 }
+
 .navbar-search {
   border: 1px solid black;
 }
@@ -29,17 +30,21 @@
 .is-login {
   gap: 1rem;
 }
-.navbar-right a{
-    color: black;
-    
+.navbar-right a {
+  color: black;
 }
 .garis {
   height: 36px;
   border: 1px solid black;
 }
 .btn-signup {
-  background: black;
+  background-color: #16213b;
   color: white;
+  border-radius: 1px;
+  border: 8px solid #16213b;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 10px;
 }
 .btn-signup:hover {
   color: #fff;
@@ -55,7 +60,7 @@
   .searching {
     width: 300px;
   }
-  .garis{
+  .garis {
     display: none;
   }
 }

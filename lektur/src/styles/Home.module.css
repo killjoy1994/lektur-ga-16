@@ -9,7 +9,7 @@ a {
 }
 
 @media (min-width: 1500px) {
-  main {
+  .main {
     width: 1400px;
     margin: auto;
   }

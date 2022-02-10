@@ -1,10 +1,10 @@
+// import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Detail from "./pages/Detail";
 import Navbar from "./components/Header/Navbar";
-import FinalAssessment from "./pages/studentAssessment/FinalAssessment";
-import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResult";
+import Home from "./pages/Home";
+import FinalAssessmentResult from './pages/studentAssessment/FinalAssessmentResult'
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Navbar />
       {/* <FinalAssessment/> */}
-      <FinalAssessmentResult/>
+      <FinalAssessmentResult />
       {/* <Home /> */}
       {/* <Detail/> */}
       <Footer />
