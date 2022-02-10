@@ -1,10 +1,10 @@
 import { Formik, Form, Field} from 'formik';
 import { Button, Spinner } from 'react-bootstrap';
 import *as Yup from 'yup';
-import axios from 'axios';
-import { useState } from 'react';
-import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+// import axios from 'axios';
+// import { useState } from 'react';
+// import Swal from 'sweetalert2';
+// import { Link, useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Header/Navbar';
 import Footer from '../../components/Footer';
@@ -18,37 +18,37 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function FormLogin () {
-    const navigate = useNavigate()
-    let [ reqLoading, setReqLoading ] = useState(false)
+    // const navigate = useNavigate()
+    // let [ reqLoading, setReqLoading ] = useState(false)
 
-    axios({
-        method: 'post',
-        url: '/',
-        data: {
-            email: '',
-            password: '',
-        }
-    })
-    .then((response) => {
-        setReqLoading(false)
-        Swal.fire({
-            icon: 'success',
-            title: 'GOOD JOB!',
-            text: response.data.message
-        })
-        // masukin token ke localStorage
-        window.localStorage.setItem('token', response.data.token)
-        // redirect ke dashboard
-        navigate('/')
-    })
-    .catch((error) => {
-        setReqLoading(false)
-        Swal.fire({
-            icon: 'error',
-            title: 'ERROR',
-            text: error.response.data.message || "Login failed"
-        })
-    })
+    // axios({
+    //     method: 'post',
+    //     url: '/',
+    //     data: {
+    //         email: '',
+    //         password: '',
+    //     }
+    // })
+    // .then((response) => {
+    //     setReqLoading(false)
+    //     Swal.fire({
+    //         icon: 'success',
+    //         title: 'GOOD JOB!',
+    //         text: response.data.message
+    //     })
+    //     // masukin token ke localStorage
+    //     window.localStorage.setItem('token', response.data.token)
+    //     // redirect ke dashboard
+    //     navigate('/')
+    // })
+    // .catch((error) => {
+    //     setReqLoading(false)
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'ERROR',
+    //         text: error.response.data.message || "Login failed"
+    //     })
+    // })
 
 
     return (
@@ -108,14 +108,14 @@ export default function FormLogin () {
                                 <div className='forget-pass'>Forgot Password?</div>
                                 <div className='btn-login d-flex justify-content-flex-end pb-60'>
                                     <Button type='submit' className='login-button color-#ffffff border-radius-1'>
-                                    {reqLoading ? <Spinner animation="border"/> : "Login"}
+                                    {/* {reqLoading ? <Spinner animation="border"/> : "Login"} */} Login
                                     </Button>
                                 </div>
                                 <div className='register-redirect'>
                                     New user?{" "}
-                                    <Link to='/register'>
+                                    <a href='/register'>
                                         <span>Create an account</span>
-                                    </Link>
+                                    </a>
                                 </div>
                             </Form>
                         </div>

@@ -1,7 +1,7 @@
-.navbar {
-  height: 72px;
-  background: #ffffff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+.navbar{
+    min-height: 72px;
+     background: #FFFFFF;
+     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .logo-nav {
   height: auto;
@@ -29,9 +29,9 @@
 .is-login {
   gap: 1rem;
 }
-.navbar-right a {
-  color: black;
-  /* font-weight: bold; */
+.navbar-right a{
+    color: black;
+    
 }
 .garis {
   height: 36px;
@@ -46,13 +46,9 @@
     font-size: 16px;
     line-height: 10px;
 }
-.btn-signup:hover{
-    background: white;
-    color: black;
-    border: 1px solid #16213b;
-    border-radius: 1px;
-    font-weight: bold;
-    line-height: 10px;
+.btn-signup:hover {
+  color: #fff;
+  filter: brightness(125%);
 }
 
 @media only screen and (max-width: 1024px) {
@@ -63,5 +59,8 @@
 
   .searching {
     width: 300px;
+  }
+  .garis{
+    display: none;
   }
 }
