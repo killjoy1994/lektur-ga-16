@@ -6,7 +6,7 @@ import styles from "../../styles/FinalAssessment.module.css";
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
   return (
-    <div style={{ background: "#fffafa", height: "180vh" }}>
+    <div className={styles.wrapper_assessment}>
       <header className={styles.container_head}>
         <Breadcrumb className={styles.breadcrumb}>
           <Breadcrumb.Item href="#" active>

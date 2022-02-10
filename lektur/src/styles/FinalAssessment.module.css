@@ -1,6 +1,11 @@
+.wrapper_assessment{
+  background: #fffafa; 
+  height: 180vh;
+}
+
+
 .container_head {
   width: 1050px;
-  /* border: 2px solid red; */
   margin: 0 auto;
 }
 
@@ -47,10 +52,10 @@
   /* border: 1px solid black; */
   display: flex;
   gap: 1rem;
+  padding-top: 20px;
+
 }
-/* .question{
-   
-} */
+
 .answer {
   color: #999999;
   font-size: 14px;

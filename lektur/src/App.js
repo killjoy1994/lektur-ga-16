@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      {/* <FinalAssessment/> */}
-      <FinalAssessmentResult/>
+      <FinalAssessment/>
+      {/* <FinalAssessmentResult/> */}
       {/* <Home /> */}
       {/* <Detail/> */}
       <Footer />
