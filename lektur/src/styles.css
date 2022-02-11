@@ -8,8 +8,10 @@
 @import './styles/Login.css';
 @import './styles/MainContent.module.css';
 @import './styles/Signup.css';
+@import './styles/Error.module.css'
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
 * {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
