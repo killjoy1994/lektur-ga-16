@@ -169,7 +169,6 @@ function FinalAssessmentResult() {
             <p>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
           </div>
         </div>
-       
       </div>
     </div>
   );
