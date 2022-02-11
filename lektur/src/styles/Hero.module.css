@@ -155,7 +155,7 @@ h3 {
 
 @media (max-width: 420px) {
   .content-container {
-    width: 100%;
+    width: 80%;
   }
 
   .left h1 {
@@ -165,6 +165,22 @@ h3 {
   .hero-btn {
     margin: auto;
     padding: 2px 5px;
+    font-size: 0.8rem;
+  }
+
+  .description-left .amount {
+    font-size: 0.8rem;
+  }
+
+  .description-left h3 {
+    font-size: 0.85rem;
+  }
+
+  .description-left .author {
+    font-size: 0.8rem;
+  }
+
+  .description-right p {
     font-size: 0.8rem;
   }
 }
