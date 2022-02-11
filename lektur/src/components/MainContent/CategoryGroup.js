@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-
 // import required modules
 import { Navigation } from "swiper";
 
@@ -30,26 +29,25 @@ const CategoryGroup = () => {
       <a href="#">BUSINESS</a>
       <a href="#">TECHNOLOGY</a>
       <a href="#">GRAPHIC DESIGN</a>
+      {/* <>
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+          <SwiperSlide>
+            <a href="#">BUSINESS</a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <a href="#">TECHNOLOGY</a>
+          </SwiperSlide>
+          <SwiperSlide></SwiperSlide>
+          <SwiperSlide>Slide 4</SwiperSlide>
+          <SwiperSlide>Slide 5</SwiperSlide>
+          <SwiperSlide>Slide 6</SwiperSlide>
+          <SwiperSlide>Slide 7</SwiperSlide>
+          <SwiperSlide>Slide 8</SwiperSlide>
+          <SwiperSlide>Slide 9</SwiperSlide>
+        </Swiper>
+      </> */}
     </div>
   );
 };
 
 export default CategoryGroup;
-
-// <>
-//   <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-//     <SwiperSlide>
-//       <a href="#">BUSINESS</a>
-//     </SwiperSlide>
-//     <SwiperSlide>
-//       <a href="#">TECHNOLOGY</a>
-//     </SwiperSlide>
-//     <SwiperSlide></SwiperSlide>
-//     <SwiperSlide>Slide 4</SwiperSlide>
-//     <SwiperSlide>Slide 5</SwiperSlide>
-//     <SwiperSlide>Slide 6</SwiperSlide>
-//     <SwiperSlide>Slide 7</SwiperSlide>
-//     <SwiperSlide>Slide 8</SwiperSlide>
-//     <SwiperSlide>Slide 9</SwiperSlide>
-//   </Swiper>
-// </>
