@@ -19,8 +19,8 @@ const Hero = () => {
             controls
             url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
             width="100%"
-            height="70%"
-            playing={true}
+            height="100%"
+            playing={false}
           />
           <div className={styles["video-detail"]}>
             <div className={styles.description}>

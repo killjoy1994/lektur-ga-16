@@ -1,4 +1,3 @@
 @import "./styles/navbar.css";
 @import "./styles/footer.css";
-@import "./styles/Login.css";
-@import "./styles/Error.module.css"
+@import './styles/Signup.css';
