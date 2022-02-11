@@ -1,3 +1,7 @@
 @import "./styles/navbar.css";
 @import "./styles/footer.css";
+<<<<<<< HEAD
+@import './styles/Signup.css';
+=======
 @import "./styles/Login.css";
+>>>>>>> fe80786837f044ea9d3082586ab53ed64356e659
