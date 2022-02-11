@@ -1,13 +1,14 @@
-.category-group {
+/* .category-group {
   width: 100%;
   min-height: 100px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-}
+} */
 
 .category-group a {
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +23,11 @@
 .category-group a:hover {
   background: rgba(239, 156, 39, 1);
   color: white;
+}
+
+/* Swiper */
+.mySwipper {
+  height: 200px;
 }
 
 @media (max-width: 420px) {
