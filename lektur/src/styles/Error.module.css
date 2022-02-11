@@ -23,7 +23,7 @@
 }
 
 .notfound-404 h1 {
-    font-family: montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -41,7 +41,7 @@
 }
 
 .notfound-404 h2 {
-    font-family: montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     top: 110px;
     font-weight: 700;
@@ -52,11 +52,24 @@
     margin: 0;
 }
 
+.notfound-404 p {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    top: 140px;
+    font-weight: 550;
+    color: chocolate;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 black;
+    letter-spacing: 10px;
+    margin: 0;
+}
+
 .notfound a {
-    font-family: montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: inline-block;
     text-transform: uppercase;
     color: #16213b;
+    margin-top: 15px;
     text-decoration: none;
     border: 2px solid;
     background: 0 0;
@@ -64,4 +77,9 @@
     font-size: 14px;
     font-weight: 700;
     transition: .2s all;
+}
+
+.notfound a:hover {
+    color: white;
+    background: #16213b;
 }
