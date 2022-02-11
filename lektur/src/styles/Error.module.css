@@ -1,0 +1,85 @@
+.not-found {
+    position: relative;
+    height: 100vh;
+    background: #ffffff;
+}
+
+.notfound {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 767px;
+    width: 100%;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.notfound-404 {
+    position: relative;
+    height: 180px;
+    margin-bottom: 20px;
+    z-index: -1;
+}
+
+.notfound-404 h1 {
+    font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 224px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: -12px;
+    color: black;
+    text-transform: uppercase;
+    text-shadow: -1px -1px 0 orange,
+        1px 1px 0 #16213b;
+    letter-spacing: -20px;
+}
+
+.notfound-404 h2 {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    top: 110px;
+    font-weight: 700;
+    color: burlywood;
+    text-transform: uppercase;
+    text-shadow: 0 2px 0 orange;
+    letter-spacing: 13px;
+    margin: 0;
+}
+
+.notfound-404 p {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    top: 140px;
+    font-weight: 550;
+    color: chocolate;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 black;
+    letter-spacing: 10px;
+    margin: 0;
+}
+
+.notfound a {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #16213b;
+    margin-top: 15px;
+    text-decoration: none;
+    border: 2px solid;
+    background: 0 0;
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s all;
+}
+
+.notfound a:hover {
+    color: white;
+    background: #16213b;
+}
