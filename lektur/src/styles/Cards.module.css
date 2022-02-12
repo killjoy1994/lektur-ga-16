@@ -22,6 +22,7 @@
 
 @media (max-width: 420px) {
   .cards {
+    margin-top: 20px;
     grid-template-columns: minmax(230px, 250px);
     justify-content: center;
   }
