@@ -104,11 +104,11 @@ form.wrapper-search {
   }
 }
 
-@media (max-width: 563px) {
+@media (max-width: 580px) {
   .navbar-brand {
     padding-right: 0px;
   }
-  .wrapper-search {
+  form.wrapper-search {
     width: 15rem;
   }
 }

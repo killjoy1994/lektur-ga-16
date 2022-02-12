@@ -23,3 +23,9 @@
   background: rgba(239, 156, 39, 1);
   color: white;
 }
+
+@media (max-width: 420px) {
+  .category-group a {
+    width: 50%;
+  }
+}
