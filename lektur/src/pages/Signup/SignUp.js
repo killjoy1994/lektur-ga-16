@@ -6,7 +6,7 @@
 // import { useDispatch } from 'react-redux';
 
 // import { postSignup } from "../../redux/actions/userActions";
-// import Navbar from '../../components/Header/Navbar';
+// import NavbarComponent from '../../components/Header/NavbarComponent';
 // import Footer from '../../components/Footer';
 
 // const SignupSchema = Yup.object().shape({
@@ -45,7 +45,7 @@
 
 //     return (
 //         <>
-//             <Navbar />
+//             <NavbarComponent />
 //             <Formik
 //             initialValues={{
 //                 fullname: '',

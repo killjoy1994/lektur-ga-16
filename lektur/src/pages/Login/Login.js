@@ -6,7 +6,7 @@ import *as Yup from 'yup';
 // import Swal from 'sweetalert2';
 // import { Link, useNavigate } from 'react-router-dom';
 
-import Navbar from '../../components/Header/Navbar';
+import NavbarComponent from '../../components/Header/NavbarComponent';
 import Footer from '../../components/Footer';
 
 const LoginSchema = Yup.object().shape({
@@ -53,7 +53,7 @@ export default function FormLogin () {
 
     return (
        <>
-        <Navbar />
+        <NavbarComponent />
         <Formik
         initialValues={{
             email: '',
