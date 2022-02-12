@@ -13,8 +13,6 @@ import styles from "../../styles/CategoryGroup.module.css";
 import "../../styles/categorySwipper.css";
 
 const CategoryGroup = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-
   return (
     <div className={styles["category-group"]}>
       <a href="#" className={styles["group-link"]}>
