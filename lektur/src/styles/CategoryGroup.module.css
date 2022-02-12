@@ -1,14 +1,13 @@
-/* .category-group {
+.category-group {
   width: 100%;
   min-height: 100px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 15px;
-} */
+}
 
-.category-group a {
-  width: 100px;
+.group-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,13 +24,12 @@
   color: white;
 }
 
-/* Swiper */
-.mySwipper {
-  height: 200px;
-}
-
 @media (max-width: 420px) {
-  .category-group a {
-    width: 50%;
+  .category-group {
+    min-height: 60px;
+    align-items: center;
+  }
+  .group-link {
+    display: none;
   }
 }

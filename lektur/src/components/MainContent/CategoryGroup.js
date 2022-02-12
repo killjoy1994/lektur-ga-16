@@ -10,47 +10,104 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 
 import styles from "../../styles/CategoryGroup.module.css";
+import "../../styles/categorySwipper.css";
 
 const CategoryGroup = () => {
   const [width, setWidth] = useState(window.innerWidth);
 
   return (
     <div className={styles["category-group"]}>
-      {/* <a href="#">BUSINESS</a>
-      <a href="#">TECHNOLOGY</a>
-      <a href="#">GRAPHIC DESIGN</a>
-      <a href="#">BUSINESS</a>
-      <a href="#">BUSINESS</a>
-      <a href="#">TECHNOLOGY</a>
-      <a href="#">GRAPHIC DESIGN</a>
-      <a href="#">BUSINESS</a>
-      <a href="#">TECHNOLOGY</a>
-      <a href="#">BUSINESS</a>
-      <a href="#">TECHNOLOGY</a>
-      <a href="#">GRAPHIC DESIGN</a> */}
+      <a href="#" className={styles["group-link"]}>
+        BUSINESS
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        TECHNOLOGY
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        GRAPHIC DESIGN
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        BUSINESS
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        BUSINESS
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        TECHNOLOGY
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        GRAPHIC DESIGN
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        BUSINESS
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        TECHNOLOGY
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        BUSINESS
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        TECHNOLOGY
+      </a>
+      <a href="#" className={styles["group-link"]}>
+        GRAPHIC DESIGN
+      </a>
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        slidesPerView={2}
+        spaceBetween={15}
         freeMode={true}
         pagination={{
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className={styles.mySwiper}
+        className="mySwiper"
       >
         <SwiperSlide>
-          <a href="#">BUSINESS</a>
+          <a href="#" className="group-link">
+            BUSINESS
+          </a>
         </SwiperSlide>
         <SwiperSlide>
-          <a href="#">TECHNOLOGY</a>
+          <a href="#" className="group-link">
+            TECHNOLOGY
+          </a>
         </SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            GRAPHIC DESIGN
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            BUSINESS
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            TECHNOLOGY
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            TECHNOLOGY
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            GRAPHIC DESIGN
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            TECHNOLOGY
+          </a>
+        </SwiperSlide>
+        <SwiperSlide>
+          <a href="#" className="group-link">
+            TECHNOLOGY
+          </a>
+        </SwiperSlide>
       </Swiper>
     </div>
   );
