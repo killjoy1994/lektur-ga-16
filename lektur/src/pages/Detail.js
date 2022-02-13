@@ -3,6 +3,8 @@ import { useState } from "react";
 import bg from "../assests/bg-detail.png";
 import styles from "../styles/Detail.module.css";
 import Card from "../components/CourseCards/Card";
+import NavbarComponent from "../components/Header/NavbarComponent";
+import Footer from "../components/Footer";
 function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
 
@@ -16,6 +18,8 @@ function Detail() {
     category: "Art & Humanity",
   };
   return (
+    <>
+    <NavbarComponent/>
     <div className={styles.main}>
       {/* <div className={styles.main} style={{ background: "#E5E5E5", height: "150vh" }}> */}
       <div className={styles.banner_detail} style={{ backgroundImage: `url(${bg})` }}>
@@ -125,6 +129,8 @@ function Detail() {
         </Modal>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 

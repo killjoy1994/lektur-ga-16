@@ -83,4 +83,7 @@ ul {
   .section_right {
     width: 100%;
   }
+  .container {
+    margin: 0;
+  }
 }

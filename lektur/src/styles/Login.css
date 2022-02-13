@@ -90,10 +90,6 @@
   text-decoration: underline;
 }
 
-.forget-pass {
-  text-align: right;
-  padding: 5px 0px 25px 0px;
-}
 
 .register-redirect a {
   text-decoration: none;
@@ -101,9 +97,7 @@
 }
 
 .btn-login {
-  display: flex;
-  justify-content: flex-end;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
 }
 
 .login-button {
@@ -123,15 +117,65 @@
   background: #16213b;
 }
 
+.login-container {
+  /* border: 1.3px solid red; */
+  justify-content: space-between;
+  display: flex;
+  margin-top: 20px;
+}
+
+.login-left {
+  /* border: 1px solid yellow; */
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.login-left p {
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.login-right {
+  width: 185px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Segoe UI", "Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+}
+
+/* .icons-container {
+  border: 1px solid blue;
+} */
+
+.icons-container img {
+  width: 25px;
+  height: 25px;
+}
+
+/* .login-box-a:active {
+  background-color: #eeeeee;
+}
+  
+.login-box-a:focus {
+  outline: none;
+  box-shadow: 
+    0 -1px 0 rgba(0, 0, 0, .04),
+    0 2px 4px rgba(0, 0, 0, .25),
+    0 0 0 3px #c8dafc;
+} */
+
+
 
 @media screen and (max-width: 360px){
-  .btn-login{
-    padding-bottom: 10px;
-  }
-  .forget-pass{
-    padding: 5px 0px 10px 0px;
-  }
-  .login-form {
-    padding: 80px;
+  .form-login {
+    width: 320px;
   }
 }

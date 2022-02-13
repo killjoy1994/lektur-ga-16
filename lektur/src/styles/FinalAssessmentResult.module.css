@@ -26,12 +26,14 @@
 .evaluation .p1 {
   color: #ef9c27;
   font-size: 36px;
+  padding-bottom: 20px;
 }
 .evaluation .p2 {
   color: #999999;
   font-size: 12px;
   line-height: 15px;
   line-height: 100%;
+  margin-bottom: 20px;
 }
 
 .title {

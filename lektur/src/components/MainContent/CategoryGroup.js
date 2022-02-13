@@ -53,6 +53,7 @@ const CategoryGroup = () => {
       </a>
       <Swiper
         slidesPerView={2}
+        speed={500}
         spaceBetween={15}
         freeMode={true}
         pagination={{
