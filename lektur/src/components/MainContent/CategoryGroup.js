@@ -1,13 +1,20 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
+<<<<<<< HEAD
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import required modules
+// import { Navigation } from "swiper";
+=======
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import { FreeMode, Pagination } from "swiper";
+>>>>>>> 2a9fedeceebaf81ff0a14bc15da26a5fb8f0d46d
 
 import styles from "../../styles/CategoryGroup.module.css";
 import "../../styles/categorySwipper.css";

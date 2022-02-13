@@ -1,12 +1,13 @@
 import React from "react";
-import Navbar from "../components/Header/Navbar";
+
 import DashboardCourse from "../components/DashboardCourse/DashboardCourse";
 import Footer from "../components/Footer";
+import NavbarComponent from "../components/Header/NavbarComponent";
 
 const StudentDashboard = () => {
   return (
     <div>
-      <Navbar />
+      <NavbarComponent />
       <DashboardCourse />
       <Footer />
     </div>
