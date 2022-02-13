@@ -13,6 +13,7 @@ function Signup() {
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
     const [reqLoading, setReqLoading] = useState();
+    const [role, setRole] = useState(null);
 
     const navigate = useNavigate();
 
@@ -122,6 +123,18 @@ function Signup() {
                                     />
                                 </div>
                                 <p>{ formErrors.password }</p>
+                                <div className="form-select">
+                                <select
+                                    name="status"
+                                    onChange={(event) => setRole(event.target.value)}
+                                >
+                                    <option value={null} className="option">
+                                    Select Role
+                                </option>
+                                    <option className='option-t'value={1}>Teacher</option>
+                                    <option className='option-s'value={0}>Student</option>
+                                </select>
+                                </div>
                                 <button className='btn-signup-form'>
                                     Sign up
                                 </button>

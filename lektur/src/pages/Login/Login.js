@@ -6,6 +6,10 @@ import *as Yup from 'yup';
 // import Swal from 'sweetalert2';
 // import { Link, useNavigate } from 'react-router-dom';
 
+import facebookIcon from '../../assests/facebook.svg';
+import googleIcon from '../../assests/google.svg';
+import githubIcon from '../../assests/github.svg';
+
 import Navbar from '../../components/Header/Navbar';
 import Footer from '../../components/Footer';
 
@@ -104,13 +108,27 @@ export default function FormLogin () {
                                     {errors.password && touched.password &&
                                     <div className='text-danger'>
                                     {errors.password}
-                                    </div>}
-                                <div className='forget-pass'>Forgot Password?</div>
-                                <div className='btn-login d-flex justify-content-flex-end pb-60'>
-                                    <Button type='submit' className='login-button color-#ffffff border-radius-1'>
-                                    {/* {reqLoading ? <Spinner animation="border"/> : "Login"} */} Login
-                                    </Button>
+                                </div>}
+                                
+                                <div className="login-container">
+                                    <div className="login-left">
+                                        <p> Login with :</p>
+                                        <div className="icons-container">
+                                            <a href="#" > <img src={facebookIcon}/> </a>
+                                            <a href="#" > <img src={googleIcon}/> </a>
+                                            <a href="#" > <img src={githubIcon}/> </a>
+                                        </div>
+                                    </div>
+                                    <div className="login-right">
+                                        <div className='forget-pass'>Forgot Password?</div>
+                                        <div className='btn-login'>
+                                            <Button type='submit' className='login-button color-#ffffff border-radius-1'>
+                                            {/* {reqLoading ? <Spinner animation="border"/> : "Login"} */} Login
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
+                                
                                 <div className='register-redirect'>
                                     New user?{" "}
                                     <a href='/register'>
