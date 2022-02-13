@@ -4,7 +4,7 @@ import logo from "../../assests/logo.png";
 
 const NavbarComponent = () => {
   return (
-    <Navbar bg="light" expand="lg" className="navbar shadow">
+    <Navbar bg="light" expand="lg" className="navbar shadow" >
       <Container fluid>
         <Navbar.Brand href="#">
           <img src={logo} alt="logo" className="logo-navbar" />
