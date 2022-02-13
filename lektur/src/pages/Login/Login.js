@@ -10,7 +10,7 @@ import facebookIcon from "../../assests/facebook.svg";
 import googleIcon from "../../assests/google.svg";
 import githubIcon from "../../assests/github.svg";
 
-import Navbar from "../../components/Header/Navbar";
+import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 
 const LoginSchema = Yup.object().shape({
