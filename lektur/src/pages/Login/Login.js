@@ -58,7 +58,7 @@ export default function FormLogin() {
 
   return (
     <>
-      <NavbarComponent />
+      <Navbar />
       <Formik
         initialValues={{
           email: "",
