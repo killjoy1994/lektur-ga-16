@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
 // import user from '../../assests/user.png'
 
@@ -7,7 +8,10 @@ const NavbarComponent = () => {
     <Navbar bg="light" expand="lg" className="navbar shadow" >
       <Container fluid>
         <Navbar.Brand href="#">
+        <Link to='/'>
           <img src={logo} alt="logo" className="logo-navbar" />
+        </Link>
+
         </Navbar.Brand>
 
           <form className="input-group wrapper-search">
@@ -27,10 +31,16 @@ const NavbarComponent = () => {
               <NavDropdown.Item href="#action/3.2">Technology</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Graphic Design</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#home">For Teacher</Nav.Link>
+            <Link to='/'>
+            <Nav.Link href="/">For Teacher</Nav.Link>
+            </Link>
             <div className="garis"></div>
-            <Nav.Link href="#link">Login</Nav.Link>
-            <Nav.Link className="nav-btn-signup" href="#link">Sign Up</Nav.Link>
+            <Link to='/login'>
+            <Nav.Link href="/login">Login</Nav.Link>
+            </Link>
+            <Link to='/register'>
+            <Nav.Link className="nav-btn-signup" href="/register">Sign Up</Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

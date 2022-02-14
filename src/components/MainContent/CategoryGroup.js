@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
+// import "swiper/css";
+// import "swiper/css/free-mode";
+// import "swiper/css/pagination";
 
-import { FreeMode, Pagination } from "swiper";
+// import { FreeMode, Pagination } from "swiper";
 
 import styles from "../../styles/CategoryGroup.module.css";
 import "../../styles/categorySwipper.css";
@@ -51,7 +51,7 @@ const CategoryGroup = () => {
       <a href="#" className={styles["group-link"]}>
         GRAPHIC DESIGN
       </a>
-      <Swiper
+      {/* <Swiper
         slidesPerView={2}
         speed={500}
         spaceBetween={15}
@@ -107,7 +107,7 @@ const CategoryGroup = () => {
             TECHNOLOGY
           </a>
         </SwiperSlide>
-      </Swiper>
+      </Swiper> */}
     </div>
   );
 };
