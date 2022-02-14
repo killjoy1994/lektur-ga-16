@@ -20,12 +20,20 @@
   border-radius: 3px;
 }
 
-.form-select {
+.select-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.form-select select {
+.select-role select {
+  border: none;
+  color: rgba(239, 156, 39, 1);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* .form-select select {
   margin-top: 5px;
   padding: 5px 8px;
   margin-bottom: 7px;
@@ -33,14 +41,12 @@
   background-color: rgba(239, 156, 39, 1);
   color: white;
   font-weight: bold;
-  border-radius: 2px;
   border: none;
-}
+} */
 
 select:hover {
   cursor: pointer;
   filter: brightness(125%);
-  color: #ffffff;
 }
 
 .option {

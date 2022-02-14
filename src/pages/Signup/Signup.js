@@ -123,21 +123,23 @@ function Signup() {
                                     />
                                 </div>
                                 <p>{ formErrors.password }</p>
-                                <div>
-                                <select
-                                    name="status"
-                                    onChange={(event) => setRole(event.target.value)}
-                                >
-                                    <option value={null} className="option">
-                                    Select Role
-                                </option>
-                                    <option className='option-t'value={1}>Teacher</option>
-                                    <option className='option-s'value={0}>Student</option>
-                                </select>
+                                <div className='select-container'>
+                                    <div className='select-role'>
+                                        <select
+                                            name="status"
+                                            onChange={(event) => setRole(event.target.value)}
+                                        >
+                                            <option value={null} className="option">
+                                            Select Role
+                                        </option>
+                                            <option className='option-t'value={1}>Teacher</option>
+                                            <option className='option-s'value={0}>Student</option>
+                                        </select>
+                                    </div>
+                                    <button className='btn-signup-form'>
+                                        Sign up
+                                    </button>
                                 </div>
-                                <button className='btn-signup-form'>
-                                    Sign up
-                                </button>
                                 <div className="signup-login">
                                     Already have account?{" "}
                                     <Link to='/login'>
