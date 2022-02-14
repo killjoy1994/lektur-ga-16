@@ -4,7 +4,8 @@
   height: 470px;
   background-size: cover;
   /* position: absolute; */
-  /* padding: 50px; */
+  /* background: #ffffff; */
+  padding: 50px;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -80,7 +81,13 @@
   color: rgb(236, 46, 46);
 }
 
+.register-redirect {
+  font-weight: 500;
+  color: #000;
+}
+
 .login-page .login-form .register-redirect span {
+  font-weight: 500;
   color: skyblue;
 }
 
@@ -104,6 +111,7 @@
   letter-spacing: 1px;
   background: #16213b;
   border: none;
+  font-size: 18px;
   color: #ffffff;
   font-weight: bold;
   cursor: pointer;
@@ -119,18 +127,22 @@
   /* border: 1.3px solid red; */
   justify-content: space-between;
   display: flex;
-  margin-top: 20px;
+  margin-top: 43px;
 }
 
 .login-left {
   /* border: 1px solid yellow; */
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 1px;
+  margin-top: 5px;
+  display: flex;
+  gap: 14px;
+  flex-direction: column;
+  line-height: 1;
 }
 
 .login-left p {
   padding: 0;
-  margin-bottom: 5px;
 }
 
 .login-right {
@@ -138,9 +150,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 15px;
+  gap: 20px;
   color: #000;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   font-family: "Segoe UI", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
@@ -154,23 +166,13 @@
 } */
 
 .icons-container img {
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
 }
 
-/* .login-box-a:active {
-  background-color: #eeeeee;
-}
-  
-.login-box-a:focus {
-  outline: none;
-  box-shadow: 
-    0 -1px 0 rgba(0, 0, 0, .04),
-    0 2px 4px rgba(0, 0, 0, .25),
-    0 0 0 3px #c8dafc;
-} */
 
-@media screen and (max-width: 360px) {
+
+@media screen and (max-width: 360px){
   .form-login {
     width: 320px;
   }

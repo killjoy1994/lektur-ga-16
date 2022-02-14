@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //import { Spinner } from "react-bootstrap";
 
-import "../../styles/Signup.css";
-import NavbarComponent from "../../components/Header/NavbarComponent";
-import Footer from "../../components/Footer";
+import '../../styles/Signup.css';
+import Navbar from '../../components/Header/NavbarComponent';
+import Footer from '../../components/Footer';
 
 function Signup() {
   const initialValues = { fullname: "", email: "", password: "" };
@@ -78,67 +78,80 @@ function Signup() {
     return errors;
   };
 
-  return (
-    <>
-      <NavbarComponent />
-      <div className="signup-hero">
-        <div className="signup-page">
-          <div className="signup">
-            <form onSubmit={handleSubmit}>
-              <div>
-                <div className="signup-title">Start Learning!</div>
-                <p className="signup-account">Create your account</p>
-              </div>
-              <div className="form">
-                <div className="field">
-                  <label>
-                    Name<span>*</span>
-                  </label>
-                  <input type="text" name="fullname" placeholder="John Doe" value={formValues.fullname} onChange={handleChange} />
+    return (
+        <>
+            <Navbar />
+            <div className='signup-hero'>
+                <div className='signup-page'>
+                    <div className='signup'>
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <div className='signup-title'>Start Learning!</div>
+                                <p className='signup-account'>Create your account</p>
+                            </div>
+                            <div className='form'>
+                                <div className='field'>
+                                    <label>Name<span>*</span></label>
+                                    <input 
+                                        type='text' 
+                                        name='fullname' 
+                                        placeholder='John Doe' 
+                                        value={formValues.fullname}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <p>{ formErrors.fullname }</p>
+                                <div className='field'>
+                                    <label>Email<span>*</span></label>
+                                    <input 
+                                        type='email' 
+                                        name='email' 
+                                        placeholder='john@gmail.com' 
+                                        value={formValues.email}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <p>{ formErrors.email }</p>
+                                <div className='field'>
+                                    <label>Password<span>*</span></label>
+                                    <input 
+                                        type='password' 
+                                        name='password' 
+                                        placeholder='******' 
+                                        value={formValues.password}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <p>{ formErrors.password }</p>
+                                <div>
+                                <select
+                                    name="status"
+                                    onChange={(event) => setRole(event.target.value)}
+                                >
+                                    <option value={null} className="option">
+                                    Select Role
+                                </option>
+                                    <option className='option-t'value={1}>Teacher</option>
+                                    <option className='option-s'value={0}>Student</option>
+                                </select>
+                                </div>
+                                <button className='btn-signup-form'>
+                                    Sign up
+                                </button>
+                                <div className="signup-login">
+                                    Already have account?{" "}
+                                    <Link to='/login'>
+                                        <span>Login</span>
+                                    </Link>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <p>{formErrors.fullname}</p>
-                <div className="field">
-                  <label>
-                    Email<span>*</span>
-                  </label>
-                  <input type="email" name="email" placeholder="john@gmail.com" value={formValues.email} onChange={handleChange} />
-                </div>
-                <p>{formErrors.email}</p>
-                <div className="field">
-                  <label>
-                    Password<span>*</span>
-                  </label>
-                  <input type="password" name="password" placeholder="******" value={formValues.password} onChange={handleChange} />
-                </div>
-                <p>{formErrors.password}</p>
-                <div className="form-select">
-                  <select name="status" onChange={(event) => setRole(event.target.value)}>
-                    <option value={null} className="option">
-                      Select Role
-                    </option>
-                    <option className="option-t" value={1}>
-                      Teacher
-                    </option>
-                    <option className="option-s" value={0}>
-                      Student
-                    </option>
-                  </select>
-                </div>
-                <button className="btn-signup-form">Sign up</button>
-                <div className="signup-login">
-                  Already have account?{" "}
-                  <Link to="/login">
-                    <span>Login</span>
-                  </Link>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <Footer />
-    </>
-  );
+            </div>
+            <Footer />
+        </>
+    );
 }
 
 export default Signup;
