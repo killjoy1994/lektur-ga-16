@@ -1,6 +1,7 @@
 import React from "react";
-import Card from "./Card";
+import { Link } from "react-router-dom";
 
+import Card from "./Card";
 import styles from "../../styles/Cards.module.css";
 
 const Cards = () => {
@@ -17,78 +18,94 @@ const Cards = () => {
 
   return (
     <div className={styles.cards}>
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
-      <Card
-        src={dummyData.src}
-        title={dummyData.title}
-        author={dummyData.author}
-        videos={dummyData.videos}
-        materials={dummyData.materials}
-        description={dummyData.description}
-        category={dummyData.category}
-      />
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
+      <Link to="/detail">
+        <Card
+          src={dummyData.src}
+          title={dummyData.title}
+          author={dummyData.author}
+          videos={dummyData.videos}
+          materials={dummyData.materials}
+          description={dummyData.description}
+          category={dummyData.category}
+        />
+      </Link>
     </div>
   );
 };
