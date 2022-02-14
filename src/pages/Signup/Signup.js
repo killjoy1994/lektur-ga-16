@@ -123,7 +123,7 @@ function Signup() {
                                     />
                                 </div>
                                 <p>{ formErrors.password }</p>
-                                <div className="form-select">
+                                <div>
                                 <select
                                     name="status"
                                     onChange={(event) => setRole(event.target.value)}
