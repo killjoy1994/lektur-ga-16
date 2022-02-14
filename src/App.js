@@ -8,6 +8,7 @@ import Signup from "./pages/Signup/Signup";
 import Detail from "./pages/Detail";
 import ContentVideo from "./pages/ContentVideo";
 import FinalAssessment from "./pages/studentAssessment/FinalAssessment";
+import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResult";
 import ErrorPage from "./errorPage/ErrorPage";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/final-assessment" element={<FinalAssessment />} />
+        <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
         <Route path="/course-content-video" element={<ContentVideo />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/detail" element={<Detail />} />

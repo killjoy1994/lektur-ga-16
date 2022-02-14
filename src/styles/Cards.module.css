@@ -6,6 +6,10 @@
   gap: 32px;
 }
 
+.cards a {
+  color: #000;
+}
+
 @media (min-width: 951px) and (max-width: 1200px) {
   .cards {
     grid-template-columns: repeat(3, 250px);

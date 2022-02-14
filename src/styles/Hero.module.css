@@ -167,6 +167,10 @@ h3 {
     font-size: 1.2rem;
   }
 
+  .hero {
+    margin-bottom: 50px;
+  }
+
   .hero-btn {
     margin: auto;
     padding: 2px 5px;

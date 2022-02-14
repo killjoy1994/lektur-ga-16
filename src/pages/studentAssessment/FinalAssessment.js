@@ -2,6 +2,7 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import NavbarComponent from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 import styles from "../../styles/FinalAssessment.module.css";
+import { Link } from "react-router-dom";
 {
   /* <CustomRadio checked={true} correct={false} /> */
 }
@@ -142,7 +143,9 @@ function FinalAssessment() {
           </div>
         </div>
         <div className={styles.button}>
+          <Link to='/final-assessment-result'>
           <button>Submit Assessment</button>
+          </Link>
         </div>
       </div>
       <Footer/>
