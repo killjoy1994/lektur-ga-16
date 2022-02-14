@@ -4,8 +4,7 @@
   height: 470px;
   background-size: cover;
   /* position: absolute; */
-  background: #ffffff;
-  padding: 50px;
+  /* padding: 50px; */
   margin: auto;
   display: flex;
   justify-content: center;
@@ -90,7 +89,6 @@
   text-decoration: underline;
 }
 
-
 .register-redirect a {
   text-decoration: none;
   color: skyblue;
@@ -144,8 +142,8 @@
   color: #000;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Segoe UI", "Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
-  
+  font-family: "Segoe UI", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+
   background-color: white;
   background-repeat: no-repeat;
   background-position: 12px 11px;
@@ -172,9 +170,7 @@
     0 0 0 3px #c8dafc;
 } */
 
-
-
-@media screen and (max-width: 360px){
+@media screen and (max-width: 360px) {
   .form-login {
     width: 320px;
   }
