@@ -8,8 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import facebookIcon from "../../assests/facebook.svg";
 import googleIcon from "../../assests/google.svg";
-import githubIcon from "../../assests/github.svg";
 
+import '../../styles/Login.css';
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 
@@ -92,6 +92,13 @@ export default function FormLogin() {
 
                   <div className="login-container">
                     <div className="login-left">
+                      <div className="register-redirect">
+                        New user?{" "}
+                        <a href="/register">
+                          <span>Create an account</span>
+                        </a>
+                      </div>
+                      <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
                         <a href="#">
@@ -101,10 +108,6 @@ export default function FormLogin() {
                         <a href="#">
                           {" "}
                           <img src={googleIcon} />{" "}
-                        </a>
-                        <a href="#">
-                          {" "}
-                          <img src={githubIcon} />{" "}
                         </a>
                       </div>
                     </div>
@@ -116,13 +119,6 @@ export default function FormLogin() {
                         </Button>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="register-redirect">
-                    New user?{" "}
-                    <a href="/register">
-                      <span>Create an account</span>
-                    </a>
                   </div>
                 </Form>
               </div>
