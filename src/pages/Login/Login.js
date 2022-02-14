@@ -107,10 +107,10 @@ export default function FormLogin() {
                           {" "}
                           <img src={googleIcon} />{" "}
                         </a>
-                        <a href="#">
+                        {/* <a href="#">
                           {" "}
                           <img src={githubIcon} />{" "}
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                     <div className="login-right">

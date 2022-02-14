@@ -111,7 +111,7 @@ function Signup() {
                   <input type="password" name="password" placeholder="******" value={formValues.password} onChange={handleChange} />
                 </div>
                 <p>{formErrors.password}</p>
-                <div className="form-select">
+                <div >
                   <select name="status" onChange={(event) => setRole(event.target.value)}>
                     <option value={null} className="option">
                       Select Role
