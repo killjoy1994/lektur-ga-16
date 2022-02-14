@@ -1,0 +1,36 @@
+.category-group {
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.group-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border: 1px solid rgba(239, 156, 39, 1);
+  color: rgba(239, 156, 39, 1);
+}
+
+.category-group a:hover {
+  background: rgba(239, 156, 39, 1);
+  color: white;
+}
+
+@media (max-width: 420px) {
+  .category-group {
+    padding: 0 30px;
+    min-height: 60px;
+    align-items: center;
+  }
+  .group-link {
+    display: none;
+  }
+}

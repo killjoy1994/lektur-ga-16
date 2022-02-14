@@ -1,0 +1,18 @@
+.main-content {
+  padding: 80px;
+}
+
+.title {
+  font-size: 1.475rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Media Query */
+
+@media (max-width: 700px) {
+  .main-content {
+    padding: 80px 0;
+  }
+}
