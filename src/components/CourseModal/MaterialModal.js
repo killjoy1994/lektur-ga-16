@@ -20,7 +20,71 @@ const MaterialModal = (props) => {
             <img src={exit} alt="exit" />
           </button>
         </div>
-        <div className={styles.content}></div>
+        <div className={styles["content-material"]}>
+          <div className={styles["lesson-control"]}>
+            <h2 className={styles.title}>Lesson #1: Lorem Ipsum</h2>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+          </div>
+          <div className={styles["lesson-control"]}>
+            <h2 className={styles.title}>Lesson #2: Lorem Ipsum</h2>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+          </div>
+          <div className={styles["lesson-control"]}>
+            <h2 className={styles.title}>Lesson #3: Lorem Ipsum</h2>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+            <div className={`form-check ${styles["form-check"]}`}>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+              <label class="form-check-label" for="flexCheckChecked">
+                Read course material : <a href="#">React and Open Source.pdf</a>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
