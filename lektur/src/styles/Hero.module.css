@@ -151,11 +151,16 @@ h3 {
     width: 100%;
     margin: auto;
   }
+
+  .video-detail {
+    padding: 8px;
+  }
 }
 
 @media (max-width: 420px) {
   .content-container {
     width: 80%;
+    min-height: 200px;
   }
 
   .left h1 {
@@ -182,5 +187,9 @@ h3 {
 
   .description-right p {
     font-size: 0.8rem;
+  }
+
+  .video-detail {
+    padding: 0;
   }
 }
