@@ -5,10 +5,30 @@ import { useState } from "react";
 import styles from "../../styles/DashboardCourse.module.css";
 import playWhite from "../../assests/play-white.svg";
 import editIcon from "../../assests/edit-icon-orange.svg";
+import ContentModal from "../CourseModal/ContentModal";
+import MaterialModal from "../CourseModal/MaterialModal";
 
 const DashboardCourse = () => {
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
+  //show modal State
+  const [showContentModal, setShowContentModal] = useState(false);
+  const [showMaterialModal, setShowMaterialModal] = useState(false);
+
+  // Modal handler
+  const contentModalHandler = () => {
+    setShowContentModal(true);
+  };
+  const closeContentModalHandler = (val) => {
+    setShowContentModal(val);
+  };
+
+  const materialModalHandler = () => {
+    setShowMaterialModal(true);
+  };
+  const closeMaterialModalHandler = (val) => {
+    setShowMaterialModal(val);
+  };
 
   //   Handle submit on profile change
   const submitHandler = (e) => {
@@ -63,7 +83,7 @@ const DashboardCourse = () => {
           <div className={styles["course-detail"]}>
             <h3>React Crash Course</h3>
             <p>By Traversy Media</p>
-            <a href="#">See course materials</a>
+            <button onClick={materialModalHandler}>See course materials</button>
           </div>
         </div>
         <div className={styles["course-control-right"]}>
@@ -71,7 +91,9 @@ const DashboardCourse = () => {
           <div className={styles.progress}>
             <div className={styles["progress-bar"]}></div>
           </div>
-          <p className={styles["completed-task"]}>2/15 Course Complete</p>
+          <button onClick={contentModalHandler} className={styles["completed-task"]}>
+            2/15 Course Complete
+          </button>
           <button className={styles["progress-btn"]}>
             <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
           </button>
@@ -158,40 +180,44 @@ const DashboardCourse = () => {
   /* Pas di bagian assessment end*/
 
   return (
-    <main className={styles.dashboard}>
-      <div className={styles.container}>
-        <div className={styles["left-box"]}>
-          <div className={styles["user-profile"]}>
-            <div className={styles["img-wrapper"]}>
-              <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" className={styles["user-avatar"]} />
-              {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
+    <>
+      {showContentModal && <ContentModal closeModal={closeContentModalHandler} />}
+      {showMaterialModal && <MaterialModal closeModal={closeMaterialModalHandler} />}
+      <main className={styles.dashboard}>
+        <div className={styles.container}>
+          <div className={styles["left-box"]}>
+            <div className={styles["user-profile"]}>
+              <div className={styles["img-wrapper"]}>
+                <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" className={styles["user-avatar"]} />
+                {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
+              </div>
+              {content}
             </div>
-            {content}
+          </div>
+          <div className={styles["right-box"]}>
+            <div className={styles["right-box-header"]}>
+              <h3
+                style={{ fontWeight: selectedTitle === "courses" ? "700" : "400" }}
+                onClick={() => {
+                  setSelectedTitle("courses");
+                }}
+              >
+                Courses
+              </h3>
+              <h3
+                style={{ fontWeight: selectedTitle === "assessment" ? "700" : "400" }}
+                onClick={() => {
+                  setSelectedTitle("assessment");
+                }}
+              >
+                Assesment
+              </h3>
+            </div>
+            <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
           </div>
         </div>
-        <div className={styles["right-box"]}>
-          <div className={styles["right-box-header"]}>
-            <h3
-              style={{ fontWeight: selectedTitle === "courses" ? "700" : "400" }}
-              onClick={() => {
-                setSelectedTitle("courses");
-              }}
-            >
-              Courses
-            </h3>
-            <h3
-              style={{ fontWeight: selectedTitle === "assessment" ? "700" : "400" }}
-              onClick={() => {
-                setSelectedTitle("assessment");
-              }}
-            >
-              Assesment
-            </h3>
-          </div>
-          <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

@@ -6,14 +6,12 @@ import check from "../../assests/green-check.svg";
 import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
 
-const MaterialModal = () => {
-  const [show, setShow] = useState(true);
-
+const MaterialModal = (props) => {
   const showHandler = () => {
-    setShow(false);
+    props.closeModal(false);
   };
 
-  return show ? (
+  return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
         <div className={styles.header}>
@@ -25,7 +23,7 @@ const MaterialModal = () => {
         <div className={styles.content}></div>
       </div>
     </div>
-  ) : null;
+  );
 };
 
 export default MaterialModal;

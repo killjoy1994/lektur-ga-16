@@ -20,7 +20,7 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/final-assessment" element={<FinalAssessment />} />
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
-        <Route path="/course-content-video" element={<ContentVideo />} />
+        <Route path="/course-content" element={<ContentVideo />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="*" element={<ErrorPage />} />
