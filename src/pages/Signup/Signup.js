@@ -4,7 +4,7 @@ import axios from 'axios';
 //import { Spinner } from "react-bootstrap";
 
 import '../../styles/Signup.css';
-import Navbar from '../../components/Header/Navbar';
+import Navbar from '../../components/Header/NavbarComponent';
 import Footer from '../../components/Footer';
 
 function Signup() {
