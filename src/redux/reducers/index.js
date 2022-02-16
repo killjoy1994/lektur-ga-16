@@ -1,5 +1,9 @@
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers();
+import { homepageReducer } from "./Homepage";
+
+const rootReducer = combineReducers({
+    homepage: homepageReducer
+});
 
 export default rootReducer;

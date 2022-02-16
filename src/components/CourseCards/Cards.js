@@ -3,109 +3,40 @@ import { Link } from "react-router-dom";
 
 import Card from "./Card";
 import styles from "../../styles/Cards.module.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCoursesAction } from "../../redux/actions/Homepage";
 
 const Cards = () => {
-  let dummyData = {
-    src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-    title: "Create Cinematic Music Video",
-    author: "John Doe",
-    videos: 15,
-    materials: 3,
-    description:
-      "Vestibulum fusce parturient urna a molestie orci. Lectus id quisque amet et vel elementum morbi cursus. Amet sagittis semper mauris diam orci facilisis...",
-    category: "Art & Humanity",
-  };
+  const { homepageCourses, isLoading, error } = useSelector((state) => state.homepage);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCoursesAction());
+  }, [dispatch]);
 
   return (
     <div className={styles.cards}>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
-      <Link to="/detail">
-        <Card
-          src={dummyData.src}
-          title={dummyData.title}
-          author={dummyData.author}
-          videos={dummyData.videos}
-          materials={dummyData.materials}
-          description={dummyData.description}
-          category={dummyData.category}
-        />
-      </Link>
+      {isLoading ? (
+        <p>Loading</p>
+      ) : (
+        homepageCourses.map((course) => {
+          return (
+            <Link to="/detail">
+              <Card
+                src={course.image}
+                title={course.title}
+                author={course.by.fullName}
+                videos={"15"}
+                materials={"4"}
+                description={course.description}
+                category={course.category.name}
+              />
+            </Link>
+          );
+        })
+      )}
     </div>
   );
 };
