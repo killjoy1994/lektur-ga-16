@@ -3,12 +3,32 @@ import React, { useState } from "react";
 import styles from "../../styles/Card.module.css";
 
 const Card = (props) => {
-  const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const { src, title, author, videos, materials, description, category } = props;
 
+  const mouseOverHandler = () => {
+    setShowModal(true);
+    console.log(showModal);
+  };
+
+  const mouseOutHandler = () => {
+    setShowModal(false);
+  };
+
   // Show more toggle
-  const showMore = <p className="">Show more...</p>;
+  // const showMore = (
+  //   <button className={styles["show-toggler"]} onClick={console.log("clicked")}>
+  //     Show more..
+  //   </button>
+  // );
+
+  //Modal on mouseover
+  const descriptionModal = (
+    <div className={styles["description-modal"]}>
+      <h2>Halo</h2>
+    </div>
+  );
 
   return (
     <div className={`card ${styles.card}`}>
@@ -20,9 +40,10 @@ const Card = (props) => {
           <p className={styles.videos}>{videos} Videos</p>
           <p className={styles.material}>{materials} Learning Material</p>
         </div>
-        <p className={`"card-text" ${styles["card-text"]}`}>
-          {description} {showMore}
+        <p className={`"card-text" ${styles["card-text"]}`} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
+          {description.slice(0, 100)}...
         </p>
+        {showModal && descriptionModal}
       </div>
       <div className={styles["card-category"]}>{category}</div>
     </div>
