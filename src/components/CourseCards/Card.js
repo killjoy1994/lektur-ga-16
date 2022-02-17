@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 import styles from "../../styles/Card.module.css";
 
 const Card = (props) => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const { src, title, author, videos, materials, description, category } = props;
 
@@ -13,7 +14,7 @@ const Card = (props) => {
   };
 
   const mouseOutHandler = () => {
-    setShowModal(true);
+    setShowModal(false);
   };
 
   // Show more toggle
@@ -22,6 +23,11 @@ const Card = (props) => {
   //     Show more..
   //   </button>
   // );
+
+  //Modal coordinates
+  useEffect(() => {
+    console.log(window.innerWidth);
+  });
 
   //Modal on mouseover
   const descriptionModal = (
@@ -32,7 +38,7 @@ const Card = (props) => {
   );
 
   return (
-    <div className={`card ${styles.card}`}>
+    <div className={`card ${styles.card}`} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
       <img src={src} className={styles["card-image"]} alt="..." />
       <div className={`card-body ${styles["card-body"]}`}>
         <h5 className={`card-title ${styles["card-title"]}`}>{title}</h5>
@@ -41,9 +47,7 @@ const Card = (props) => {
           <p className={styles.videos}>{videos} Videos</p>
           <p className={styles.material}>{materials} Learning Material</p>
         </div>
-        <p className={`"card-text" ${styles["card-text"]}`} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>
-          {description.slice(0, 100)}...
-        </p>
+        <p className={`"card-text" ${styles["card-text"]}`}>{description.slice(0, 100)}...</p>
         {showModal && descriptionModal}
       </div>
       <div className={styles["card-category"]}>{category}</div>
