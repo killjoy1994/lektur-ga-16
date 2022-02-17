@@ -6,10 +6,10 @@ import styles from "../../styles/Cards.module.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCoursesAction } from "../../redux/actions/Homepage";
+import { getCoursesAction } from "../../redux/actions/coursesAction";
 
 const Cards = () => {
-  const { homepageCourses, isLoading, error } = useSelector((state) => state.homepage);
+  const { courseList, isLoading, error } = useSelector((state) => state.courses);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,9 +21,9 @@ const Cards = () => {
       {isLoading && !error ? (
         <p>Loading</p>
       ) : (
-        homepageCourses.map((course) => {
+        courseList.map((course) => {
           return (
-            <Link to="/detail">
+            <Link to="/detail" key={course.id}>
               <Card
                 src={course.image}
                 title={course.title}
@@ -32,6 +32,7 @@ const Cards = () => {
                 materials={"4"}
                 description={course.description}
                 category={course.category.name}
+                id={course.id}
               />
             </Link>
           );

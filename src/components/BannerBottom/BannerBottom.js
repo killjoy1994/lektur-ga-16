@@ -16,7 +16,7 @@ const BannerBottom = () => {
               Register Now
             </a>
           </div>
-          <div class={styles.right}>
+          <div className={styles.right}>
             <img src={Teacher} alt="Teacher" />
           </div>
         </div>

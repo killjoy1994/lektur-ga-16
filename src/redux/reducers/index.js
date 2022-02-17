@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import { homepageReducer } from "./Homepage";
+import { coursesReducer } from "./coursesReducer";
 
 const rootReducer = combineReducers({
-    homepage: homepageReducer
+  courses: coursesReducer,
 });
 
 export default rootReducer;

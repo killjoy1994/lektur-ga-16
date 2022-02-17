@@ -1,12 +1,12 @@
 import { FETCH_COURSES_REQUEST, FETCH_COURSES_COMPLETE, FETCH_COURSES_FAILED } from "../types";
 
 const initialState = {
-  homepageCourses: [],
+  courseList: [],
   isLoading: false,
   error: "",
 };
 
-export const homepageReducer = (state = initialState, action) => {
+export const coursesReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_COURSES_REQUEST:
       return {
@@ -14,10 +14,10 @@ export const homepageReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case FETCH_COURSES_COMPLETE:
-      console.log(action.payload);
+      console.log(action.payload.category);
       return {
         ...state,
-        homepageCourses: action.payload,
+        courseList: action.payload,
         isLoading: false,
       };
     case FETCH_COURSES_FAILED:
