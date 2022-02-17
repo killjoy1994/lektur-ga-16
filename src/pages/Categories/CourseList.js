@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 
 import Card from "../../components/CourseCards/Card";
 import styles from "../../styles/Cards.module.css";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getCoursesAction } from "../../redux/actions/coursesAction";
 
 const CourseList = () => {
@@ -15,32 +15,31 @@ const CourseList = () => {
 
   useEffect(() => {
     dispatch(getCoursesAction());
-  }, [dispatch]);
+  }, []);
 
   const params = useParams();
   console.log(params.name);
 
   return (
     <div className={styles.cards}>
-      {/* {courseList.filter((course) => {
+      {courseList.map((course) => {
         if (course.category.name === params.name) {
-          //   return (
-          //     <Link to="/detail">
-          //       <Card
-          //         src={course.image}
-          //         title={course.title}
-          //         author={course.by.fullName}
-          //         videos={"15"}
-          //         materials={"4"}
-          //         description={course.description}
-          //         category={course.category.name}
-          //         id={course.id}
-          //       />
-          //     </Link>
-          //   );
+          return (
+            <Link to="/detail">
+              <Card
+                src={course.image}
+                title={course.title}
+                author={course.by.fullName}
+                videos={"15"}
+                materials={"4"}
+                description={course.description}
+                category={course.category.name}
+                id={course.id}
+              />
+            </Link>
+          );
         }
-      })} */}
-      {isLoading ? <p>Loading</p> : <h2>{courseList[0].title}</h2>}
+      })}
     </div>
   );
 };

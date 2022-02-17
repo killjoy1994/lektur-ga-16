@@ -9,7 +9,7 @@ export const getCoursesAction = () => {
     axios
       .get("https://lektur-apps.herokuapp.com/api/v1/course/fetch")
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         dispatch({ type: FETCH_COURSES_COMPLETE, payload: response.data.result });
       })
       .catch((error) => dispatch({ type: FETCH_COURSES_FAILED, payload: error }));
