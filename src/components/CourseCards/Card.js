@@ -13,7 +13,7 @@ const Card = (props) => {
   };
 
   const mouseOutHandler = () => {
-    setShowModal(false);
+    setShowModal(true);
   };
 
   // Show more toggle
