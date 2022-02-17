@@ -18,7 +18,7 @@ const Cards = () => {
 
   return (
     <div className={styles.cards}>
-      {isLoading ? (
+      {isLoading && !error ? (
         <p>Loading</p>
       ) : (
         homepageCourses.map((course) => {
@@ -37,6 +37,7 @@ const Cards = () => {
           );
         })
       )}
+      {error && <p>Maaf ada kesalahan</p>}
     </div>
   );
 };

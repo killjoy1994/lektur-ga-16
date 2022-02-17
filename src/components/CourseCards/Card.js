@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "../../styles/Card.module.css";
 
 const Card = (props) => {
+  const [open, setOpen] = useState(false);
+
   const { src, title, author, videos, materials, description, category } = props;
+
+  // Show more toggle
+  const showMore = <p className="">Show more...</p>;
 
   return (
     <div className={`card ${styles.card}`}>
@@ -15,7 +20,9 @@ const Card = (props) => {
           <p className={styles.videos}>{videos} Videos</p>
           <p className={styles.material}>{materials} Learning Material</p>
         </div>
-        <p className={`"card-text" ${styles["card-text"]}`}>{description}</p>
+        <p className={`"card-text" ${styles["card-text"]}`}>
+          {description} {showMore}
+        </p>
       </div>
       <div className={styles["card-category"]}>{category}</div>
     </div>
