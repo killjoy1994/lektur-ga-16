@@ -1,0 +1,15 @@
+.category-container {
+  min-height: 500px;
+
+  padding: 50px;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-top: 20px;
+}

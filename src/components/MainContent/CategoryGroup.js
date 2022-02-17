@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -12,7 +13,7 @@ import { FreeMode, Pagination } from "swiper";
 
 import styles from "../../styles/CategoryGroup.module.css";
 import "../../styles/categorySwipper.css";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const CategoryGroup = () => {
   const { courseList } = useSelector((state) => state.courses);
@@ -29,9 +30,9 @@ const CategoryGroup = () => {
     <div className={styles["category-group"]}>
       {uniqCategory.map((category) => {
         return (
-          <a href="#" className={styles["group-link"]}>
+          <Link to={"/categories/" + category} className={styles["group-link"]} key={`${category + Math.random() * 1000}`}>
             {category}
-          </a>
+          </Link>
         );
       })}
       <Swiper

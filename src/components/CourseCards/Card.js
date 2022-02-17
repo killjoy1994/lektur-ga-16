@@ -25,9 +25,9 @@ const Card = (props) => {
   // );
 
   //Modal coordinates
-  useEffect(() => {
-    console.log(window.innerWidth);
-  });
+  // useEffect(() => {
+  //   console.log(window.innerWidth);
+  // });
 
   //Modal on mouseover
   const descriptionModal = (
