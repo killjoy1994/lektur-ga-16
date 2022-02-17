@@ -45,51 +45,15 @@ const CategoryGroup = () => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            BUSINESS
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            GRAPHIC DESIGN
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            BUSINESS
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            GRAPHIC DESIGN
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
+        {uniqCategory.map((category) => {
+          return (
+            <SwiperSlide>
+              <a href="#" className="group-link">
+                {category}
+              </a>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );
