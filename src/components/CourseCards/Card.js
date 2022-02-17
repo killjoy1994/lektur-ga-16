@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../../styles/Card.module.css";
 
 const Card = (props) => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
 
   const { src, title, author, videos, materials, description, category } = props;
 
@@ -26,7 +26,8 @@ const Card = (props) => {
   //Modal on mouseover
   const descriptionModal = (
     <div className={styles["description-modal"]}>
-      <h2>Halo</h2>
+      <h3>Description</h3>
+      <p>{description}</p>
     </div>
   );
 
