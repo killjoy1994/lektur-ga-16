@@ -20,25 +20,27 @@ const CourseList = () => {
   const params = useParams();
   console.log(params.name);
 
+  const filteredCategory = courseList.filter((course) => {
+    return course.category.name === params.name;
+  });
+
   return (
     <div className={styles.cards}>
-      {courseList.map((course) => {
-        if (course.category.name === params.name) {
-          return (
-            <Link to="/detail">
-              <Card
-                src={course.image}
-                title={course.title}
-                author={course.by.fullName}
-                videos={"15"}
-                materials={"4"}
-                description={course.description}
-                category={course.category.name}
-                id={course.id}
-              />
-            </Link>
-          );
-        }
+      {filteredCategory.map((course) => {
+        return (
+          <Link to="/detail" key={course.id}>
+            <Card
+              src={course.image}
+              title={course.title}
+              author={course.by.fullName}
+              videos={"15"}
+              materials={"4"}
+              description={course.description}
+              category={course.category.name}
+              id={course.id}
+            />
+          </Link>
+        );
       })}
     </div>
   );
