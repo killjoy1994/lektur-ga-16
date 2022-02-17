@@ -1,15 +1,15 @@
 import { Formik, Form, Field } from "formik";
 import { Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
-// import axios from 'axios';
-// import { useState } from 'react';
-// import Swal from 'sweetalert2';
-// import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 import facebookIcon from "../../assests/facebook.svg";
 import googleIcon from "../../assests/google.svg";
-import githubIcon from "../../assests/github.svg";
 
+import '../../styles/Login.css';
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 
@@ -24,38 +24,33 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function FormLogin() {
-  // const navigate = useNavigate()
-  // let [ reqLoading, setReqLoading ] = useState(false)
+  const navigate = useNavigate()
+  let [ reqLoading, setReqLoading ] = useState(false)
 
-  // axios({
-  //     method: 'post',
-  //     url: '/',
-  //     data: {
-  //         email: '',
-  //         password: '',
-  //     }
-  // })
-  // .then((response) => {
-  //     setReqLoading(false)
-  //     Swal.fire({
-  //         icon: 'success',
-  //         title: 'GOOD JOB!',
-  //         text: response.data.message
-  //     })
-  //     // masukin token ke localStorage
-  //     window.localStorage.setItem('token', response.data.token)
-  //     // redirect ke dashboard
-  //     navigate('/')
-  // })
-  // .catch((error) => {
-  //     setReqLoading(false)
-  //     Swal.fire({
-  //         icon: 'error',
-  //         title: 'ERROR',
-  //         text: error.response.data.message || "Login failed"
-  //     })
-  // })
-
+  axios({
+      method: 'post',
+      url: '/',
+      data: {
+          email: '',
+          password: '',
+      }
+  })
+  .then((response) => {
+      setReqLoading(false)
+      Swal.fire({
+          icon: 'success',
+          title: 'GOOD JOB!',
+          text: response.data.message
+      })
+      // masukin token ke localStorage
+      window.localStorage.setItem('token', response.data.token)
+      // redirect ke dashboard
+      navigate('/')
+  })
+  .catch((error) => {
+      setReqLoading(false)
+  })
+  
   return (
     <>
       <Navbar />
@@ -97,6 +92,13 @@ export default function FormLogin() {
 
                   <div className="login-container">
                     <div className="login-left">
+                      <div className="register-redirect">
+                        New user?{" "}
+                        <a href="/register">
+                          <span>Create an account</span>
+                        </a>
+                      </div>
+                      <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
                         <a href="#">
@@ -106,10 +108,6 @@ export default function FormLogin() {
                         <a href="#">
                           {" "}
                           <img src={googleIcon} />{" "}
-                        </a>
-                        <a href="#">
-                          {" "}
-                          <img src={githubIcon} />{" "}
                         </a>
                       </div>
                     </div>
@@ -121,13 +119,6 @@ export default function FormLogin() {
                         </Button>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="register-redirect">
-                    New user?{" "}
-                    <a href="/register">
-                      <span>Create an account</span>
-                    </a>
                   </div>
                 </Form>
               </div>

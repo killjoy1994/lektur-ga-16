@@ -192,10 +192,13 @@
   font-size: 0.85rem;
 }
 
-.course-detail a {
+.course-detail button {
   color: rgba(153, 153, 153, 1);
   font-size: 0.85rem;
   text-decoration: underline;
+  border: none;
+  background: transparent;
+  padding: 0;
 }
 
 .course-detail h3 {
@@ -216,6 +219,10 @@
   color: rgba(153, 153, 153, 1);
   font-size: 0.8rem;
   text-decoration: underline;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-top: 2px;
 }
 
 /* Progress Bar */
