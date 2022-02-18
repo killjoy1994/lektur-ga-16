@@ -48,7 +48,7 @@ const CategoryGroup = () => {
       >
         {uniqCategory.map((category) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={`${category + Math.random() * 1000}`}>
               <a href="#" className="group-link">
                 {category}
               </a>
