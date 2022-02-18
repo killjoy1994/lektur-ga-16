@@ -6,7 +6,7 @@ import styles from "../../styles/Cards.module.css";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getCoursesAction } from "../../redux/actions/coursesAction";
+import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 
 const CourseList = () => {
   const { courseList, isLoading, error } = useSelector((state) => state.courses);
