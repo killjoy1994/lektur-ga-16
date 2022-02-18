@@ -12,11 +12,8 @@ import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResu
 import ErrorPage from "./errorPage/ErrorPage";
 import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
-import { useState } from "react";
 
 function App() {
-  const [user, setUser] = useState("bagus");
-
   return (
     <div className="App">
       <Routes>
@@ -26,7 +23,7 @@ function App() {
         <Route path="/detail/:courseId" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />
         {/* Private Routes start*/}
-        <Route element={<PrivateRoutes />}>
+        <Route element={<PrivateRoutes user={true} />}>
           <Route path="/final-assessment" element={<FinalAssessment />} />
           <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
           <Route path="/course-content" element={<ContentVideo />} />

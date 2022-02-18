@@ -28,7 +28,7 @@ const CourseList = () => {
     <div className={styles.cards}>
       {filteredCategory.map((course) => {
         return (
-          <Link to="/detail" key={course.id}>
+          <Link to={"/detail/" + course.id} key={course.id}>
             <Card
               src={course.image}
               title={course.title}
