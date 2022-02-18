@@ -10,7 +10,6 @@ const Card = (props) => {
 
   const mouseOverHandler = () => {
     setShowModal(true);
-    console.log(showModal);
   };
 
   const mouseOutHandler = () => {
@@ -47,7 +46,7 @@ const Card = (props) => {
           <p className={styles.videos}>{videos} Videos</p>
           <p className={styles.material}>{materials} Learning Material</p>
         </div>
-        <p className={`"card-text" ${styles["card-text"]}`}>{description.slice(0, 100)}...</p>
+        <p className={`"card-text" ${styles["card-text"]}`}>{description.slice(0, 80)}...</p>
         {showModal && descriptionModal}
       </div>
       <div className={styles["card-category"]}>{category}</div>
