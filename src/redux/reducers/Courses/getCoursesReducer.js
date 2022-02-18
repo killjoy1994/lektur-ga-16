@@ -1,4 +1,4 @@
-import { FETCH_COURSES_REQUEST, FETCH_COURSES_COMPLETE, FETCH_COURSES_FAILED } from "../types";
+import { FETCH_COURSES_REQUEST, FETCH_COURSES_COMPLETE, FETCH_COURSES_FAILED } from "../../types";
 
 const initialState = {
   courseList: [],
