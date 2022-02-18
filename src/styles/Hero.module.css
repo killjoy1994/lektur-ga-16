@@ -158,6 +158,10 @@ h3 {
 }
 
 @media (max-width: 420px) {
+  .hero {
+    margin-bottom: 50px;
+  }
+
   .content-container {
     width: 80%;
     min-height: 200px;

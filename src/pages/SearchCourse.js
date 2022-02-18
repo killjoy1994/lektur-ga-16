@@ -6,7 +6,7 @@ import NavbarComponent from '../components/Header/NavbarComponent'
 import styles from "../styles/SearchCourse.module.css";
 
 export default function SearchCourse() {
-  const { searchCourses } = useSelector((state) => state.course);
+  const { searchCourses } = useSelector((state) => state.searchCourses);
 
   console.log(searchCourses[0]);
   return (

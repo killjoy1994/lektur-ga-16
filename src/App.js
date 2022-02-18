@@ -11,6 +11,7 @@ import FinalAssessment from "./pages/studentAssessment/FinalAssessment";
 import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResult";
 import ErrorPage from "./errorPage/ErrorPage";
 import SearchCourse from "./pages/SearchCourse";
+import Categories from "./pages/Categories/Categories";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/search" element={<SearchCourse />} />
+        <Route path="/categories/:name" element={<Categories />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,46 +13,28 @@ import { FreeMode, Pagination } from "swiper";
 
 import styles from "../../styles/CategoryGroup.module.css";
 import "../../styles/categorySwipper.css";
+// import { useEffect } from "react";
 
 const CategoryGroup = () => {
+  const { courseList } = useSelector((state) => state.courses);
+
+  // Category
+  const uniqCategory = [];
+  courseList.filter((course) => {
+    if (!uniqCategory.includes(course.category.name)) {
+      uniqCategory.push(course.category.name);
+    }
+  });
+
   return (
     <div className={styles["category-group"]}>
-      <a href="#" className={styles["group-link"]}>
-        BUSINESS
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        TECHNOLOGY
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        GRAPHIC DESIGN
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        BUSINESS
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        BUSINESS
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        TECHNOLOGY
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        GRAPHIC DESIGN
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        BUSINESS
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        TECHNOLOGY
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        BUSINESS
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        TECHNOLOGY
-      </a>
-      <a href="#" className={styles["group-link"]}>
-        GRAPHIC DESIGN
-      </a>
+      {uniqCategory.map((category) => {
+        return (
+          <Link to={"/categories/" + category} className={styles["group-link"]} key={`${category + Math.random() * 1000}`}>
+            {category}
+          </Link>
+        );
+      })}
       <Swiper
         slidesPerView={2}
         speed={500}
@@ -62,51 +46,15 @@ const CategoryGroup = () => {
         modules={[FreeMode, Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            BUSINESS
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            GRAPHIC DESIGN
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            BUSINESS
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            GRAPHIC DESIGN
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
-        <SwiperSlide>
-          <a href="#" className="group-link">
-            TECHNOLOGY
-          </a>
-        </SwiperSlide>
+        {uniqCategory.map((category) => {
+          return (
+            <SwiperSlide key={`${category + Math.random() * 1000}`}>
+              <a href="#" className="group-link">
+                {category}
+              </a>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

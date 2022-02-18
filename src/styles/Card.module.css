@@ -1,6 +1,6 @@
 .card {
   width: 100%;
-  min-height: 300px;
+  height: 350px;
   line-height: 1.2;
 }
 
@@ -12,9 +12,13 @@
   box-shadow: 4px 7px 8px -6px rgba(74, 74, 74, 0.75);
 }
 
+.image-wrapper {
+  width: 100%;
+}
+
 .card-image {
-  height: 120px;
-  object-fit: cover;
+  height: 170px;
+  /* object-fit: cover; */
   object-position: center;
 }
 
@@ -24,7 +28,8 @@
 
 .card-title {
   margin-bottom: 0;
-  font-size: 0.825rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .author {
@@ -42,10 +47,69 @@
 
 .card-text {
   font-size: 0.875rem;
+  min-height: 50px;
+
+  position: relative;
 }
 
 .card-category {
   padding: 12px 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   background: rgba(240, 166, 62, 0.2);
+}
+
+/* Show more/less toggler*/
+/* .show-toggler {
+  font-weight: 500;
+  text-align: right;
+  margin-top: 8px;
+  position: relative;
+  z-index: 999;
+  cursor: pointer;
+} */
+
+/* Description modal */
+.description-modal {
+  padding: 20px;
+  position: absolute;
+  top: 0%;
+  left: 102%;
+  z-index: 900;
+  width: 280px;
+  min-height: 200px;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px 4px rgb(0 0 0 / 10%);
+  background-color: #fff;
+}
+
+.description-modal h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.description-modal p {
+  font-size: 0.875rem;
+}
+
+/* .description-modal::before {
+  content: " ";
+  width: 0;
+  height: 0;
+  display: block;
+  position: absolute;
+  left: -7%;
+  top: 43%;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 19px solid salmon;
+} */
+
+/* Media Query */
+@media (max-width: 420px) {
+  .description-modal {
+    display: none;
+  }
 }

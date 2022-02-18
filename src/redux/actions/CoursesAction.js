@@ -6,7 +6,7 @@ export const getSearchCourse = (input) => {
     console.log(input);
   return (dispatch) => {
     axios
-      .get(`${API}/api/v1/course/fetch?keyword=${input}`)
+      .get(`${API}api/v1/course/fetch?keyword=${input}`)
       .then((response) => {
         console.log(response.data.result);
         dispatch({

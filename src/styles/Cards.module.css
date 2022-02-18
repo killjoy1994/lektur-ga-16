@@ -7,6 +7,9 @@
 }
 
 .cards a {
+  justify-self: center;
+  display: block;
+  max-width: 255px;
   color: #000;
 }
 
