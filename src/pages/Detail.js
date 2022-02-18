@@ -5,9 +5,14 @@ import styles from "../styles/Detail.module.css";
 import Card from "../components/CourseCards/Card";
 import NavbarComponent from "../components/Header/NavbarComponent";
 import Footer from "../components/Footer";
-function Detail() {
-  const [popUpDetail, setPopUpDetail] = useState(false);
 
+
+
+
+function Detail() {
+
+  const [popUpDetail, setPopUpDetail] = useState(false);
+// const {searchCourses} = 
   let dummyData = {
     src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     title: "Create Cinematic Music Video",
@@ -21,6 +26,8 @@ function Detail() {
     <>
       <NavbarComponent />
       <div className={styles.main}>
+      {/* {searchCourses.map((item)=>(console.log(item)))} */}
+
         {/* <div className={styles.main} style={{ background: "#E5E5E5", height: "150vh" }}> */}
         <div className={styles.banner_detail} style={{ backgroundImage: `url(${bg})` }}>
           <div className={styles.contents}>
