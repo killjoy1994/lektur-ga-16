@@ -12,6 +12,7 @@ import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResu
 import ErrorPage from "./errorPage/ErrorPage";
 import SearchCourse from "./pages/SearchCourse";
 import Categories from "./pages/Categories/Categories";
+import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 
 function App() {
   return (
@@ -26,7 +27,16 @@ function App() {
         <Route path="/student-dashboard" element={<StudentDashboard />} />
         <Route path="/detail" element={<Detail />} />
         <Route path="/search" element={<SearchCourse />} />
+        <Route path="/detail/:courseId" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />
+        {/* Private Routes start*/}
+        <Route element={<PrivateRoutes user={true} />}>
+          <Route path="/final-assessment" element={<FinalAssessment />} />
+          <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
+          <Route path="/course-content" element={<ContentVideo />} />
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+        </Route>
+        {/* Private Routes end */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
