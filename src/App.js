@@ -25,9 +25,9 @@ function App() {
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
         <Route path="/course-content" element={<ContentVideo />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/detail" element={<Detail />} />
+        {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<SearchCourse />} />
-        <Route path="/detail/:courseId" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />
         {/* Private Routes start*/}
         <Route element={<PrivateRoutes user={true} />}>

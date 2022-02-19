@@ -1,30 +1,35 @@
 import { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { useDispatch} from "react-redux";
-// import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
-import { getSearchCourse } from "../../redux/actions/CoursesAction";
+import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseAction";
 // import user from '../../assests/user.png'
 
 const NavbarComponent = () => {
-  // const { searchCourses } = useSelector((state) => state.course);
- 
+  const { courseList } = useSelector((state) => state.courses);
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState("");
 
   const submitSearchText = (e) => {
     e.preventDefault();
-    if(searchText !== ''){
+    if (searchText !== "") {
       dispatch(getSearchCourse(searchText));
     }
   };
+
+  // Category
+  const uniqCategory = [];
+  courseList.filter((course) => {
+    if (!uniqCategory.includes(course.category.name)) {
+      uniqCategory.push(course.category.name);
+    }
+  });
   return (
     <Navbar bg="light" expand="lg" className="navbar shadow">
       <Container fluid>
         <Navbar.Brand href="/">
-          {/* <Link to="/"> */}
           <img src={logo} alt="logo" className="logo-navbar" />
-          {/* </Link> */}
         </Navbar.Brand>
 
         <form className="input-group wrapper-search" onSubmit={submitSearchText}>
@@ -39,22 +44,20 @@ const NavbarComponent = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto navbar-right">
             <NavDropdown title="Category" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Business</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Technology</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Graphic Design</NavDropdown.Item>
+              {uniqCategory.map((category, index) => (
+                <NavDropdown.Item href={"/categories/" + category} key={index}>{category}</NavDropdown.Item>
+                // <Link to={"/categories/" + category} key={index}>
+                //   <p>{category}</p>
+                // </Link>
+              ))}
+             
             </NavDropdown>
-            {/* <Link to="/"> */}
             <Nav.Link href="/">For Teacher</Nav.Link>
-            {/* </Link> */}
             <div className="garis"></div>
-            {/* <Link to="/login"> */}
             <Nav.Link href="/login">Login</Nav.Link>
-            {/* </Link> */}
-            {/* <Link to="/register"> */}
             <Nav.Link className="nav-btn-signup" href="/register">
               Sign Up
             </Nav.Link>
-            {/* </Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

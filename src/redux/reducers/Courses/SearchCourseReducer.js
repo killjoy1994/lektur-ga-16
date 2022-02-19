@@ -5,7 +5,7 @@ const initialState ={
     searchCourses : '',
 }
 
-const SearchCourseReducer = (state = initialState, action)=>{
+const searchCourseReducer = (state = initialState, action)=>{
     const {type, payload}= action
     switch (type) {
         case actions.SEARCH_COURSE:
@@ -20,4 +20,4 @@ const SearchCourseReducer = (state = initialState, action)=>{
 }
 }
 
-export default SearchCourseReducer;
+export default searchCourseReducer;

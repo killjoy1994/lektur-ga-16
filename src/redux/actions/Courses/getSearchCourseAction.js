@@ -1,5 +1,5 @@
-import { API } from "../../api";
-import * as actions from "../types";
+import { API } from "../../../api";
+import * as actions from "../../types";
 import axios from "axios";
 
 export const getSearchCourse = (input) => {
