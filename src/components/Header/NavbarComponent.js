@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assests/logo.png";
 import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseAction";
 // import user from '../../assests/user.png'
@@ -9,13 +9,16 @@ import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseActi
 const NavbarComponent = () => {
   const { courseList } = useSelector((state) => state.courses);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [searchText, setSearchText] = useState("");
 
   const submitSearchText = (e) => {
     e.preventDefault();
     if (searchText !== "") {
       dispatch(getSearchCourse(searchText));
+      navigate('/search')
     }
+    setSearchText('')
   };
 
   // Category

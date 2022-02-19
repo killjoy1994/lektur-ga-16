@@ -10,7 +10,7 @@ import ContentVideo from "./pages/ContentVideo";
 import FinalAssessment from "./pages/studentAssessment/FinalAssessment";
 import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResult";
 import ErrorPage from "./errorPage/ErrorPage";
-import SearchCourse from "./pages/SearchCourse";
+import SearchCourse from "./pages/SearchCourses/SearchCourse";
 import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 

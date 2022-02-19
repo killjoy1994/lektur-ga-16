@@ -12,6 +12,7 @@ export const getSearchCourse = (input) => {
         dispatch({
           type: actions.SEARCH_COURSE,
           payload: response.data.result,
+          input: input
         });
       })
       .catch((err) => {
