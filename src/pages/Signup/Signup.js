@@ -18,10 +18,10 @@ function Signup() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    console.log(e.target);
+    // console.log(e.target);
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    // console.log(formValues);
   };
 
   const handleSubmit = (e) => {
@@ -30,28 +30,28 @@ function Signup() {
     setIsSubmit(true);
   };
 
-  axios({
-    method: "post",
-    url: "/",
-    data: {
-      fullname: "",
-      email: "",
-      password: "",
-    },
-  })
-    .then((response) => {
-      setReqLoading(false);
-      // masukin token ke localStorage
-      window.localStorage.setItem("token", response.data.token);
-      // redirect ke dashboard
-      navigate("/");
-    })
-    .catch((error) => {
-      setReqLoading(false);
-    });
+  // axios({
+  //   method: "post",
+  //   url: "/",
+  //   data: {
+  //     fullname: "",
+  //     email: "",
+  //     password: "",
+  //   },
+  // })
+  //   .then((response) => {
+  //     setReqLoading(false);
+  //     // masukin token ke localStorage
+  //     window.localStorage.setItem("token", response.data.token);
+  //     // redirect ke dashboard
+  //     navigate("/");
+  //   })
+  //   .catch((error) => {
+  //     setReqLoading(false);
+  //   });
 
   useEffect(() => {
-    console.log(formErrors);
+    // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       console.log(formValues);
     }
