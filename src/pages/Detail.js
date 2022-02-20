@@ -32,6 +32,23 @@ function Detail() {
 
   console.log(detail);
 
+  // Sorted Contents
+  let sortedContents = detail.contents
+    ?.sort((a, b) => {
+      let first = a.id,
+        second = b.id;
+      return first - second;
+    })
+    .map((courseItem) => {
+      return (
+        <div className={styles.list_contents} key={courseItem.id}>
+          <p>
+            Lesson #{courseItem.id}: <span>{courseItem.title}</span>
+          </p>
+        </div>
+      );
+    });
+
   return (
     <>
       <NavbarComponent />
@@ -60,21 +77,10 @@ function Detail() {
               <div className={`${styles.content2} overflow-auto`}>
                 <h5>Content</h5>
                 <ul style={{ padding: "0" }}>
-                  {detail.contents
-                    ?.sort((a, b) => {
-                      let first = a.id,
-                        second = b.id;
-                      return first - second;
-                    })
-                    .map((courseItem) => {
-                      return (
-                        <div className={styles.list_contents} key={courseItem.id}>
-                          <p>
-                            Lesson #{courseItem.id}: <span>{courseItem.title}</span>
-                          </p>
-                        </div>
-                      );
-                    })}
+                  {/* Sorted contents starts here */}
+                  {sortedContents}
+                  {/* Sorted contents ends here */}
+
                   {/* <li>
                     {detail.contents?.map((content, index) => (
                       <div className={styles.list_contents} key={index}>
