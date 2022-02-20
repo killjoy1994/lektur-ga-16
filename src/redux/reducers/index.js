@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import searchCourseReducer from "./Courses/SearchCourseReducer";
+import searchCourseReducer from "./Courses/searchCourseReducer";
 import { coursesReducer } from "./Courses/getCoursesReducer";
 import getCourseDetailReducer from "./Courses/getCourseDetailReducer";
 
