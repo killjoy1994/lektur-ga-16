@@ -39,11 +39,11 @@ function Detail() {
         second = b.id;
       return first - second;
     })
-    .map((courseItem) => {
+    .map((courseItem, idx) => {
       return (
         <div className={styles.list_contents} key={courseItem.id}>
           <p>
-            Lesson #{courseItem.id}: <span>{courseItem.title}</span>
+            Lesson #{idx + 1}: <span>{courseItem.title}</span>
           </p>
         </div>
       );
