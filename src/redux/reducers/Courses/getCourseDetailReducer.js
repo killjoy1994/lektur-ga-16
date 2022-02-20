@@ -24,9 +24,8 @@ const getCourseDetailReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: payload
+        error: payload,
       };
-
 
     default:
       return state;
