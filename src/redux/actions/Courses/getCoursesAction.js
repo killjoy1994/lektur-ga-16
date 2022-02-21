@@ -7,7 +7,7 @@ export const getCoursesAction = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_COURSES_REQUEST });
     axios
-      .get("https://lektur-apps.herokuapp.com/api/v1/course/fetch")
+      .get(API + "api/v1/course/fetch")
       .then((response) => {
         // console.log(response);
         dispatch({ type: FETCH_COURSES_COMPLETE, payload: response.data.result });
