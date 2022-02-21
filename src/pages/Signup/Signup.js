@@ -2,92 +2,90 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //import { Spinner } from "react-bootstrap";
-import { API } from '../../api';
+import { API } from "../../api";
 
-import '../../styles/Signup.css';
-import Navbar from '../../components/Header/NavbarComponent';
-import Footer from '../../components/Footer';
+import "../../styles/Signup.css";
+import Navbar from "../../components/Header/NavbarComponent";
+import Footer from "../../components/Footer";
 
 function Signup() {
-    const [ inputedName, setInputedName ] = useState("");
-    const [ inputedEmail, setInputedEmail ] = useState("");
-    const [ inputedPassword, setInputedPassword ] = useState("");
-    const [ selectedRole, setSelectedRole ] = useState("");
-    //const initialValues = {fullname:"", email:"", password:""};
-    //const [formValues, setFormValues] = useState(initialValues);
-    const [formErrors, setFormErrors] = useState({});
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [reqLoading, setReqLoading] = useState();
-    const [role, setRole] = useState(null);
+  const [inputedName, setInputedName] = useState("");
+  const [inputedEmail, setInputedEmail] = useState("");
+  const [inputedPassword, setInputedPassword] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
+  //const initialValues = {fullname:"", email:"", password:""};
+  //const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [reqLoading, setReqLoading] = useState();
+  const [role, setRole] = useState(null);
 
   const navigate = useNavigate();
 
+  // const handleChange = (e) => {
+  //     console.log(e.target);
+  //     const {name, value} = e.target;
+  //     setFormValues({...formValues, [name]: value });
+  //     console.log(formValues);
+  // };
 
-    // const handleChange = (e) => {
-    //     console.log(e.target);
-    //     const {name, value} = e.target;
-    //     setFormValues({...formValues, [name]: value });
-    //     console.log(formValues);
-    // };
+  const nameHandler = (e) => {
+    console.log(e.target.value);
+    setInputedName(e.target.value);
+  };
 
-    const nameHandler = (e) => {
-        console.log(e.target.value);
-        setInputedName(e.target.value)
-    }
+  const emailHandler = (e) => {
+    console.log(e.target.value);
+    setInputedEmail(e.target.value);
+  };
 
-    const emailHandler = (e) => {
-        console.log(e.target.value);
-        setInputedEmail(e.target.value)
-    }
+  const passwordHandler = (e) => {
+    console.log(e.target.value);
+    setInputedPassword(e.target.value);
+  };
 
-    const passwordHandler = (e) => {
-        console.log(e.target.value);
-        setInputedPassword(e.target.value)
-    }
+  const roleHandler = (e) => {
+    console.log(e.target.value);
+    setSelectedRole(e.target.value);
+  };
 
-    const roleHandler = (e) => {
-        console.log(e.target.value);
-        setSelectedRole(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const inputedData = {
-            fullName: inputedName,
-            email: inputedEmail,
-            password: inputedPassword,
-            role: selectedRole
-        }
-        axios({
-            method:'post',
-            url: `${API}api/v1/user/register`,
-            data: inputedData
-        })
-        .then((response) => {
-            console.log(response);
-            // masukin token ke localStorage
-            //window.localStorage.setItem('token', response.data.token)
-            // redirect ke dashboard
-            navigate('/registered')
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-        setInputedName("");
-        setInputedEmail("");
-        setInputedPassword("");
-        setSelectedRole("");
-        setFormErrors(validate(inputedData));
-        setIsSubmit(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const inputedData = {
+      fullName: inputedName,
+      email: inputedEmail,
+      password: inputedPassword,
+      role: selectedRole,
     };
+    axios({
+      method: "post",
+      url: `${API}api/v1/user/register`,
+      data: inputedData,
+    })
+      .then((response) => {
+        console.log(response);
+        // masukin token ke localStorage
+        //window.localStorage.setItem('token', response.data.token)
+        // redirect ke dashboard
+        navigate("/registered");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setInputedName("");
+    setInputedEmail("");
+    setInputedPassword("");
+    setSelectedRole("");
+    setFormErrors(validate(inputedData));
+    setIsSubmit(true);
+  };
 
-    useEffect(() => {
+  useEffect(() => {
     // console.log(formErrors);
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
-        //console.log(inputedData);
-        }
-    }, [formErrors]);
-
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      //console.log(inputedData);
+    }
+  }, [formErrors]);
 
   const validate = (values) => {
     const errors = {};
@@ -110,89 +108,72 @@ function Signup() {
     return errors;
   };
 
-    return (
-        <>
-            <Navbar />
-            <div className='signup-hero'>
-                <div className='signup-page'>
-                    <div className='signup'>
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <div className='signup-title'>Start Learning!</div>
-                                <p className='signup-account'>Create your account</p>
-                            </div>
-                            <div className='form'>
-                                <div className='field'>
-                                    <label>Name<span>*</span></label>
-                                    <input 
-                                        type='text' 
-                                        name='fullname' 
-                                        placeholder='Enter your name' 
-                                        value={inputedName}
-                                        onChange={nameHandler}
-                                        required
-                                    />
-                                </div>
-                                <p>{ formErrors.fullname }</p>
-                                <div className='field'>
-                                    <label>Email<span>*</span></label>
-                                    <input 
-                                        type='email' 
-                                        name='email' 
-                                        placeholder='Enter your email' 
-                                        value={inputedEmail}
-                                        onChange={emailHandler}
-                                        required
-                                    />
-                                </div>
-                                <p>{ formErrors.email }</p>
-                                <div className='field'>
-                                    <label>Password<span>*</span></label>
-                                    <input 
-                                        type='password' 
-                                        name='password' 
-                                        placeholder='Enter your password' 
-                                        value={inputedPassword}
-                                        onChange={passwordHandler}
-                                    />
-                                </div>
-                                <p>{ formErrors.password }</p>
-                                <div className='select-container'>
-                                    <div className='select-role'>
-                                        <select
-                                            name="status"
-                                            onChange={roleHandler}
-                                        
-                                        >
-                                            <option value={null} className="option" selected={selectedRole === ""}>
-                                            Select Role
-                                        </option>
-                                            <option className='option-t'value='teacher' selected={selectedRole === "teacher"}>Teacher</option>
-                                            <option className='option-s'value='student'selected={selectedRole === "student"}>Student</option>
-                                        </select>
-                                    </div>
-                                    <button className='btn-signup-form'>
-                                        Sign up
-                                    </button>
-                                </div>
-                                <div className="signup-login">
-                                    Already have account?{" "}
-                                    <Link to='/login'>
-                                        <span>Login</span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+  return (
+    <>
+      <Navbar />
+      <div className="signup-hero">
+        <div className="signup-page">
+          <div className="signup">
+            <form onSubmit={handleSubmit}>
+              <div>
+                <div className="signup-title">Start Learning!</div>
+                <p className="signup-account">Create your account</p>
+              </div>
+              <div className="form">
+                <div className="field">
+                  <label>
+                    Name<span>*</span>
+                  </label>
+                  <input type="text" name="fullname" placeholder="Enter your name" value={inputedName} onChange={nameHandler} required />
                 </div>
-            </div>
-            <Footer />
-        </>
-    );
+                <p>{formErrors.fullname}</p>
+                <div className="field">
+                  <label>
+                    Email<span>*</span>
+                  </label>
+                  <input type="email" name="email" placeholder="Enter your email" value={inputedEmail} onChange={emailHandler} required />
+                </div>
+                <p>{formErrors.email}</p>
+                <div className="field">
+                  <label>
+                    Password<span>*</span>
+                  </label>
+                  <input type="password" name="password" placeholder="Enter your password" value={inputedPassword} onChange={passwordHandler} />
+                </div>
+                <p>{formErrors.password}</p>
+                <div className="select-container">
+                  <div className="select-role">
+                    <select name="status" onChange={roleHandler}>
+                      <option value={null} className="option" selected={selectedRole === ""}>
+                        Select Role
+                      </option>
+                      <option className="option-t" value="teacher" selected={selectedRole === "teacher"}>
+                        Teacher
+                      </option>
+                      <option className="option-s" value="student" selected={selectedRole === "student"}>
+                        Student
+                      </option>
+                    </select>
+                  </div>
+                  <button className="btn-signup-form">Sign up</button>
+                </div>
+                <div className="signup-login">
+                  Already have account?{" "}
+                  <Link to="/login">
+                    <span>Login</span>
+                  </Link>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
 
 export default Signup;
-
 
 // import { useState, useEffect } from "react";
 // import { Link, useNavigate } from "react-router-dom";
@@ -288,10 +269,10 @@ export default Signup;
 //                             <div className='form'>
 //                                 <div className='field'>
 //                                     <label>Name<span>*</span></label>
-//                                     <input 
-//                                         type='text' 
-//                                         name='fullname' 
-//                                         placeholder='John Doe' 
+//                                     <input
+//                                         type='text'
+//                                         name='fullname'
+//                                         placeholder='John Doe'
 //                                         value={formValues.fullname}
 //                                         onChange={handleChange}
 //                                     />
@@ -299,10 +280,10 @@ export default Signup;
 //                                 <p>{ formErrors.fullname }</p>
 //                                 <div className='field'>
 //                                     <label>Email<span>*</span></label>
-//                                     <input 
-//                                         type='email' 
-//                                         name='email' 
-//                                         placeholder='john@gmail.com' 
+//                                     <input
+//                                         type='email'
+//                                         name='email'
+//                                         placeholder='john@gmail.com'
 //                                         value={formValues.email}
 //                                         onChange={handleChange}
 //                                     />
@@ -310,10 +291,10 @@ export default Signup;
 //                                 <p>{ formErrors.email }</p>
 //                                 <div className='field'>
 //                                     <label>Password<span>*</span></label>
-//                                     <input 
-//                                         type='password' 
-//                                         name='password' 
-//                                         placeholder='******' 
+//                                     <input
+//                                         type='password'
+//                                         name='password'
+//                                         placeholder='******'
 //                                         value={formValues.password}
 //                                         onChange={handleChange}
 //                                     />
