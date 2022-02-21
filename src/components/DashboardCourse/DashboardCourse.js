@@ -7,8 +7,20 @@ import playWhite from "../../assests/play-white.svg";
 import editIcon from "../../assests/edit-icon-orange.svg";
 import ContentModal from "../CourseModal/ContentModal";
 import MaterialModal from "../CourseModal/MaterialModal";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 
 const DashboardCourse = () => {
+  const { enrolledCourses } = useSelector((state) => state.enrollCourse);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getEnrolledCoursesAction());
+  }, [dispatch]);
+
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
   //show modal State
@@ -181,6 +193,7 @@ const DashboardCourse = () => {
 
   return (
     <>
+      {console.log(enrolledCourses)}
       {showContentModal && <ContentModal closeModal={closeContentModalHandler} />}
       {showMaterialModal && <MaterialModal closeModal={closeMaterialModalHandler} />}
       <main className={styles.dashboard}>

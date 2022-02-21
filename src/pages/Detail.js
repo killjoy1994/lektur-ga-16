@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { getCourseDetail } from "../redux/actions/Courses/getCourseDetailAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
 
 function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
@@ -31,13 +32,11 @@ function Detail() {
   };
 
   // Sorted Contents
-  let detailContents = detail.contents
-    ?.sort((a, b) => {
-      let first = a.id,
-        second = b.id;
-      return first - second;
-    })
-   
+  let detailContents = detail.contents?.sort((a, b) => {
+    let first = a.id,
+      second = b.id;
+    return first - second;
+  });
 
   return (
     <>
@@ -49,7 +48,13 @@ function Detail() {
               <p>Panding...</p>
               <h3>{detail.title}</h3>
               <p>By Justin Junaedi</p>
-              <button className={styles.btn_detail} onClick={() => setPopUpDetail(true)}>
+              <button
+                className={styles.btn_detail}
+                onClick={() => {
+                  setPopUpDetail(true);
+                  dispatch(postEnrollCourseAction(params.id))
+                }}
+              >
                 ENROLL NOW
               </button>
             </div>
@@ -70,13 +75,10 @@ function Detail() {
                   <li>
                     {detailContents?.map((content, index) => (
                       <div className={styles.list_contents} key={index}>
-                        <p>
-                          {content.title}
-                        </p>
+                        <p>{content.title}</p>
                       </div>
                     ))}
                   </li>
-              
                 </ul>
               </div>
             </div>
