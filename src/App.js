@@ -8,7 +8,11 @@ import Signup from "./pages/Signup/Signup";
 import Detail from "./pages/Detail";
 import ContentVideo from "./pages/ContentVideo";
 import FinalAssessment from "./pages/studentAssessment/FinalAssessment";
+import FinalAssessmentResult from "./pages/studentAssessment/FinalAssessmentResult";
 import ErrorPage from "./errorPage/ErrorPage";
+import SearchCourse from "./pages/SearchCourses/SearchCourse";
+import Categories from "./pages/Categories/Categories";
+import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 
 function App() {
   return (
@@ -17,10 +21,23 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
+        <Route path="/registered" element={<successRegister />}/>
         <Route path="/final-assessment" element={<FinalAssessment />} />
-        <Route path="/course-content-video" element={<ContentVideo />} />
+        <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
+        <Route path="/course-content" element={<ContentVideo />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/detail" element={<Detail />} />
+        {/* <Route path="/detail" element={<Detail />} /> */}
+        <Route path="/search" element={<SearchCourse />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/categories/:name" element={<Categories />} />
+        {/* Private Routes start*/}
+        <Route element={<PrivateRoutes user={true} />}>
+          <Route path="/final-assessment" element={<FinalAssessment />} />
+          <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
+          <Route path="/course-content" element={<ContentVideo />} />
+          <Route path="/student-dashboard" element={<StudentDashboard />} />
+        </Route>
+        {/* Private Routes end */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

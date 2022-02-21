@@ -1,9 +1,16 @@
 .cards {
-  margin-top: 50px;
+  margin-top: 20px;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
+}
+
+.cards a {
+  justify-self: center;
+  display: block;
+  max-width: 255px;
+  color: #000;
 }
 
 @media (min-width: 951px) and (max-width: 1200px) {
