@@ -30,24 +30,14 @@ function Detail() {
     category: "Art & Humanity",
   };
 
-  console.log(detail);
-
   // Sorted Contents
-  let sortedContents = detail.contents
+  let detailContents = detail.contents
     ?.sort((a, b) => {
       let first = a.id,
         second = b.id;
       return first - second;
     })
-    .map((courseItem, idx) => {
-      return (
-        <div className={styles.list_contents} key={courseItem.id}>
-          <p>
-            Lesson #{idx + 1}: <span>{courseItem.title}</span>
-          </p>
-        </div>
-      );
-    });
+   
 
   return (
     <>
@@ -77,44 +67,16 @@ function Detail() {
               <div className={`${styles.content2} overflow-auto`}>
                 <h5>Content</h5>
                 <ul style={{ padding: "0" }}>
-                  {/* Sorted contents starts here */}
-                  {sortedContents}
-                  {/* Sorted contents ends here */}
-
-                  {/* <li>
-                    {detail.contents?.map((content, index) => (
+                  <li>
+                    {detailContents?.map((content, index) => (
                       <div className={styles.list_contents} key={index}>
                         <p>
-                          Lesson #{index + 1}: <span>{content.title}</span>
+                          {content.title}
                         </p>
                       </div>
                     ))}
-                  </li> */}
-                  {/* <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #1: What is React?</p>
-                    </div>
                   </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #2: Create React App</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #3: CSS in React</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #4: CSS in React</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #5: CSS in React</p>
-                    </div>
-                  </li> */}
+              
                 </ul>
               </div>
             </div>

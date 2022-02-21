@@ -15,7 +15,7 @@ export default function SearchCourse() {
     <div className={styles.Category}>
       <NavbarComponent />
       <main className={styles["category-container"]}>
-        <h1 className={styles.title}>Pencarian '{input}'</h1>
+        <h1 className={styles.title}>hasil pencarian untuk "{input}"</h1>
         <h3 className={styles.subtitle}>Courses to get you started</h3>
         <SearchList />
       </main>
