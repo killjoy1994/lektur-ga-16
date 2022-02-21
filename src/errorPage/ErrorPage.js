@@ -9,7 +9,7 @@ function Errorpage() {
           <h2>Page not found</h2>
           <p>We couldn't find this page.</p>
         </div>
-        <a href="#">Back to homepage</a>
+        <a href="/">Back to homepage</a>
       </div>
     </div>
   );
