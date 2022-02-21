@@ -16,18 +16,6 @@ const Card = (props) => {
     setShowModal(false);
   };
 
-  // Show more toggle
-  // const showMore = (
-  //   <button className={styles["show-toggler"]} onClick={console.log("clicked")}>
-  //     Show more..
-  //   </button>
-  // );
-
-  //Modal coordinates
-  // useEffect(() => {
-  //   console.log(window.innerWidth);
-  // });
-
   //Modal on mouseover
   const descriptionModal = (
     <div className={styles["description-modal"]}>
@@ -35,6 +23,8 @@ const Card = (props) => {
       <p>{description}</p>
     </div>
   );
+
+  // Popper
 
   return (
     <div className={`card ${styles.card}`} onMouseOver={mouseOverHandler} onMouseOut={mouseOutHandler}>

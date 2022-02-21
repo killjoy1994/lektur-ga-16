@@ -25,10 +25,20 @@ function Detail() {
     author: "John Doe",
     videos: 15,
     materials: 3,
-    description: "Vestibulum fusce parturient urna a molestie orci. Lectus id quisque amet et vel elementum morbi cursus. Amet sagittis semper mauris diam orci facilisis...",
+    description:
+      "Vestibulum fusce parturient urna a molestie orci. Lectus id quisque amet et vel elementum morbi cursus. Amet sagittis semper mauris diam orci facilisis...",
     category: "Art & Humanity",
   };
-  console.log(detail);
+
+  // Sorted Contents
+  let detailContents = detail.contents
+    ?.sort((a, b) => {
+      let first = a.id,
+        second = b.id;
+      return first - second;
+    })
+   
+
   return (
     <>
       <NavbarComponent />
@@ -58,14 +68,15 @@ function Detail() {
                 <h5>Content</h5>
                 <ul style={{ padding: "0" }}>
                   <li>
-                    {detail.contents?.map((content, index) => (
+                    {detailContents?.map((content, index) => (
                       <div className={styles.list_contents} key={index}>
                         <p>
-                          Lesson #{index + 1}: <span>{content.title}</span>
+                          {content.title}
                         </p>
                       </div>
                     ))}
                   </li>
+              
                 </ul>
               </div>
             </div>
@@ -83,10 +94,42 @@ function Detail() {
           <div className={styles["card-container"]}>
             <h2>Related Course</h2>
             <div className={styles["card-list"]}>
-              <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
-              <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
-              <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
-              <Card src={dummyData.src} title={dummyData.title} author={dummyData.author} videos={dummyData.videos} materials={dummyData.materials} description={dummyData.description} category={dummyData.category} />
+              <Card
+                src={dummyData.src}
+                title={dummyData.title}
+                author={dummyData.author}
+                videos={dummyData.videos}
+                materials={dummyData.materials}
+                description={dummyData.description}
+                category={dummyData.category}
+              />
+              <Card
+                src={dummyData.src}
+                title={dummyData.title}
+                author={dummyData.author}
+                videos={dummyData.videos}
+                materials={dummyData.materials}
+                description={dummyData.description}
+                category={dummyData.category}
+              />
+              <Card
+                src={dummyData.src}
+                title={dummyData.title}
+                author={dummyData.author}
+                videos={dummyData.videos}
+                materials={dummyData.materials}
+                description={dummyData.description}
+                category={dummyData.category}
+              />
+              <Card
+                src={dummyData.src}
+                title={dummyData.title}
+                author={dummyData.author}
+                videos={dummyData.videos}
+                materials={dummyData.materials}
+                description={dummyData.description}
+                category={dummyData.category}
+              />
             </div>
           </div>
         </div>
