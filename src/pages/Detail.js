@@ -66,31 +66,6 @@ function Detail() {
                       </div>
                     ))}
                   </li>
-                  {/* <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #1: What is React?</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #2: Create React App</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #3: CSS in React</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #4: CSS in React</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.list_contents}>
-                      <p>Lesson #5: CSS in React</p>
-                    </div>
-                  </li> */}
                 </ul>
               </div>
             </div>
