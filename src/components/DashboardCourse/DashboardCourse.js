@@ -3,6 +3,7 @@ import { useState } from "react";
 // import { ProgressBar } from "react-bootstrap";
 
 import styles from "../../styles/DashboardCourse.module.css";
+import Loader from "../../components/Loader/Loader";
 import playWhite from "../../assests/play-white.svg";
 import editIcon from "../../assests/edit-icon-orange.svg";
 import ContentModal from "../CourseModal/ContentModal";
@@ -11,15 +12,21 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
+import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
+  const { user, isLoading } = useSelector((state) => state.userProfile);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getEnrolledCoursesAction());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUserProfileAction());
+  }, []);
 
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
@@ -51,10 +58,10 @@ const DashboardCourse = () => {
 
   /* Conditional render for User Profile start */
   let content;
-  const userData = (
+  const userData = user && (
     <div className={styles["user-data"]}>
-      <p className={styles.name}>John Doe</p>
-      <p className={styles.email}>johndoe@gmail.com</p>
+      <p className={styles.name}>{user.fullName}</p>
+      <p className={styles.email}>{user.email}</p>
       <button
         onClick={() => {
           setEdit(true);
@@ -87,44 +94,34 @@ const DashboardCourse = () => {
   /* Pas di bagian courses start */
   let courses = (
     <>
-      <div className={styles["course-control"]}>
-        <div className={styles["course-control-left"]}>
-          <div className={styles["img-course-wrapper"]}>
-            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+      {enrolledCourses.map((course) => {
+        return (
+          <div className={styles["course-control"]} key={course.id}>
+            <div className={styles["course-control-left"]}>
+              <div className={styles["img-course-wrapper"]}>
+                <img src={course.image} alt={course.title} />
+              </div>
+              <div className={styles["course-detail"]}>
+                <h3>{course.title}</h3>
+                <p>By {course.by.fullName}</p>
+                <button onClick={materialModalHandler}>See course materials</button>
+              </div>
+            </div>
+            <div className={styles["course-control-right"]}>
+              {/* <ProgressBar now={20} className={styles.progress} /> */}
+              <div className={styles.progress}>
+                <div className={styles["progress-bar"]}></div>
+              </div>
+              <button onClick={contentModalHandler} className={styles["completed-task"]}>
+                {course.progress.length}/{course.contents.length} Course Complete
+              </button>
+              <button className={styles["progress-btn"]}>
+                <img src={playWhite} alt="play button" /> {course.title}
+              </button>
+            </div>
           </div>
-          <div className={styles["course-detail"]}>
-            <h3>React Crash Course</h3>
-            <p>By Traversy Media</p>
-            <button onClick={materialModalHandler}>See course materials</button>
-          </div>
-        </div>
-        <div className={styles["course-control-right"]}>
-          {/* <ProgressBar now={20} className={styles.progress} /> */}
-          <div className={styles.progress}>
-            <div className={styles["progress-bar"]}></div>
-          </div>
-          <button onClick={contentModalHandler} className={styles["completed-task"]}>
-            2/15 Course Complete
-          </button>
-          <button className={styles["progress-btn"]}>
-            <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
-          </button>
-        </div>
-      </div>
-      <div class={styles["course-control"]}>
-        <div className={styles["course-control-left"]}>
-          <div className={styles["img-course-wrapper"]}>
-            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
-          </div>
-          <div className={styles["course-detail"]}>
-            <h3>React Crash Course</h3>
-            <p>By Traversy Media</p>
-          </div>
-        </div>
-        <div className={styles["course-control-right"]}>
-          <p className={styles.approval}>Waiting Approval</p>
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 
@@ -193,19 +190,22 @@ const DashboardCourse = () => {
 
   return (
     <>
-      {console.log(enrolledCourses)}
       {showContentModal && <ContentModal closeModal={closeContentModalHandler} />}
       {showMaterialModal && <MaterialModal closeModal={closeMaterialModalHandler} />}
       <main className={styles.dashboard}>
         <div className={styles.container}>
           <div className={styles["left-box"]}>
-            <div className={styles["user-profile"]}>
-              <div className={styles["img-wrapper"]}>
-                <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" className={styles["user-avatar"]} />
-                {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <div className={styles["user-profile"]}>
+                <div className={styles["img-wrapper"]}>
+                  <img src={user.image} alt="kang seulgi" className={styles["user-avatar"]} />
+                  {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
+                </div>
+                {content}
               </div>
-              {content}
-            </div>
+            )}
           </div>
           <div className={styles["right-box"]}>
             <div className={styles["right-box-header"]}>
