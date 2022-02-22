@@ -49,6 +49,11 @@ const DashboardCourse = () => {
     setShowMaterialModal(val);
   };
 
+  // Handle for upload image profile
+  const handleUpload = (e) => {
+    e.preventDefault();
+  };
+
   //   Handle submit on profile change
   const submitHandler = (e) => {
     e.preventDefault();
@@ -110,7 +115,7 @@ const DashboardCourse = () => {
             <div className={styles["course-control-right"]}>
               {/* <ProgressBar now={20} className={styles.progress} /> */}
               <div className={styles.progress}>
-                <div className={styles["progress-bar"]}></div>
+                <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
               </div>
               <button onClick={contentModalHandler} className={styles["completed-task"]}>
                 {course.progress.length}/{course.contents.length} Course Complete
@@ -199,10 +204,20 @@ const DashboardCourse = () => {
               <Loader />
             ) : (
               <div className={styles["user-profile"]}>
-                <div className={styles["img-wrapper"]}>
-                  <img src={user.image} alt="kang seulgi" className={styles["user-avatar"]} />
-                  {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
-                </div>
+                <form onSubmit={handleUpload}>
+                  <div className={styles["img-wrapper"]}>
+                    <img src={user.image} alt="kang seulgi" className={styles["user-avatar"]} />
+                    {/* {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />} */}
+                    {edit && (
+                      <>
+                        <label htmlFor="image-upload">
+                          <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />
+                        </label>
+                        <input type="file" id="image-upload" name="filename" style={{ display: "none" }} />
+                      </>
+                    )}
+                  </div>
+                </form>
                 {content}
               </div>
             )}
