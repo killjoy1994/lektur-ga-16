@@ -13,10 +13,17 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
+import { useRef } from "react";
+import { uploadImageAction } from "../../redux/actions/User/uploadProfileImageAction";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
   const { user, isLoading } = useSelector((state) => state.userProfile);
+
+  // State
+  const [inputedName, setInputedName] = useState("");
+  const [inputedEmail, setInputedEmail] = useState("");
+  const [selectedFile, setSelectedFile] = useState(undefined);
 
   const dispatch = useDispatch();
 
@@ -26,7 +33,7 @@ const DashboardCourse = () => {
 
   useEffect(() => {
     dispatch(getUserProfileAction());
-  }, []);
+  }, [dispatch]);
 
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
@@ -49,15 +56,23 @@ const DashboardCourse = () => {
     setShowMaterialModal(val);
   };
 
-  // Handle for upload image profile
-  const handleUpload = (e) => {
-    e.preventDefault();
+  // Form Handler
+  const inputedNameHandler = (e) => {
+    setInputedName(e.target.value);
+  };
+
+  const inputedEmailHandler = (e) => {
+    setInputedEmail(e.target.value);
+  };
+
+  const uploadHandler = (e) => {
+    console.log(e.target.files[0]);
   };
 
   //   Handle submit on profile change
   const submitHandler = (e) => {
     e.preventDefault();
-
+    
     setEdit(false);
   };
 
@@ -78,19 +93,19 @@ const DashboardCourse = () => {
     </div>
   );
   const userForm = (
-    <form className={styles["user-form"]} onSubmit={submitHandler}>
+    <div className={styles["user-form"]}>
       <label className={styles["form-control"]}>
         Name<span style={{ color: "red" }}>*</span>
-        <input type="text" name="name" autoComplete="off" required />
+        <input type="text" name="name" autoComplete="off" required value={inputedName} onChange={inputedNameHandler} />
       </label>
       <label className={styles["form-control"]}>
         Email<span style={{ color: "red" }}>*</span>
-        <input type="email" name="email" autoComplete="off" required />
+        <input type="email" name="email" autoComplete="off" required value={inputedEmail} onChange={inputedEmailHandler} />
       </label>
       <button type="submit" className={styles["user-btn"]}>
         Save Changes
       </button>
-    </form>
+    </div>
   );
   content = !edit ? userData : userForm;
 
@@ -203,23 +218,27 @@ const DashboardCourse = () => {
             {isLoading ? (
               <Loader />
             ) : (
-              <div className={styles["user-profile"]}>
-                <form onSubmit={handleUpload}>
-                  <div className={styles["img-wrapper"]}>
-                    <img src={user.image} alt="kang seulgi" className={styles["user-avatar"]} />
-                    {/* {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />} */}
-                    {edit && (
-                      <>
-                        <label htmlFor="image-upload">
-                          <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />
-                        </label>
-                        <input type="file" id="image-upload" name="filename" style={{ display: "none" }} />
-                      </>
-                    )}
-                  </div>
-                </form>
+              <form className={styles["user-profile"]} onSubmit={submitHandler}>
+                <div className={styles["img-wrapper"]}>
+                  <img src={user.image} alt="kang seulgi" className={styles["user-avatar"]} />
+                  {edit && (
+                    <>
+                      <label htmlFor="image-upload">
+                        <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />
+                      </label>
+                      <input
+                        type="file"
+                        id="image-upload"
+                        name="filename"
+                        style={{ display: "none" }}
+                        value={selectedFile}
+                        onChange={uploadHandler}
+                      />
+                    </>
+                  )}
+                </div>
                 {content}
-              </div>
+              </form>
             )}
           </div>
           <div className={styles["right-box"]}>
