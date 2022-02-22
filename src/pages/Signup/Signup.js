@@ -8,7 +8,9 @@ import "../../styles/Signup.css";
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 import { useDispatch } from "react-redux";
-import { userRegisterAction } from "../../redux/actions/User/userRegisterAction";
+import { userSignupAction } from "../../redux/actions/User/userAuthAction";
+
+
 
 
 function Signup() {
@@ -75,7 +77,7 @@ function Signup() {
         console.log(response);
         // masukin token ke localStorage
         localStorage.setItem('token', response.data.result.token)
-        dispatch(userRegisterAction());
+        dispatch(userSignupAction(response.data.result.user));
         // redirect ke dashboard
         // navigate("/registered");
       })
