@@ -11,6 +11,7 @@ export const getUserProfileAction = () => {
     axios
       .get(API + "api/v1/user/profile", { headers: { Authorization: "Bearer " + temporaryToken } })
       .then((res) => {
+        console.log(res)
         dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {
