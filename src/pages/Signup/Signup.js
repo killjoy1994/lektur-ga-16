@@ -79,7 +79,7 @@ function Signup() {
         localStorage.setItem('token', response.data.result.token)
         dispatch(userSignupAction(response.data.result.user));
         // redirect ke dashboard
-        // navigate("/registered");
+        navigate("/registered");
       })
       .catch((error) => {
         console.log(error);
