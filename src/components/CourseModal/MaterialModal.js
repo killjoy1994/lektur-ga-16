@@ -6,7 +6,7 @@ import styles from "../../styles/CourseModal.module.css";
 // import play from "../../assests/on-play.svg";
 // import lock from "../../assests/lock.svg";
 import { useSelector } from "react-redux";
-import Loader from "../Loader/Loader";
+
 
 const MaterialModal = (props) => {
   const { materialList, isLoading } = useSelector((state) => state.popUpMaterials);
@@ -32,7 +32,7 @@ const MaterialModal = (props) => {
               {materialList.map((material, idx) => {
                 return (
                   <div className={styles["lesson-control"]} key={material.title + idx}>
-                    <h2 className={styles.title}>Lesson #{idx + 1}: {material.title}</h2>
+                    <h2 className={styles.title}>{material.title}</h2>
                     {material.materials.map((item, idx) => {
                       return (
                         <div key={idx + item.name} className={`form-check ${styles["form-check"]}`}>
@@ -44,7 +44,7 @@ const MaterialModal = (props) => {
                       );
                     })}
                   </div>
-                )
+                );
               })}
             </div>
           </>

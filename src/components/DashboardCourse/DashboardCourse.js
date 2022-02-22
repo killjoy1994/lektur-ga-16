@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
 import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
-import { getPopUpMaterialAction } from "../../redux/actions/Student/getPopUpMaterialAction";
+import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actions/Student/popUpAction";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
@@ -42,7 +42,8 @@ const DashboardCourse = () => {
   const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   // Modal handler
-  const contentModalHandler = () => {
+  const contentModalHandler = (id) => {
+    dispatch(getPopUpContentAction(id));
     setShowContentModal(true);
   };
   const closeContentModalHandler = (val) => {
@@ -132,7 +133,7 @@ const DashboardCourse = () => {
               <div className={styles.progress}>
                 <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
               </div>
-              <button onClick={contentModalHandler} className={styles["completed-task"]}>
+              <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                 {course.progress.length}/{course.contents.length} Course Complete
               </button>
               <button className={styles["progress-btn"]}>

@@ -6,6 +6,7 @@ import enrollCourseReducer from "./Courses/enrollCourseReducer";
 import getUserProfileReducer from "./User/getUserProfileReducer";
 import { updateUserProfileReducer } from "./User/updateUserProfile";
 import getPopUpMaterialReducer from "./Student/getPopUpMaterialReducer";
+import getPopUpContentReducer from "./Student/getPopUpContentReducer";
 
 const rootReducer = combineReducers({
   searchCourses: searchCourseReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   enrollCourse: enrollCourseReducer,
   userProfile: getUserProfileReducer,
   updateUserProfile: updateUserProfileReducer,
-  popUpMaterial: getPopUpMaterialReducer,
+  popUpMaterials: getPopUpMaterialReducer,
+  popUpContents: getPopUpContentReducer,
 });
 
 export default rootReducer;

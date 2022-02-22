@@ -1,4 +1,4 @@
-import {  GET_POP_UP_MATERIAL_FAILED, GET_POP_UP_MATERIAL_REQUEST, GET_POP_UP_MATERIAL_SUCCESS } from "../../types";
+import { CLOSE_POP_UP_MATERIAL, GET_POP_UP_MATERIAL_FAILED, GET_POP_UP_MATERIAL_REQUEST, GET_POP_UP_MATERIAL_SUCCESS } from "../../types";
 
 const initalState = {
   materialList: [],
@@ -15,7 +15,7 @@ const getPopUpMaterialReducer = (state = initalState, action) => {
     case GET_POP_UP_MATERIAL_SUCCESS:
       return {
         ...state,
-        materialList: [...state.materialList, ...action.payload],
+        materialList: [...action.payload],
         isLoading: false,
       };
     case GET_POP_UP_MATERIAL_FAILED:
@@ -28,4 +28,4 @@ const getPopUpMaterialReducer = (state = initalState, action) => {
   }
 };
 
-export default getPopUpMaterialReducer
+export default getPopUpMaterialReducer;
