@@ -13,8 +13,8 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
-import { useRef } from "react";
-import { uploadImageAction } from "../../redux/actions/User/uploadProfileImageAction";
+import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
+import { getPopUpMaterialAction } from "../../redux/actions/Student/getPopUpMaterialAction";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
@@ -49,7 +49,8 @@ const DashboardCourse = () => {
     setShowContentModal(val);
   };
 
-  const materialModalHandler = () => {
+  const materialModalHandler = (id) => {
+    dispatch(getPopUpMaterialAction(id));
     setShowMaterialModal(true);
   };
   const closeMaterialModalHandler = (val) => {
@@ -72,7 +73,9 @@ const DashboardCourse = () => {
   //   Handle submit on profile change
   const submitHandler = (e) => {
     e.preventDefault();
-    
+    console.log(inputedName, inputedEmail, selectedFile);
+    // dispatch(uploadImageAction(selectedFile))
+    dispatch(updateProfileAction(inputedName, inputedEmail));
     setEdit(false);
   };
 
@@ -102,9 +105,6 @@ const DashboardCourse = () => {
         Email<span style={{ color: "red" }}>*</span>
         <input type="email" name="email" autoComplete="off" required value={inputedEmail} onChange={inputedEmailHandler} />
       </label>
-      <button type="submit" className={styles["user-btn"]}>
-        Save Changes
-      </button>
     </div>
   );
   content = !edit ? userData : userForm;
@@ -124,7 +124,7 @@ const DashboardCourse = () => {
               <div className={styles["course-detail"]}>
                 <h3>{course.title}</h3>
                 <p>By {course.by.fullName}</p>
-                <button onClick={materialModalHandler}>See course materials</button>
+                <button onClick={() => materialModalHandler(course.id)}>See course materials</button>
               </div>
             </div>
             <div className={styles["course-control-right"]}>
@@ -238,6 +238,9 @@ const DashboardCourse = () => {
                   )}
                 </div>
                 {content}
+                <button type="submit" className={styles["user-btn"]}>
+                  Save Changes
+                </button>
               </form>
             )}
           </div>
