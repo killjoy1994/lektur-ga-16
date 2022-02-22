@@ -57,6 +57,10 @@ function Signup() {
       password: inputedPassword,
       role: selectedRole,
     };
+
+    setFormErrors(validate(inputedData));
+    setIsSubmit(true);
+
     axios({
       method: "post",
       url: `${API}api/v1/user/register`,
@@ -76,8 +80,7 @@ function Signup() {
     setInputedEmail("");
     setInputedPassword("");
     setSelectedRole("");
-    setFormErrors(validate(inputedData));
-    setIsSubmit(true);
+    
   };
 
   useEffect(() => {
@@ -88,9 +91,10 @@ function Signup() {
   }, [formErrors]);
 
   const validate = (values) => {
+    console.log(values)
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.fullname) {
+    if (!values.fullName) {
       errors.fullname = "Name is required!";
     }
     if (!values.email) {
@@ -124,14 +128,14 @@ function Signup() {
                   <label>
                     Name<span>*</span>
                   </label>
-                  <input type="text" name="fullname" placeholder="Enter your name" value={inputedName} onChange={nameHandler} required />
+                  <input type="text" name="fullname" placeholder="Enter your name" value={inputedName} onChange={nameHandler} />
                 </div>
                 <p>{formErrors.fullname}</p>
                 <div className="field">
                   <label>
                     Email<span>*</span>
                   </label>
-                  <input type="email" name="email" placeholder="Enter your email" value={inputedEmail} onChange={emailHandler} required />
+                  <input type="email" name="email" placeholder="Enter your email" value={inputedEmail} onChange={emailHandler} />
                 </div>
                 <p>{formErrors.email}</p>
                 <div className="field">

@@ -185,6 +185,10 @@
   object-fit: fill;
 }
 
+.course-detail {
+  width: 200px;
+}
+
 .course-detail p {
   text-align: start;
   color: rgba(153, 153, 153, 1);
