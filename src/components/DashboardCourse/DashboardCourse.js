@@ -37,7 +37,6 @@ const DashboardCourse = () => {
     dispatch(getUserProfileAction());
   }, [dispatch]);
 
-
   // IMAGE PREVIEW BEFORE UPLOAD
   // useEffect(() => {
   //   if (!selectedFile) {
@@ -90,14 +89,15 @@ const DashboardCourse = () => {
   };
 
   //   Handle submit on profile change
+
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch(uploadImageAction(selectedFile))
     dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    dispatch(getUserProfileAction());
-    // setTimeout(() => dispatch(getUserProfileAction()), 0)
+    // dispatch(getUserProfileAction());
+    setTimeout(() => dispatch(getUserProfileAction()), 0)
     setEdit(false);
   };
 
