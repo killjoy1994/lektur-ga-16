@@ -6,7 +6,7 @@ const initialState = {
   error: "",
 };
 
-export const coursesReducer = (state = initialState, action) => {
+export const getCoursesReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_COURSES_REQUEST:
       return {

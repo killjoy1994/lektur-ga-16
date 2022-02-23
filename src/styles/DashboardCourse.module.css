@@ -182,7 +182,11 @@
 .img-course-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
+}
+
+.course-detail {
+  width: 200px;
 }
 
 .course-detail p {

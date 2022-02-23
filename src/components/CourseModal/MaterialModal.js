@@ -2,11 +2,15 @@ import React, { useState } from "react";
 
 import exit from "../../assests/exit-logo.svg";
 import styles from "../../styles/CourseModal.module.css";
-import check from "../../assests/green-check.svg";
-import play from "../../assests/on-play.svg";
-import lock from "../../assests/lock.svg";
+// import check from "../../assests/green-check.svg";
+// import play from "../../assests/on-play.svg";
+// import lock from "../../assests/lock.svg";
+import { useSelector } from "react-redux";
+
 
 const MaterialModal = (props) => {
+  const { materialList, isLoading } = useSelector((state) => state.popUpMaterials);
+
   const showHandler = () => {
     props.closeModal(false);
   };
@@ -14,77 +18,37 @@ const MaterialModal = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
-        <div className={styles.header}>
-          <h2>React Crash Course: Study Material</h2>
-          <button onClick={showHandler}>
-            <img src={exit} alt="exit" />
-          </button>
-        </div>
-        <div className={styles["content-material"]}>
-          <div className={styles["lesson-control"]}>
-            <h2 className={styles.title}>Lesson #1: Lorem Ipsum</h2>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
+        {isLoading ? (
+          <p style={{ textAlign: "center", marginTop: "20%" }}>Load Materials...</p>
+        ) : (
+          <>
+            <div className={styles.header}>
+              <h2>React Crash Course: Study Material</h2>
+              <button onClick={showHandler}>
+                <img src={exit} alt="exit" />
+              </button>
             </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
+            <div className={styles["content-material"]}>
+              {materialList.map((material, idx) => {
+                return (
+                  <div className={styles["lesson-control"]} key={material.title + idx}>
+                    <h2 className={styles.title}>{material.title}</h2>
+                    {material.materials.map((item, idx) => {
+                      return (
+                        <div key={idx + item.name} className={`form-check ${styles["form-check"]}`}>
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                          <label className="form-check-label" htmlFor="flexCheckChecked">
+                            Read course material : <a href="#">{item.name}.pdf</a>
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-          </div>
-          <div className={styles["lesson-control"]}>
-            <h2 className={styles.title}>Lesson #2: Lorem Ipsum</h2>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-          </div>
-          <div className={styles["lesson-control"]}>
-            <h2 className={styles.title}>Lesson #3: Lorem Ipsum</h2>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-            <div className={`form-check ${styles["form-check"]}`}>
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-              <label class="form-check-label" for="flexCheckChecked">
-                Read course material : <a href="#">React and Open Source.pdf</a>
-              </label>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

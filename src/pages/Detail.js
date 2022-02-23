@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
+import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
 
 function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
@@ -46,9 +47,15 @@ function Detail() {
                     <p>{detail.category?.name}</p>
                     <h3>{detail.title}</h3>
                     <p>By {detail.by?.fullName}</p>
-                    <button className={styles.btn_detail} onClick={() => setPopUpDetail(true)}>
-                      ENROLL NOW
-                    </button>
+                    <button
+                className={styles.btn_detail}
+                onClick={() => {
+                  setPopUpDetail(true);
+                  dispatch(postEnrollCourseAction(params.id))
+                }}
+              >
+                ENROLL NOW
+              </button>
                   </>
                 )}
               </div>
