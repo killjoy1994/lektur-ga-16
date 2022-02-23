@@ -24,7 +24,7 @@ const DashboardCourse = () => {
   // State
   const [inputedName, setInputedName] = useState("");
   const [inputedEmail, setInputedEmail] = useState("");
-  const [selectedFile, setSelectedFile] = useState([]);
+  const [selectedFile, setSelectedFile] = useState("");
   const [preview, setPreview] = useState();
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
@@ -43,18 +43,18 @@ const DashboardCourse = () => {
   }, [dispatch]);
 
   //IMAGE PREVIEW BEFORE UPLOAD
-  // useEffect(() => {
-  //   if (!selectedFile) {
-  //     setPreview(undefined);
-  //     return;
-  //   }
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
 
-  //   const objectUrl = URL.createObjectURL(selectedFile);
-  //   setPreview(objectUrl);
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
 
-  //   // free memory when ever this component is unmounted
-  //   return () => URL.revokeObjectURL(objectUrl);
-  // }, [selectedFile]);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
 
   // Modal handler
   const contentModalHandler = (id) => {
@@ -278,7 +278,7 @@ const DashboardCourse = () => {
                 Assesment
               </h3>
             </div>
-            <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            {isLoading ? <Loader /> : <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>}
           </div>
         </div>
       </main>
