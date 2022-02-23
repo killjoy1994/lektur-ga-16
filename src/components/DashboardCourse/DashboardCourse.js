@@ -90,14 +90,13 @@ const DashboardCourse = () => {
 
   //   Handle submit on profile change
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
     // dispatch(uploadImageAction(selectedFile))
-    dispatch(updateProfileAction(inputedName, inputedEmail));
+    await dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    // dispatch(getUserProfileAction());
-    setTimeout(() => dispatch(getUserProfileAction()), 0)
+    await dispatch(getUserProfileAction());
     setEdit(false);
   };
 
