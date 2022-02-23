@@ -57,7 +57,6 @@ const DashboardCourse = () => {
   const [showContentModal, setShowContentModal] = useState(false);
   const [showMaterialModal, setShowMaterialModal] = useState(false);
 
-
   // Modal handler
   const contentModalHandler = (id) => {
     dispatch(getPopUpContentAction(id));
@@ -94,10 +93,11 @@ const DashboardCourse = () => {
     e.preventDefault();
     // dispatch(uploadImageAction(selectedFile))
     dispatch(updateProfileAction(inputedName, inputedEmail));
-    dispatch(getUserProfileAction())
     setInputedName("");
     setInputedEmail("");
+    setTimeout(() => dispatch(getUserProfileAction()), 0)
     setEdit(false);
+    
   };
 
   /* Conditional render for User Profile start */
