@@ -7,6 +7,11 @@ import { API } from "../../api";
 import "../../styles/Signup.css";
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
+import { useDispatch } from "react-redux";
+import { userSignupAction } from "../../redux/actions/User/userAuthAction";
+
+
+
 
 function Signup() {
   const [inputedName, setInputedName] = useState("");
@@ -19,6 +24,8 @@ function Signup() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [reqLoading, setReqLoading] = useState();
   const [role, setRole] = useState(null);
+  
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -69,7 +76,8 @@ function Signup() {
       .then((response) => {
         console.log(response);
         // masukin token ke localStorage
-        //window.localStorage.setItem('token', response.data.token)
+        localStorage.setItem('token', response.data.result.token)
+        dispatch(userSignupAction(response.data.result.user));
         // redirect ke dashboard
         navigate("/registered");
       })
@@ -147,14 +155,14 @@ function Signup() {
                 <p>{formErrors.password}</p>
                 <div className="select-container">
                   <div className="select-role">
-                    <select name="status" onChange={roleHandler}>
-                      <option value={null} className="option" selected={selectedRole === ""}>
+                    <select name="status" onChange={roleHandler} value={selectedRole}>
+                      <option value="" disabled className="option" >
                         Select Role
                       </option>
-                      <option className="option-t" value="teacher" selected={selectedRole === "teacher"}>
+                      <option className="option-t" value="teacher" >
                         Teacher
                       </option>
-                      <option className="option-s" value="student" selected={selectedRole === "student"}>
+                      <option className="option-s" value="student" >
                         Student
                       </option>
                     </select>

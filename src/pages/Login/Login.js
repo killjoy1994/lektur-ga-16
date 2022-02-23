@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
+import { API } from '../../api';
 
 import facebookIcon from "../../assests/facebook.svg";
 import googleIcon from "../../assests/google.svg";
@@ -25,21 +26,21 @@ const LoginSchema = Yup.object().shape({
 
 export default function FormLogin() {
   const navigate = useNavigate()
-  let [ reqLoading, setReqLoading ] = useState(false)
+  //let [ reqLoading, setReqLoading ] = useState(false)
 
   axios({
       method: 'post',
-      url: '/',
+      url: `${API}api/v1/user/login`,
       data: {
           email: '',
           password: '',
       }
   })
   .then((response) => {
-      setReqLoading(false)
+      console.log(response);
       Swal.fire({
           icon: 'success',
-          title: 'GOOD JOB!',
+          title: 'LOGIN SUCCESS!',
           text: response.data.message
       })
       // masukin token ke localStorage
@@ -48,7 +49,7 @@ export default function FormLogin() {
       navigate('/')
   })
   .catch((error) => {
-      setReqLoading(false)
+      console.log(error);
   })
   
   return (
