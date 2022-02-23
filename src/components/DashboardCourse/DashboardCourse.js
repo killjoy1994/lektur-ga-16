@@ -37,6 +37,7 @@ const DashboardCourse = () => {
     dispatch(getUserProfileAction());
   }, [dispatch]);
 
+
   // IMAGE PREVIEW BEFORE UPLOAD
   // useEffect(() => {
   //   if (!selectedFile) {
@@ -95,9 +96,9 @@ const DashboardCourse = () => {
     dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    setTimeout(() => dispatch(getUserProfileAction()), 0)
+    dispatch(getUserProfileAction());
+    // setTimeout(() => dispatch(getUserProfileAction()), 0)
     setEdit(false);
-    
   };
 
   /* Conditional render for User Profile start */
