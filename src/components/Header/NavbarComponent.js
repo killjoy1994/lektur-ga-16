@@ -18,7 +18,7 @@ const NavbarComponent = () => {
       dispatch(getSearchCourse(searchText));
       navigate('/search')
     }
-    setSearchText('')
+    
   };
 
   // Category
