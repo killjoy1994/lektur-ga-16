@@ -3,16 +3,20 @@ import { API } from "../../../api";
 import { UPDATE_USER, UPLOAD_PROFILE_IMAGE } from "../../types";
 
 const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoiYmFndXNuQGdtYWlsLmNvbSIsImlhdCI6MTY0NTUzOTMyMSwiZXhwIjoxNjQ1NjI1NzIxfQ.guh0ffFOnAom4amJKp0WRiNMuvCjQlFz-s1tMB0g0qE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF5dTExMUBnbWFpbC5jb20iLCJpZCI6MjMsImlhdCI6MTY0NTYzODU0NywiZXhwIjoxNjQ1NzI0OTQ3fQ.XsvXzx_FHUo-ubpONyspbn8kThLknfQiu-SlLXB6pOY";
 
 export const uploadImageAction = (data) => {
-  console.log(data)
+  console.log("Upload Action data: ", data)
   const formData = new FormData();
-  formData.append("File", data, data.name);
-  console.log(formData)
+  formData.append("image", data);
+  
   return (dispatch) => {
     axios
-      .put(API + "api/v1/user/upload", { image: formData }, { headers: { Authorization: "Bearer " + temporaryToken } })
+      .put(
+        API + "api/v1/user/upload",
+        formData,
+        { headers: { Authorization: "Bearer " + temporaryToken, "Content-Type": "multipart/form-data" } }
+      )
       .then((res) => {
         console.log(res);
         dispatch({ type: UPLOAD_PROFILE_IMAGE });

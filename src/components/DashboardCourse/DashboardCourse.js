@@ -24,8 +24,13 @@ const DashboardCourse = () => {
   // State
   const [inputedName, setInputedName] = useState("");
   const [inputedEmail, setInputedEmail] = useState("");
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState([]);
   const [preview, setPreview] = useState();
+  const [edit, setEdit] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("courses");
+  //show modal State
+  const [showContentModal, setShowContentModal] = useState(false);
+  const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -37,7 +42,7 @@ const DashboardCourse = () => {
     dispatch(getUserProfileAction());
   }, [dispatch]);
 
-  // IMAGE PREVIEW BEFORE UPLOAD
+  //IMAGE PREVIEW BEFORE UPLOAD
   // useEffect(() => {
   //   if (!selectedFile) {
   //     setPreview(undefined);
@@ -50,12 +55,6 @@ const DashboardCourse = () => {
   //   // free memory when ever this component is unmounted
   //   return () => URL.revokeObjectURL(objectUrl);
   // }, [selectedFile]);
-
-  const [edit, setEdit] = useState(false);
-  const [selectedTitle, setSelectedTitle] = useState("courses");
-  //show modal State
-  const [showContentModal, setShowContentModal] = useState(false);
-  const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   // Modal handler
   const contentModalHandler = (id) => {
@@ -90,9 +89,9 @@ const DashboardCourse = () => {
 
   //   Handle submit on profile change
 
-  const submitHandler = async(e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    // dispatch(uploadImageAction(selectedFile))
+    await dispatch(uploadImageAction(selectedFile));
     await dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
