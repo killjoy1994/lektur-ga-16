@@ -14,6 +14,7 @@ import SearchCourse from "./pages/SearchCourses/SearchCourse";
 import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 import SuccessRegister from "./pages/successRegister/successRegister"
+// import NavbarComponent from "./components/Header/NavbarComponent";
 
 function App() {
   return (

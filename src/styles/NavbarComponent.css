@@ -12,7 +12,11 @@
   width: 132px;
   margin-bottom: 9px;
 }
-
+.container-fluid img.logo-navbar{
+  height: auto;
+  width: 132px;
+  margin-bottom: 9px;
+}
 form.wrapper-search {
   width: 34rem;
 }

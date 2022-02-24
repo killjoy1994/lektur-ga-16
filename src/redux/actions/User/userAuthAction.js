@@ -8,6 +8,7 @@ export const userSignupAction = (data) => {
 }
 
 export const userSigninAction = (data) => {
+    console.log(data);
     return {
         type : USER_SIGNIN,
         payload : data

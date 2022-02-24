@@ -11,7 +11,7 @@ const Hero = () => {
 
   //get random course
   let randomed = courseList[Math.floor(Math.random() * courseList.length)];
-  console.log(randomed);
+  // console.log(randomed);
 
   return (
     <div className={styles.hero}>
