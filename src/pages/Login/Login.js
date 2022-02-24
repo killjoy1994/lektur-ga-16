@@ -45,7 +45,8 @@ export default function FormLogin() {
     .then((response) => {
       console.log(response);
       // masukin token ke localStorage
-      localStorage.setItem('token', response.data.result.token)
+      localStorage.setItem('token', response.data.result.token);
+      localStorage.setItem('user', JSON.stringify(response.data.result.user));
       dispatch(userSigninAction(response.data.result.user));
       // redirect ke dashboard
       navigate('/')

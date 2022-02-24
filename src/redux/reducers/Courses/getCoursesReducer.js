@@ -14,7 +14,6 @@ export const getCoursesReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case FETCH_COURSES_COMPLETE:
-      console.log(action.payload.category);
       return {
         ...state,
         courseList: action.payload,
