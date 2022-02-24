@@ -14,6 +14,7 @@ import SearchCourse from "./pages/SearchCourses/SearchCourse";
 import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 import SuccessRegister from "./pages/successRegister/successRegister"
+// import NavbarComponent from "./components/Header/NavbarComponent";
 
 function App() {
   return (
@@ -26,13 +27,12 @@ function App() {
         <Route path="/final-assessment" element={<FinalAssessment />} />
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
         <Route path="/course-content" element={<ContentVideo />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<SearchCourse />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />
         {/* Private Routes start*/}
-        <Route element={<PrivateRoutes user={true} />}>
+        <Route element={<PrivateRoutes />}>
           <Route path="/final-assessment" element={<FinalAssessment />} />
           <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
           <Route path="/course-content/:courseId" element={<ContentVideo />} />
