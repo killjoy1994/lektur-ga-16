@@ -163,13 +163,23 @@
   background-position: 12px 11px;
 }
 
-/* .icons-container {
-  border: 1px solid blue;
-} */
+.icons-container {
+  border: 1px solid black;
+  width: 72px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  
+}
 
-.icons-container img {
-  width: 28px;
-  height: 28px;
+.icons-facebook img {
+  width: 35px;
+  height: 35px;
+}
+
+.icons-google img {
+  width: 32px;
+  height: 32px;
 }
 
 
