@@ -16,6 +16,7 @@ import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAct
 import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
 import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actions/Student/popUpAction";
 import { uploadImageAction } from "../../redux/actions/User/updateUserProfile";
+import { Link } from "react-router-dom";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
@@ -26,6 +27,11 @@ const DashboardCourse = () => {
   const [inputedEmail, setInputedEmail] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [preview, setPreview] = useState();
+  const [edit, setEdit] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("courses");
+  //show modal State
+  const [showContentModal, setShowContentModal] = useState(false);
+  const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -37,25 +43,19 @@ const DashboardCourse = () => {
     dispatch(getUserProfileAction());
   }, [dispatch]);
 
-  // IMAGE PREVIEW BEFORE UPLOAD
-  // useEffect(() => {
-  //   if (!selectedFile) {
-  //     setPreview(undefined);
-  //     return;
-  //   }
+  //IMAGE PREVIEW BEFORE UPLOAD
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
 
-  //   const objectUrl = URL.createObjectURL(selectedFile);
-  //   setPreview(objectUrl);
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
 
-  //   // free memory when ever this component is unmounted
-  //   return () => URL.revokeObjectURL(objectUrl);
-  // }, [selectedFile]);
-
-  const [edit, setEdit] = useState(false);
-  const [selectedTitle, setSelectedTitle] = useState("courses");
-  //show modal State
-  const [showContentModal, setShowContentModal] = useState(false);
-  const [showMaterialModal, setShowMaterialModal] = useState(false);
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
 
   // Modal handler
   const contentModalHandler = (id) => {
@@ -89,15 +89,17 @@ const DashboardCourse = () => {
   };
 
   //   Handle submit on profile change
-  const submitHandler = (e) => {
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    // dispatch(uploadImageAction(selectedFile))
-    dispatch(updateProfileAction(inputedName, inputedEmail));
+    if (selectedFile) {
+      await dispatch(uploadImageAction(selectedFile));
+    }
+    await dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    setTimeout(() => dispatch(getUserProfileAction()), 0)
-    setEdit(false);
-    
+    await dispatch(getUserProfileAction());
+    await setTimeout(() => setEdit(false), 0);
   };
 
   /* Conditional render for User Profile start */
@@ -156,9 +158,10 @@ const DashboardCourse = () => {
               <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                 {course.progress.length}/{course.contents.length} Course Complete
               </button>
-              <button className={styles["progress-btn"]}>
-                <img src={playWhite} alt="play button" /> {course.title}
-              </button>
+              <Link to={`/course-content/${course.id}`}  className={styles["progress-btn"]}>
+                <img src={playWhite} alt="play button" />
+                {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
+              </Link>
             </div>
           </div>
         );
@@ -279,7 +282,13 @@ const DashboardCourse = () => {
                 Assesment
               </h3>
             </div>
-            <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            {isLoading ? (
+              <div style={{ marginTop: "22%" }}>
+                <Loader />
+              </div>
+            ) : (
+              <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            )}
           </div>
         </div>
       </main>

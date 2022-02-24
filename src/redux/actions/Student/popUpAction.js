@@ -10,7 +10,7 @@ import {
 } from "../../types";
 
 const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoiYmFndXNuQGdtYWlsLmNvbSIsImlhdCI6MTY0NTUzOTMyMSwiZXhwIjoxNjQ1NjI1NzIxfQ.guh0ffFOnAom4amJKp0WRiNMuvCjQlFz-s1tMB0g0qE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhZ3VzMTIzQGdtYWlsLmNvbSIsImlkIjoyMywiaWF0IjoxNjQ1NjY0MDc1LCJleHAiOjE2NDU3NTA0NzV9.4KoUBVWEW2H_AFLlUmbOcXCVhcO20-45eYTdMUvISFw";
 
 export const getPopUpMaterialAction = (data) => {
   return (dispatch) => {
@@ -41,6 +41,7 @@ export const getPopUpContentAction = (data) => {
         },
       })
       .then((res) => {
+        console.log(res)
         dispatch({ type: GET_POP_UP_CONTENT_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {

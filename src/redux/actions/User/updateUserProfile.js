@@ -2,17 +2,20 @@ import axios from "axios";
 import { API } from "../../../api";
 import { UPDATE_USER, UPLOAD_PROFILE_IMAGE } from "../../types";
 
-const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoiYmFndXNuQGdtYWlsLmNvbSIsImlhdCI6MTY0NTUzOTMyMSwiZXhwIjoxNjQ1NjI1NzIxfQ.guh0ffFOnAom4amJKp0WRiNMuvCjQlFz-s1tMB0g0qE";
+let token = localStorage.getItem("token");
 
 export const uploadImageAction = (data) => {
-  console.log(data)
+  console.log("Upload Action data: ", data)
   const formData = new FormData();
-  formData.append("File", data, data.name);
-  console.log(formData)
+  formData.append("image", data);
+  
   return (dispatch) => {
     axios
-      .put(API + "api/v1/user/upload", { image: formData }, { headers: { Authorization: "Bearer " + temporaryToken } })
+      .put(
+        API + "api/v1/user/upload",
+        formData,
+        { headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" } }
+      )
       .then((res) => {
         console.log(res);
         dispatch({ type: UPLOAD_PROFILE_IMAGE });
@@ -31,7 +34,7 @@ export const updateProfileAction = (name, email) => {
         { fullName: name, email: email },
         {
           headers: {
-            Authorization: "Bearer " + temporaryToken,
+            Authorization: "Bearer " + token,
           },
         }
       )

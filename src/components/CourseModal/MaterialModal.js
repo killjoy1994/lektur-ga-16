@@ -6,6 +6,7 @@ import styles from "../../styles/CourseModal.module.css";
 // import play from "../../assests/on-play.svg";
 // import lock from "../../assests/lock.svg";
 import { useSelector } from "react-redux";
+import Loader from "../Loader/Loader";
 
 
 const MaterialModal = (props) => {
@@ -19,7 +20,9 @@ const MaterialModal = (props) => {
     <div className={styles.backdrop}>
       <div className={styles.modal}>
         {isLoading ? (
-          <p style={{ textAlign: "center", marginTop: "20%" }}>Load Materials...</p>
+          <div style={{ textAlign: "center", marginTop: "30%" }}>
+            <Loader />
+          </div>
         ) : (
           <>
             <div className={styles.header}>
