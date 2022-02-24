@@ -28,16 +28,18 @@
 }
 
 .left h1 {
-  font-size: 2.275rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #16213b;
 }
 
 .hero-btn {
-  padding: 0.5em 2em;
+  padding: 0.5em 1.275em;
   border-radius: 2px;
   background-color: #16213b;
   color: #fff;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .hero-btn:hover {
@@ -49,7 +51,7 @@
 
 .right {
   width: 500px;
-  background: white;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +69,7 @@ h3 {
 }
 
 .video-detail {
+  background-color: #fff;
   width: 100%;
   padding: 16px;
 }
@@ -110,7 +113,7 @@ h3 {
   .hero {
     position: relative;
     height: 300px;
-    margin-bottom: 120px;
+    margin-bottom: 180px;
     padding: 80px;
   }
 
@@ -158,6 +161,10 @@ h3 {
 }
 
 @media (max-width: 420px) {
+  .hero {
+    margin-bottom: 50px;
+  }
+
   .content-container {
     width: 80%;
     min-height: 200px;
@@ -165,6 +172,10 @@ h3 {
 
   .left h1 {
     font-size: 1.2rem;
+  }
+
+  .hero {
+    margin-bottom: 50px;
   }
 
   .hero-btn {

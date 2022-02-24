@@ -3,26 +3,111 @@ import { useState } from "react";
 // import { ProgressBar } from "react-bootstrap";
 
 import styles from "../../styles/DashboardCourse.module.css";
+import Loader from "../../components/Loader/Loader";
 import playWhite from "../../assests/play-white.svg";
 import editIcon from "../../assests/edit-icon-orange.svg";
+import ContentModal from "../CourseModal/ContentModal";
+import MaterialModal from "../CourseModal/MaterialModal";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
+import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
+import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
+import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actions/Student/popUpAction";
+import { uploadImageAction } from "../../redux/actions/User/updateUserProfile";
+import { Link } from "react-router-dom";
 
 const DashboardCourse = () => {
+  const { enrolledCourses } = useSelector((state) => state.enrollCourse);
+  const { user, isLoading } = useSelector((state) => state.userProfile);
+
+  // State
+  const [inputedName, setInputedName] = useState("");
+  const [inputedEmail, setInputedEmail] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [preview, setPreview] = useState();
   const [edit, setEdit] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState("courses");
+  //show modal State
+  const [showContentModal, setShowContentModal] = useState(false);
+  const [showMaterialModal, setShowMaterialModal] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getEnrolledCoursesAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getUserProfileAction());
+  }, [dispatch]);
+
+  //IMAGE PREVIEW BEFORE UPLOAD
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  // Modal handler
+  const contentModalHandler = (id) => {
+    dispatch(getPopUpContentAction(id));
+    setShowContentModal(true);
+  };
+  const closeContentModalHandler = (val) => {
+    setShowContentModal(val);
+  };
+
+  const materialModalHandler = (id) => {
+    dispatch(getPopUpMaterialAction(id));
+    setShowMaterialModal(true);
+  };
+  const closeMaterialModalHandler = (val) => {
+    setShowMaterialModal(val);
+  };
+
+  // Form Handler
+  const inputedNameHandler = (e) => {
+    setInputedName(e.target.value);
+  };
+
+  const inputedEmailHandler = (e) => {
+    setInputedEmail(e.target.value);
+  };
+
+  const uploadHandler = (e) => {
+    console.log(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
+  };
 
   //   Handle submit on profile change
-  const submitHandler = (e) => {
-    e.preventDefault();
 
-    setEdit(false);
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    if (selectedFile) {
+      await dispatch(uploadImageAction(selectedFile));
+    }
+    await dispatch(updateProfileAction(inputedName, inputedEmail));
+    setInputedName("");
+    setInputedEmail("");
+    await dispatch(getUserProfileAction());
+    await setTimeout(() => setEdit(false), 0);
   };
 
   /* Conditional render for User Profile start */
   let content;
-  const userData = (
+  const userData = user && (
     <div className={styles["user-data"]}>
-      <p className={styles.name}>John Doe</p>
-      <p className={styles.email}>johndoe@gmail.com</p>
+      <p className={styles.name}>{user.fullName}</p>
+      <p className={styles.email}>{user.email}</p>
       <button
         onClick={() => {
           setEdit(true);
@@ -34,19 +119,16 @@ const DashboardCourse = () => {
     </div>
   );
   const userForm = (
-    <form className={styles["user-form"]} onSubmit={submitHandler}>
+    <div className={styles["user-form"]}>
       <label className={styles["form-control"]}>
         Name<span style={{ color: "red" }}>*</span>
-        <input type="text" name="name" autoComplete="off" required />
+        <input type="text" name="name" autoComplete="off" required value={inputedName} onChange={inputedNameHandler} />
       </label>
       <label className={styles["form-control"]}>
         Email<span style={{ color: "red" }}>*</span>
-        <input type="email" name="email" autoComplete="off" required />
+        <input type="email" name="email" autoComplete="off" required value={inputedEmail} onChange={inputedEmailHandler} />
       </label>
-      <button type="submit" className={styles["user-btn"]}>
-        Save Changes
-      </button>
-    </form>
+    </div>
   );
   content = !edit ? userData : userForm;
 
@@ -55,42 +137,35 @@ const DashboardCourse = () => {
   /* Pas di bagian courses start */
   let courses = (
     <>
-      <div className={styles["course-control"]}>
-        <div className={styles["course-control-left"]}>
-          <div className={styles["img-course-wrapper"]}>
-            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
+      {enrolledCourses.map((course) => {
+        return (
+          <div className={styles["course-control"]} key={course.id}>
+            <div className={styles["course-control-left"]}>
+              <div className={styles["img-course-wrapper"]}>
+                <img src={course.image} alt={course.title} />
+              </div>
+              <div className={styles["course-detail"]}>
+                <h3>{course.title}</h3>
+                <p>By {course.by.fullName}</p>
+                <button onClick={() => materialModalHandler(course.id)}>See course materials</button>
+              </div>
+            </div>
+            <div className={styles["course-control-right"]}>
+              {/* <ProgressBar now={20} className={styles.progress} /> */}
+              <div className={styles.progress}>
+                <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
+              </div>
+              <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
+                {course.progress.length}/{course.contents.length} Course Complete
+              </button>
+              <Link to="/course-content" className={styles["progress-btn"]}>
+                <img src={playWhite} alt="play button" />
+                {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
+              </Link>
+            </div>
           </div>
-          <div className={styles["course-detail"]}>
-            <h3>React Crash Course</h3>
-            <p>By Traversy Media</p>
-            <a href="#">See course materials</a>
-          </div>
-        </div>
-        <div className={styles["course-control-right"]}>
-          {/* <ProgressBar now={20} className={styles.progress} /> */}
-          <div className={styles.progress}>
-            <div className={styles["progress-bar"]}></div>
-          </div>
-          <p className={styles["completed-task"]}>2/15 Course Complete</p>
-          <button className={styles["progress-btn"]}>
-            <img src={playWhite} alt="play button" /> Lesson #9: Lorem Ipsum
-          </button>
-        </div>
-      </div>
-      <div class={styles["course-control"]}>
-        <div className={styles["course-control-left"]}>
-          <div className={styles["img-course-wrapper"]}>
-            <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2016/09/reactjs.png" alt="course" />
-          </div>
-          <div className={styles["course-detail"]}>
-            <h3>React Crash Course</h3>
-            <p>By Traversy Media</p>
-          </div>
-        </div>
-        <div className={styles["course-control-right"]}>
-          <p className={styles.approval}>Waiting Approval</p>
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 
@@ -158,40 +233,66 @@ const DashboardCourse = () => {
   /* Pas di bagian assessment end*/
 
   return (
-    <main className={styles.dashboard}>
-      <div className={styles.container}>
-        <div className={styles["left-box"]}>
-          <div className={styles["user-profile"]}>
-            <div className={styles["img-wrapper"]}>
-              <img src="https://cdn.kibrispdr.org/data/foto-seulgi-red-velvet-3.jpg" alt="kang seulgi" className={styles["user-avatar"]} />
-              {edit && <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />}
+    <>
+      {showContentModal && <ContentModal closeModal={closeContentModalHandler} />}
+      {showMaterialModal && <MaterialModal closeModal={closeMaterialModalHandler} />}
+      <main className={styles.dashboard}>
+        <div className={styles.container}>
+          <div className={styles["left-box"]}>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <form className={styles["user-profile"]} onSubmit={submitHandler}>
+                <div className={styles["img-wrapper"]}>
+                  <img src={preview ? preview : user.image} alt="kang seulgi" className={styles["user-avatar"]} />
+                  {edit && (
+                    <>
+                      <label htmlFor="image-upload">
+                        <img src={editIcon} alt="edit icon" className={styles["edit-icon"]} />
+                      </label>
+                      <input type="file" id="image-upload" name="filename" style={{ display: "none" }} value="" onChange={uploadHandler} />
+                    </>
+                  )}
+                </div>
+                {content}
+                {edit ? (
+                  <button type="submit" className={styles["user-btn"]}>
+                    Save Changes
+                  </button>
+                ) : null}
+              </form>
+            )}
+          </div>
+          <div className={styles["right-box"]}>
+            <div className={styles["right-box-header"]}>
+              <h3
+                style={{ fontWeight: selectedTitle === "courses" ? "700" : "400" }}
+                onClick={() => {
+                  setSelectedTitle("courses");
+                }}
+              >
+                Courses
+              </h3>
+              <h3
+                style={{ fontWeight: selectedTitle === "assessment" ? "700" : "400" }}
+                onClick={() => {
+                  setSelectedTitle("assessment");
+                }}
+              >
+                Assesment
+              </h3>
             </div>
-            {content}
+            {isLoading ? (
+              <div style={{ marginTop: "22%" }}>
+                <Loader />
+              </div>
+            ) : (
+              <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            )}
           </div>
         </div>
-        <div className={styles["right-box"]}>
-          <div className={styles["right-box-header"]}>
-            <h3
-              style={{ fontWeight: selectedTitle === "courses" ? "700" : "400" }}
-              onClick={() => {
-                setSelectedTitle("courses");
-              }}
-            >
-              Courses
-            </h3>
-            <h3
-              style={{ fontWeight: selectedTitle === "assessment" ? "700" : "400" }}
-              onClick={() => {
-                setSelectedTitle("assessment");
-              }}
-            >
-              Assesment
-            </h3>
-          </div>
-          <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
-        </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

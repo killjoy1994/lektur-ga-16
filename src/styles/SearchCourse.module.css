@@ -1,0 +1,26 @@
+.category-container {
+  min-height: 500px;
+
+  padding: 50px;
+}
+
+.title {
+  font-weight: 600;
+  opacity: 0.9;
+  font-size: x-large;
+}
+
+.subtitle {
+  opacity: 0.9;
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-top: 10px;
+}
+.msg_errors{
+  opacity: 0.9;
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-top: 10rem;
+  text-align: center;
+  color: rgb(117, 114, 114);
+}

@@ -15,19 +15,23 @@
   background: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
-  width: 55vw;
-  height: 70vh;
+  width: 800px;
+  height: 500px;
   z-index: 300;
   overflow: auto;
+  position: relative;
 }
 
 .header {
+  position: sticky;
+  top: 0;
   height: 50px;
   border-bottom: 1px solid #999;
   padding: 8px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
 }
 
 .header h2 {
@@ -68,4 +72,24 @@
 .lock {
   background: #f5f5f5;
   opacity: 0.7;
+}
+
+/* Material Modal */
+.content-material {
+  padding: 20px 83px;
+}
+
+.title {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.form-check input[type="checkbox"] {
+  border-radius: 50%;
+}
+
+.lesson-control {
+  margin: 18px 0;
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 18px;
 }
