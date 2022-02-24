@@ -35,7 +35,7 @@ function App() {
         <Route element={<PrivateRoutes user={true} />}>
           <Route path="/final-assessment" element={<FinalAssessment />} />
           <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
-          <Route path="/course-content" element={<ContentVideo />} />
+          <Route path="/course-content/:courseId" element={<ContentVideo />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
         </Route>
         {/* Private Routes end */}
