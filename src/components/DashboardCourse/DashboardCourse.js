@@ -16,6 +16,7 @@ import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAct
 import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
 import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actions/Student/popUpAction";
 import { uploadImageAction } from "../../redux/actions/User/updateUserProfile";
+import { Link } from "react-router-dom";
 
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
@@ -91,12 +92,14 @@ const DashboardCourse = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await dispatch(uploadImageAction(selectedFile));
+    if (selectedFile) {
+      await dispatch(uploadImageAction(selectedFile));
+    }
     await dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
     await dispatch(getUserProfileAction());
-    setEdit(false);
+    await setTimeout(() => setEdit(false), 0);
   };
 
   /* Conditional render for User Profile start */
@@ -155,9 +158,10 @@ const DashboardCourse = () => {
               <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                 {course.progress.length}/{course.contents.length} Course Complete
               </button>
-              <button className={styles["progress-btn"]}>
-                <img src={playWhite} alt="play button" /> {course.title}
-              </button>
+              <Link to="/course-content" className={styles["progress-btn"]}>
+                <img src={playWhite} alt="play button" />
+                {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
+              </Link>
             </div>
           </div>
         );
@@ -278,7 +282,13 @@ const DashboardCourse = () => {
                 Assesment
               </h3>
             </div>
-            {isLoading ? <Loader /> : <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>}
+            {isLoading ? (
+              <div style={{ marginTop: "22%" }}>
+                <Loader />
+              </div>
+            ) : (
+              <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            )}
           </div>
         </div>
       </main>

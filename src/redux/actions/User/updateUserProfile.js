@@ -3,7 +3,7 @@ import { API } from "../../../api";
 import { UPDATE_USER, UPLOAD_PROFILE_IMAGE } from "../../types";
 
 const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF5dTExMUBnbWFpbC5jb20iLCJpZCI6MjMsImlhdCI6MTY0NTYzODU0NywiZXhwIjoxNjQ1NzI0OTQ3fQ.XsvXzx_FHUo-ubpONyspbn8kThLknfQiu-SlLXB6pOY";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhZ3VzMTIzQGdtYWlsLmNvbSIsImlkIjoyMywiaWF0IjoxNjQ1NjY0MDc1LCJleHAiOjE2NDU3NTA0NzV9.4KoUBVWEW2H_AFLlUmbOcXCVhcO20-45eYTdMUvISFw";
 
 export const uploadImageAction = (data) => {
   console.log("Upload Action data: ", data)
