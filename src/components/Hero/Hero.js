@@ -19,7 +19,7 @@ const Hero = () => {
         <div className={styles.left}>
           <h1>Bring Your Class At Home</h1>
           <Link to={randomed ? "/detail/" + randomed.id : ""} className={styles["hero-btn"]}>
-            Enroll Now
+            Course Detail
           </Link>
         </div>
         <div className={styles.right}>

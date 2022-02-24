@@ -13,6 +13,7 @@ import ErrorPage from "./errorPage/ErrorPage";
 import SearchCourse from "./pages/SearchCourses/SearchCourse";
 import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
+import SuccessRegister from "./pages/successRegister/successRegister"
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
-        <Route path="/registered" element={<successRegister />}/>
+        <Route path="/registered" element={<SuccessRegister />}/>
         <Route path="/final-assessment" element={<FinalAssessment />} />
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
         <Route path="/course-content" element={<ContentVideo />} />

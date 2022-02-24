@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
+import Loader from "../../components/Loader/Loader";
 
 const CourseList = () => {
   const { courseList, isLoading, error } = useSelector((state) => state.courses);
@@ -26,7 +27,7 @@ const CourseList = () => {
 
   return (
     <div className={styles.cards}>
-      {filteredCategory.map((course) => {
+      {isLoading ?<Loader/> :filteredCategory.map((course) => {
         return (
           <Link to={"/detail/" + course.id} key={course.id}>
             <Card
