@@ -80,15 +80,16 @@ export default function FormLogin() {
                   <p className="email">
                     Email <span>*</span>
                   </p>
-                  <div className="email-password-field mb-5">
-                    <Field type="email" placeholder="john@doe.com" name="email" className="login-email" />
+                  <div className="email-password-field">
+                    <Field type="email" placeholder="Email" name="email" className="login-email" />
+                    
                   </div>
-                  {errors.email && touched.email && <div className="text-danger">{errors.email}</div>}
-                  <p className="password">
+                  {errors.email && touched.email && <div className="text-danger" >{errors.email}</div>}
+                  <p className="password mt-5">
                     Password<span>*</span>
                   </p>
                   <div className="email-password-field">
-                    <Field type="password" placeholder="********" name="password" className="login-password" />
+                    <Field type="password" placeholder="Password" name="password" className="login-password" />
                   </div>
                   {errors.password && touched.password && <div className="text-danger">{errors.password}</div>}
 
