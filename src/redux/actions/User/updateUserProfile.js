@@ -2,8 +2,7 @@ import axios from "axios";
 import { API } from "../../../api";
 import { UPDATE_USER, UPLOAD_PROFILE_IMAGE } from "../../types";
 
-const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhZ3VzMTIzQGdtYWlsLmNvbSIsImlkIjoyMywiaWF0IjoxNjQ1NjY0MDc1LCJleHAiOjE2NDU3NTA0NzV9.4KoUBVWEW2H_AFLlUmbOcXCVhcO20-45eYTdMUvISFw";
+let token = localStorage.getItem("token");
 
 export const uploadImageAction = (data) => {
   console.log("Upload Action data: ", data)
@@ -15,7 +14,7 @@ export const uploadImageAction = (data) => {
       .put(
         API + "api/v1/user/upload",
         formData,
-        { headers: { Authorization: "Bearer " + temporaryToken, "Content-Type": "multipart/form-data" } }
+        { headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" } }
       )
       .then((res) => {
         console.log(res);
@@ -35,7 +34,7 @@ export const updateProfileAction = (name, email) => {
         { fullName: name, email: email },
         {
           headers: {
-            Authorization: "Bearer " + temporaryToken,
+            Authorization: "Bearer " + token,
           },
         }
       )

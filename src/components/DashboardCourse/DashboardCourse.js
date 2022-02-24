@@ -158,7 +158,7 @@ const DashboardCourse = () => {
               <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                 {course.progress.length}/{course.contents.length} Course Complete
               </button>
-              <Link to="/course-content" className={styles["progress-btn"]}>
+              <Link to={`/course-content/${course.id}`}  className={styles["progress-btn"]}>
                 <img src={playWhite} alt="play button" />
                 {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
               </Link>
