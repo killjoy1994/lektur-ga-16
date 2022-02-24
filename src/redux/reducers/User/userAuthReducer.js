@@ -1,7 +1,7 @@
 import { USER_SIGNIN, USER_SIGNUP } from "../../types"
 
 let token = localStorage.getItem("token")
-
+console.log(token);
 const initialState = {
     isAuth : token ? true : false,
     user : null
