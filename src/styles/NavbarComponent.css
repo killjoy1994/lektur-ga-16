@@ -27,10 +27,14 @@ form.wrapper-search {
 }
 
 .navbar-right {
-  gap: 2rem;
+  gap: 1rem;
   font-size: 14px;
 }
-
+.dropdown-menu[data-bs-popper] {
+  top: 100%;
+  left: -75px;
+  margin-top: 0.11rem;
+}
 .navbar-right .garis {
   border: 1px solid black;
 }
@@ -43,6 +47,15 @@ form.wrapper-search {
   color: #ef9c27;
 }
 
+.nav-btn-logout{
+  background: white;
+  border: none;
+  color: black;
+  font-weight: bold;
+}
+.nav-btn-logout:hover{
+  color: #ef9c27;
+}
 .navbar-light .navbar-nav .nav-link.nav-btn-signup {
   background: black;
   color: white;
@@ -65,9 +78,9 @@ form.wrapper-search {
   form.wrapper-search {
     width: 28rem;
   }
-  .navbar-right {
+  /* .navbar-right {
     gap: 1rem;
-  }
+  } */
 }
 
 @media (max-width: 1165px) {
