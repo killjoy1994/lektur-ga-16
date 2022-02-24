@@ -3,8 +3,9 @@ import { Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import axios from 'axios';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import { API } from '../../api';
 
 import facebookIcon from "../../assests/facebook.svg";
@@ -13,9 +14,10 @@ import googleIcon from "../../assests/google.svg";
 import '../../styles/Login.css';
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
+import { userSigninAction } from "../../redux/actions/User/userAuthAction";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string().email("Invalid format email").required("Required"),
   password: Yup.string()
     .required("Required")
     .matches(
@@ -26,31 +28,33 @@ const LoginSchema = Yup.object().shape({
 
 export default function FormLogin() {
   const navigate = useNavigate()
-  //let [ reqLoading, setReqLoading ] = useState(false)
+  const dispatch = useDispatch()
 
-  axios({
+
+  const doLogin = (values) => {
+    const data = {
+      email: values.email,
+      password: values.password,
+    }
+
+    axios({
       method: 'post',
       url: `${API}api/v1/user/login`,
-      data: {
-          email: '',
-          password: '',
-      }
-  })
-  .then((response) => {
+      data: data,
+    })
+    .then((response) => {
       console.log(response);
-      Swal.fire({
-          icon: 'success',
-          title: 'LOGIN SUCCESS!',
-          text: response.data.message
-      })
       // masukin token ke localStorage
-      window.localStorage.setItem('token', response.data.token)
+      localStorage.setItem('token', response.data.result.token)
+      dispatch(userSigninAction(response.data.result.user));
       // redirect ke dashboard
       navigate('/')
-  })
-  .catch((error) => {
+    })
+    .catch((error) => {
       console.log(error);
-  })
+    })
+  };
+
   
   return (
     <>
@@ -61,10 +65,7 @@ export default function FormLogin() {
           password: "",
         }}
         validationSchema={LoginSchema}
-        onSubmit={(values) => {
-          // same shape as initial values
-          console.log(values);
-        }}
+        onSubmit={doLogin}
       >
         {({ errors, touched }) => (
           // <div className="d-flex justify-content-center align-items-center vh-100">
@@ -102,11 +103,11 @@ export default function FormLogin() {
                       <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
-                        <a href="#">
+                        <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
                           {" "}
                           <img src={facebookIcon} />{" "}
                         </a>
-                        <a href="#">
+                        <a href="https://lektur-apps.herokuapp.com/api/v1/user/google">
                           {" "}
                           <img src={googleIcon} />{" "}
                         </a>
