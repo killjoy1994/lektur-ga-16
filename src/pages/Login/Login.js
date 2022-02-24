@@ -104,14 +104,18 @@ export default function FormLogin() {
                       <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
-                        <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
-                          {" "}
-                          <img src={facebookIcon} />{" "}
-                        </a>
-                        <a href="https://lektur-apps.herokuapp.com/api/v1/user/google">
-                          {" "}
-                          <img src={googleIcon} />{" "}
-                        </a>
+                        <div className="icons-facebook">
+                          <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
+                            {" "}
+                            <img src={facebookIcon} />{" "}
+                          </a>
+                        </div>
+                        <div className="icons-google">
+                          <a href="https://lektur-apps.herokuapp.com/api/v1/user/google">
+                            {" "}
+                            <img src={googleIcon} />{" "}
+                          </a>
+                        </div>
                       </div>
                     </div>
                     <div className="login-right">
