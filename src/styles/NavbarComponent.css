@@ -42,6 +42,10 @@ form.wrapper-search.mobile{
   left: -75px;
   margin-top: 0.11rem;
 }
+.dropdown-item:hover{
+  color: #ef9c27;
+  background: none;
+}
 .navbar-right .garis {
   border: 1px solid black;
 }
@@ -85,9 +89,7 @@ form.wrapper-search.mobile{
   form.wrapper-search {
     width: 28rem;
   }
-  /* .navbar-right {
-    gap: 1rem;
-  } */
+  
 }
 
 @media (max-width: 1165px) {
