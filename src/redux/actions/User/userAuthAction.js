@@ -1,4 +1,4 @@
-import { USER_SIGNUP, USER_SIGNIN } from "../../types"
+import { USER_SIGNUP, USER_SIGNIN, USER_LOGOUT } from "../../types"
 
 export const userSignupAction = (data) => {
     return {
@@ -8,9 +8,15 @@ export const userSignupAction = (data) => {
 }
 
 export const userSigninAction = (data) => {
-    console.log(data);
     return {
         type : USER_SIGNIN,
         payload : data
     }
 }
+
+export const userLogOut = () => {
+  
+    return {
+      type: USER_LOGOUT,
+    };
+  };

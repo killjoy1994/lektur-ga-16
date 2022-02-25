@@ -29,8 +29,9 @@ function Detail() {
       second = b.id;
     return first - second;
   });
+  //user token
+  let token = localStorage.getItem("token");
 
-  const token = "njnjnjnjn";
   return (
     <>
       <NavbarComponent />
@@ -51,7 +52,7 @@ function Detail() {
                     <button
                       className={styles.btn_detail}
                       onClick={() => {
-                        if (token !== "") {
+                        if (token !== "" && token !== null) {
                           setPopUpDetail(true);
                           dispatch(postEnrollCourseAction(params.id));
                         } else {
