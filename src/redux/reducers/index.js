@@ -8,6 +8,7 @@ import { updateUserProfileReducer } from "./User/updateUserProfile";
 import getPopUpMaterialReducer from "./Student/getPopUpMaterialReducer";
 import getPopUpContentReducer from "./Student/getPopUpContentReducer";
 import { userAuthReducer } from "./User/userAuthReducer";
+import getContentReducer from "./Content/getContentReducer";
 
 const rootReducer = combineReducers({
   searchCourses: searchCourseReducer,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   updateUserProfile: updateUserProfileReducer,
   popUpMaterials: getPopUpMaterialReducer,
   popUpContents: getPopUpContentReducer,
-  userAuth: userAuthReducer
+  userAuth: userAuthReducer,
+  getContent: getContentReducer,
 });
 
 export default rootReducer;

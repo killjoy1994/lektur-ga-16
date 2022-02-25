@@ -77,6 +77,7 @@ function Signup() {
         console.log(response);
         // masukin token ke localStorage
         localStorage.setItem('token', response.data.result.token)
+        localStorage.setItem('user', JSON.stringify(response.data.result.user))
         dispatch(userSignupAction(response.data.result.user));
         // redirect ke dashboard
         navigate("/registered");

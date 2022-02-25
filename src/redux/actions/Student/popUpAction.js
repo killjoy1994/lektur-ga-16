@@ -9,8 +9,7 @@ import {
   GET_POP_UP_CONTENT_FAILED,
 } from "../../types";
 
-const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhZ3VzMTIzQGdtYWlsLmNvbSIsImlkIjoyMywiaWF0IjoxNjQ1NjY0MDc1LCJleHAiOjE2NDU3NTA0NzV9.4KoUBVWEW2H_AFLlUmbOcXCVhcO20-45eYTdMUvISFw";
+const token = localStorage.getItem("token");
 
 export const getPopUpMaterialAction = (data) => {
   return (dispatch) => {
@@ -18,7 +17,7 @@ export const getPopUpMaterialAction = (data) => {
     axios
       .get(API + "api/v1/student/popup/material?courseId=" + data, {
         headers: {
-          Authorization: "Bearer " + temporaryToken,
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
@@ -37,7 +36,7 @@ export const getPopUpContentAction = (data) => {
     axios
       .get(API + "api/v1/student/popup/content?courseId=" + data, {
         headers: {
-          Authorization: "Bearer " + temporaryToken,
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {

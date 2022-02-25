@@ -23,10 +23,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
-        <Route path="/registered" element={<SuccessRegister />}/>
+        <Route path="/registered" element={<SuccessRegister />} />
         <Route path="/final-assessment" element={<FinalAssessment />} />
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
-        <Route path="/course-content" element={<ContentVideo />} />
+
         {/* <Route path="/detail" element={<Detail />} /> */}
         <Route path="/search" element={<SearchCourse />} />
         <Route path="/detail/:id" element={<Detail />} />
@@ -35,6 +35,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/final-assessment" element={<FinalAssessment />} />
           <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
+          <Route path="/course-content" element={<ContentVideo />} />
           <Route path="/course-content/:courseId" element={<ContentVideo />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
         </Route>
