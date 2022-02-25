@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
 
@@ -9,6 +12,8 @@ import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
 // import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
+import { useEffect } from "react";
+import { getContentAction } from "../../redux/actions/Content/getContentAction";
 
 let dummyData = {
   src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
@@ -22,6 +27,17 @@ let dummyData = {
 };
 
 const ContentVideoMain = () => {
+  const { content, isLoading } = useSelector((state) => state.getContent);
+
+  const params = useParams();
+  const dispatch = useDispatch();
+
+  console.log(params);
+
+  useEffect(() => {
+    dispatch(getContentAction(params.courseId));
+  }, []);
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
@@ -103,16 +119,16 @@ const ContentVideoMain = () => {
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
-              <div class="check-box-form" className={styles.rounded}>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                  <label class="form-check-label" for="flexCheckDefault">
+              <div className="check-box-form" className={styles.rounded}>
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                  <label className="form-check-label" htmlFor="flexCheckDefault">
                     Read course material : <a href="#">React and Open Source.pdf</a>
                   </label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                  <label class="form-check-label" for="flexCheckChecked">
+                <div className="form-check">
+                  <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                  <label className="form-check-label" htmlFor="flexCheckChecked">
                     Read course material : <a href="#">React and Open Source 2.pdf</a>
                   </label>
                 </div>

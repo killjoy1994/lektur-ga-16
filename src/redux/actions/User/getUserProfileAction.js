@@ -10,6 +10,7 @@ export const getUserProfileAction = () => {
     axios
       .get(API + "api/v1/user/profile", { headers: { Authorization: "Bearer " + token } })
       .then((res) => {
+        // console.log(res.data.result);
         dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {

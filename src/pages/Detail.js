@@ -7,7 +7,7 @@ import NavbarComponent from "../components/Header/NavbarComponent";
 import Footer from "../components/Footer";
 import { getCourseDetail, getRelatedCourse } from "../redux/actions/Courses/getCourseDetailAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
 import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
@@ -17,7 +17,7 @@ function Detail() {
   const { detail, isLoading, error, relatedCourse } = useSelector((state) => state.courseDetail);
   const dispatch = useDispatch();
   const params = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getCourseDetail(params.id));
     dispatch(getRelatedCourse());
@@ -29,6 +29,8 @@ function Detail() {
       second = b.id;
     return first - second;
   });
+  //user token
+  let token = localStorage.getItem("token");
 
   return (
     <>
@@ -48,14 +50,18 @@ function Detail() {
                     <h3>{detail.title}</h3>
                     <p>By {detail.by?.fullName}</p>
                     <button
-                className={styles.btn_detail}
-                onClick={() => {
-                  setPopUpDetail(true);
-                  dispatch(postEnrollCourseAction(params.id))
-                }}
-              >
-                ENROLL NOW
-              </button>
+                      className={styles.btn_detail}
+                      onClick={() => {
+                        if (token !== "" && token !== null) {
+                          setPopUpDetail(true);
+                          dispatch(postEnrollCourseAction(params.id));
+                        } else {
+                          navigate("/login");
+                        }
+                      }}
+                    >
+                      ENROLL NOW
+                    </button>
                   </>
                 )}
               </div>

@@ -15,9 +15,16 @@ export default function SearchCourse() {
       <NavbarComponent />
 
       <main className={styles["category-container"]}>
-        
-        <h1 className={styles.title}>hasil pencarian untuk " {input} "</h1>
-        {error ? <h3 className={styles.msg_errors}>" Maaf untuk kata kunci yang anda cari tidak ditemukan...!!! "</h3> : <h3 className={styles.subtitle}>Courses to get you started</h3>}
+        {error ? (
+          <h3 className={styles.msg_errors}>Sorry, we couldn't find any results for "{input}"</h3>
+        ) : (
+          <>
+            <h1 className={styles.title}>
+              {searchCourses?.length} results for "{input}"
+            </h1>
+            <h3 className={styles.subtitle}>Courses to get you started</h3>
+          </>
+        )}
 
         {isLoading && !error ? <Loader /> : <SearchList data={searchCourses} />}
       </main>
