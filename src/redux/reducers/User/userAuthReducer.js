@@ -2,7 +2,7 @@ import { USER_SIGNIN, USER_SIGNUP } from "../../types";
 
 let token = localStorage.getItem("token");
 let user = localStorage.getItem("user");
-console.log(token);
+// console.log(token);
 const initialState = {
   isAuth: token ? true : false,
   user: user ? JSON.parse(user) : null,

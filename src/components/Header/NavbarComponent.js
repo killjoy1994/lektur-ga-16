@@ -14,9 +14,9 @@ const NavbarComponent = () => {
   const [searchText, setSearchText] = useState("");
   let token = localStorage.getItem("token");
 
-  console.log(user);
-  // console.log(isAuth);
-  console.log(token);
+  // console.log(user);
+  // // console.log(isAuth);
+  // console.log(token);
   const submitSearchText = (e) => {
     e.preventDefault();
     if (searchText !== "") {

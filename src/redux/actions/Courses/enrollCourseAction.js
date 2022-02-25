@@ -3,14 +3,13 @@ import { API } from "../../../api";
 
 import { GET_STUDENT_COURSE, POST_ENROLL_COURSE } from "../../types";
 
-const temporaryToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJhZ3VzMTIzQGdtYWlsLmNvbSIsImlkIjoyMywiaWF0IjoxNjQ1NjY0MDc1LCJleHAiOjE2NDU3NTA0NzV9.4KoUBVWEW2H_AFLlUmbOcXCVhcO20-45eYTdMUvISFw";
+const token = localStorage.getItem("token");
 
 export const postEnrollCourseAction = (id) => {
   return (dispatch) => {
     axios
       .post(API + `api/v1/student/enroll?courseId=${id}`, null, {
-        headers: { Authorization: "Bearer " + temporaryToken },
+        headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
         dispatch({
@@ -29,7 +28,7 @@ export const getEnrolledCoursesAction = () => {
     axios
       .get(API + "api/v1/student/content/unlocked/fetch", {
         headers: {
-          Authorization: "Bearer " + temporaryToken,
+          Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
