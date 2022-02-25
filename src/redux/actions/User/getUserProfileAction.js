@@ -4,7 +4,7 @@ import { GET_USER_PROFILE_FAILED, GET_USER_PROFILE_PENDING, GET_USER_PROFILE_SUC
 
 let token = localStorage.getItem("token");
 
-export const getUserProfileAction = () => {
+export const getUserProfileAction = (token) => {
   return (dispatch) => {
     dispatch({ type: GET_USER_PROFILE_PENDING });
     axios

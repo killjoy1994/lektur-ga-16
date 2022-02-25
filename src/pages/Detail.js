@@ -18,10 +18,18 @@ function Detail() {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+
+
   useEffect(() => {
     dispatch(getCourseDetail(params.id));
-    dispatch(getRelatedCourse());
   }, [dispatch]);
+
+  //CALL API RELATED COURSE
+  useEffect(() => {
+    if (detail.category?.name) {
+      dispatch(getRelatedCourse(detail.category?.name));
+    }
+  }, [detail.category?.name]);
 
   // Sorted Contents
   let detailContents = detail.contents?.sort((a, b) => {
@@ -29,6 +37,7 @@ function Detail() {
       second = b.id;
     return first - second;
   });
+
   //user token
   let token = localStorage.getItem("token");
 
@@ -156,7 +165,7 @@ function Detail() {
               </Modal.Body>
               <Modal.Footer style={{ background: "#FAFAFA" }}>
                 <div style={{ margin: "0 auto" }}>
-                  <p>Please wait coresponding teacher approve you!</p>
+                  <p>Please wait coresponding {detail.by?.fullName} approve you!</p>
                 </div>
               </Modal.Footer>
             </Modal>

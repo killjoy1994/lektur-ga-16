@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
 import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseAction";
 import logOut from "../../assests/logOut.png";
-import { userLogOut, userSigninAction } from "../../redux/actions/User/userAuthAction";
+import { userLogOut } from "../../redux/actions/User/userAuthAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
 import Loader from "../Loader/Loader";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
@@ -21,10 +21,11 @@ const NavbarComponent = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserProfileAction());
+      dispatch(getUserProfileAction(token));
     }
   }, [dispatch]);
 
+  //getCategory
   useEffect(() => {
     dispatch(getCoursesAction());
   }, []);
