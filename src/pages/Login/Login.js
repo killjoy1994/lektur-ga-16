@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import { Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import axios from 'axios';
-import { useState } from 'react';
+import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -44,6 +44,13 @@ export default function FormLogin() {
     })
     .then((response) => {
       console.log(response);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Login success!',
+        showConfirmButton: false,
+        timer: 1500
+      })
       // masukin token ke localStorage
       localStorage.setItem('token', response.data.result.token)
       dispatch(userSigninAction(response.data.result.user));
@@ -52,6 +59,12 @@ export default function FormLogin() {
     })
     .catch((error) => {
       console.log(error);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Do you want to continue',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     })
   };
 

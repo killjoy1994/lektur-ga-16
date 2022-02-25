@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../../styles/successRegister.module.css";
 
 function successRegister () {
@@ -8,9 +9,16 @@ function successRegister () {
                     <h1>Thank you for registering.</h1>
                     <p>please continue to the next page</p>
                 </div>
+                <button className="back-homepage">
+                    <Link to="/">
+                        <span>Back to homepage</span>
+                    </Link>
+                </button>
             </div>
-            <a href="/">Back to homepage</a>
+            
+            
         </div>
+        
     );
 }
 
