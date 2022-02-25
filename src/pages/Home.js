@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import MainContent from "../components/MainContent/MainContent";
 import Hero from "../components/Hero/Hero";
@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
+
   return (
     <>
       <NavbarComponent />
