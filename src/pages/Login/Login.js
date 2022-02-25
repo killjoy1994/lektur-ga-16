@@ -62,9 +62,9 @@ export default function FormLogin() {
       console.log(error);
       Swal.fire({
         title: 'Error!',
-        text: 'Do you want to continue',
+        text: 'Please, check your email and password again',
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonText: 'OK'
       })
     })
   };

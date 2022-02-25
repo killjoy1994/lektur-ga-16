@@ -9,16 +9,11 @@ function successRegister () {
                     <h1>Thank you for registering.</h1>
                     <p>please continue to the next page</p>
                 </div>
-                <button className="back-homepage">
-                    <Link to="/">
-                        <span>Back to homepage</span>
-                    </Link>
-                </button>
+                <Link to="/">
+                    <span>Homepage</span>
+                </Link>
             </div>
-            
-            
         </div>
-        
     );
 }
 

@@ -72,3 +72,26 @@
     
 }
 
+.success-signup span {
+    font-family: 'Montserrat', sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    text-decoration: none;
+    border: 1px solid black;
+    background: #16213b;
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s all;
+    letter-spacing: 1px;
+}
+
+.success-signup span:hover {
+    filter: brightness(125%);
+    color: white;
+    background: #16213b;
+}
+
