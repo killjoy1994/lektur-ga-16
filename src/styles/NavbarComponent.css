@@ -20,6 +20,9 @@
 form.wrapper-search {
   width: 34rem;
 }
+form.wrapper-search.mobile{
+  display: none;
+}
 
 .input-group-append .btn-searching {
   background: white;
@@ -119,11 +122,17 @@ form.wrapper-search {
   .navbar-right .garis {
     display: none;
   }
+  .dropdown-menu[data-bs-popper] {
+    width: 100px;
+  }
 }
 
 @media (max-width: 580px) {
   .navbar-brand {
     padding-right: 0px;
+  }
+  .form-control{
+    font-size: 13px;
   }
   form.wrapper-search {
     width: 15rem;
@@ -132,5 +141,17 @@ form.wrapper-search {
 @media (max-width: 544px) {
   .navbar .container-fluid {
     gap: 10px;
+  }
+}
+@media (max-width: 536px) {
+  .navbar-brand img.logo-navbar {
+    width: 120px;
+   
+  }
+  form.wrapper-search {
+    display: none;
+  }
+  form.wrapper-search.mobile{
+    display: flex;
   }
 }
