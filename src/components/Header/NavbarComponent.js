@@ -21,7 +21,7 @@ const NavbarComponent = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(getUserProfileAction());
+      dispatch(getUserProfileAction(token));
     }
   }, [dispatch]);
 

@@ -34,13 +34,14 @@ const DashboardCourse = () => {
   const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   const dispatch = useDispatch();
+  let token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(getEnrolledCoursesAction());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getUserProfileAction());
+    dispatch(getUserProfileAction(token));
   }, [dispatch]);
 
   //IMAGE PREVIEW BEFORE UPLOAD
