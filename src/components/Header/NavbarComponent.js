@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
 import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseAction";
 import logOut from "../../assests/logOut.png";
-import { userLogOut, userSigninAction } from "../../redux/actions/User/userAuthAction";
+import { userLogOut } from "../../redux/actions/User/userAuthAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
 import Loader from "../Loader/Loader";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
@@ -25,6 +25,7 @@ const NavbarComponent = () => {
     }
   }, [dispatch]);
 
+  //getCategory
   useEffect(() => {
     dispatch(getCoursesAction());
   }, []);
@@ -72,6 +73,14 @@ const NavbarComponent = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto navbar-right">
+              <form className="input-group wrapper-search mobile" onSubmit={submitSearchText}>
+                <input className="form-control border-end-0 border" type="search" value={searchText} placeholder="Search course or lecturer" onChange={(evt) => setSearchText(evt.target.value)} />
+                <span className="input-group-append">
+                  <button className="btn btn-searching border-start-0 border ms-n5" type="button">
+                    <i className="fa fa-search" onClick={submitSearchText}></i>
+                  </button>
+                </span>
+              </form>
             <NavDropdown title="Category" id="basic-nav-dropdown">
               {uniqCategory.map((category, index) => (
                 <NavDropdown.Item href={"/categories/" + category} key={index}>
