@@ -10,7 +10,7 @@ const Hero = () => {
   const { courseList } = useSelector((state) => state.courses);
 
   //get random course
-  let course = courseList[6];
+  let course = courseList[1];
 
   let counted = 0;
   course?.contents.forEach((content) => {
