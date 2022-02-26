@@ -7,18 +7,17 @@ let token = localStorage.getItem("token");
 export const getContentAction = (data) => {
   return (dispatch) => {
     dispatch({ type: actions.GET_CONTENT_PENDING });
-    axios.get(`${API}api/v1/content/fetch/detail?contentId=${data}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then(response => {
-        console.log(response);
-        dispatch({type: actions.GET_CONTENT_SUCCESS, payload: response.data.result})
-    })
-    .catch(error => {
-        console.log(error)
-        dispatch({type: actions.GET_CONTENT_FAILED, payload: error})
-    })
+    axios
+      .get(`${API}api/v1/content/fetch/detail?contentId=${data}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        dispatch({ type: actions.GET_CONTENT_SUCCESS, payload: response.data.result });
+      })
+      .catch((error) => {
+        dispatch({ type: actions.GET_CONTENT_FAILED, payload: error });
+      });
   };
 };

@@ -48,6 +48,7 @@
 .content-list {
   flex-basis: 35%;
   height: 450px;
+  overflow-y: scroll;
   padding: 40px 18px;
   border: 2px solid rgba(229, 229, 229, 1);
   display: flex;
@@ -71,6 +72,10 @@
   padding: 16px 18px;
   font-size: 0.875rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.content-list li:hover {
+  background-color: #eaf7fe;
 }
 
 .content-list span {
@@ -184,6 +189,11 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+
+.card-list a {
+  max-width: 20vw;
+  color: #000;
 }
 
 .cards h2 {
