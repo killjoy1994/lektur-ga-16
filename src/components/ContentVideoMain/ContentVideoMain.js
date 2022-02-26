@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
 
@@ -19,61 +19,49 @@ import { getContentsAction } from "../../redux/actions/Content/getContentsAction
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
 
-let dummyData = {
-  src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-  title: "Create Cinematic Music Video",
-  author: "John Doe",
-  videos: 15,
-  materials: 3,
-  description:
-    "Vestibulum fusce parturient urna a molestie orci. Lectus id quisque amet et vel elementum morbi cursus. Amet sagittis semper mauris diam orci facilisis...",
-  category: "Art & Humanity",
-};
-
 const ContentVideoMain = () => {
-  const { content, isLoading: contentLoading } = useSelector((state) => state.getContent);
-  const { contentList, isLoading } = useSelector((state) => state.getContents);
-
   const [titleHeader, setTitleHeader] = useState("");
-  const [description, setDescription] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
-  const [material, setMaterial] = useState({});
+  const [description, setDescription] = useState("");
+  const [materials, setMaterials] = useState([]);
+
+  const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
 
   const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContentAction(params.courseId));
-    dispatch(getContentsAction());
+    dispatch(getCourseDetail(params.courseId));
   }, [dispatch]);
 
-  let filteredContents;
-  if (content) {
-    filteredContents = contentList.filter((contentItem) => {
-      return contentItem["course_id"] === content.id;
-    });
-  }
+  useEffect(() => {
+    if (detail.category?.name) {
+      dispatch(getRelatedCourse(detail.category?.name));
+    }
+  }, [detail.category?.name]);
 
-  const changeContentHandler = (title, description, video) => {
+  console.log(detail);
+
+  const changeContentHandler = (title, url, description, materials) => {
     setTitleHeader(title);
+    setVideoUrl(url);
     setDescription(description);
-    setVideoUrl(video);
+    setMaterials(materials);
   };
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         {/* Header start */}
-
-        {content && (
+        {detail && (
           <header className={styles.header}>
             <Breadcrumb className={styles.breadcrumb}>
               <Breadcrumb.Item href="#" active>
-                {isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}
+                {titleHeader || detail.title}
               </Breadcrumb.Item>
-              <Breadcrumb.Item href="#">{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</Breadcrumb.Item>
+              <Breadcrumb.Item href="#">{titleHeader || (detail.contents && detail.contents[0].title)}</Breadcrumb.Item>
             </Breadcrumb>
-            <h1 className={styles.title}>{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</h1>
+            <h1 className={styles.title}>{titleHeader || (detail.contents && detail.contents[0].title)}</h1>
           </header>
         )}
         {/* Header end */}
@@ -81,61 +69,71 @@ const ContentVideoMain = () => {
         {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
-            {contentLoading ? (
-              <Loader />
-            ) : (
-              <ReactPlayer
-                className={styles["video-player"]}
-                controls
-                url={videoUrl ? videoUrl : filteredContents[0].video ? filteredContents[0].video : videoUrl}
-                width="90%"
-                height="450px"
-                playing={true}
-              />
-            )}
+            <ReactPlayer
+              className={styles["video-player"]}
+              controls
+              url={videoUrl || (detail.contents && detail.contents[0].video)}
+              width="90%"
+              height="450px"
+              // playing={true}
+            />
             <div className={styles["content-list"]}>
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <>
-                  <h2>Content</h2>
-                  <ul>
-                    {filteredContents?.map((content) => {
-                      return (
-                        <li
-                          className={styles["content-video"]}
-                          key={content.id}
-                          onClick={() => changeContentHandler(content.title, content.description, content.video)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <span>
-                            <img src={play} alt="play" />
-                          </span>
-                          {content.title}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </>
-              )}
+              <>
+                <h2>Content</h2>
+                <ul>
+                  {detail.contents?.map((content) => {
+                    return (
+                      <li
+                        className={styles["content-video"]}
+                        key={content.id}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => changeContentHandler(content.title, content.video, content.description, content.materials)}
+                      >
+                        <span>
+                          <img src={play} alt="play" />
+                        </span>
+                        {content.title}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
             </div>
           </section>
           <section className={styles["description-wrapper"]}>
             <div className={styles.description}>
               <h2>Description</h2>
-              {/* {isLoading ? null : console.log(filteredContents[0])} */}
-              {isLoading ? <Loader /> : <p>{description ? description : filteredContents ? filteredContents[0].title : ""} </p>}
+
+              <p>{description || (detail.contents && detail.contents[0].description)}</p>
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
-              <div className="check-box-form" className={styles.rounded}>
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                  <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Read course material : <a href="#">React and Open Source.pdf</a>
-                  </label>
-                </div>
-              </div>
+              {(materials.length &&
+                materials.map((material) => {
+                  return (
+                    <div className="check-box-form" className={styles.rounded} key={material.id}>
+                      <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                          {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                        </label>
+                      </div>
+                    </div>
+                  );
+                })) ||
+                (detail.contents &&
+                  detail.contents[0].materials.map((material) => {
+                    return (
+                      <div className="check-box-form" className={styles.rounded} key={material.id}>
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                          <label className="form-check-label" htmlFor="flexCheckDefault">
+                            {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                          </label>
+                        </div>
+                      </div>
+                    );
+                  }))}
               <button className={styles["btn-aside"]}>
                 <img src={playWhite} alt="next button" />
                 Next Lesson: Create React App
@@ -151,42 +149,25 @@ const ContentVideoMain = () => {
         <div className={styles["card-container"]}>
           <h2>Related Course</h2>
           <div className={styles["card-list"]}>
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
+            {relatedCourse?.map((course) => {
+              let materialsCount = 0;
+              course.contents.forEach((content) => {
+                return (materialsCount += content.materials.length);
+              });
+              return (
+                <Link to={`/detail/${course.id}`} key={course.id}>
+                  <Card
+                    src={course.image}
+                    title={course.title}
+                    author={course.by.fullName}
+                    videos={course.contents.length}
+                    materials={materialsCount}
+                    description={course.description}
+                    category={course.category.name}
+                  />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
