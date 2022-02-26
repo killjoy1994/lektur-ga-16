@@ -31,49 +31,33 @@ let dummyData = {
 };
 
 const ContentVideoMain = () => {
-  const { content, isLoading: contentLoading } = useSelector((state) => state.getContent);
-  const { contentList, isLoading } = useSelector((state) => state.getContents);
-
-  const [titleHeader, setTitleHeader] = useState("");
-  const [description, setDescription] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
-  const [material, setMaterial] = useState({});
+  const { detail, isLoading } = useSelector((state) => state.courseDetail);
 
   const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getContentAction(params.courseId));
-    dispatch(getContentsAction());
+    (async function () {
+      await dispatch(getCourseDetail(params.courseId));
+      // await dispatch(getRelatedCourse());
+    })();
   }, [dispatch]);
-
-  let filteredContents;
-  if (content) {
-    filteredContents = contentList.filter((contentItem) => {
-      return contentItem["course_id"] === content.id;
-    });
-  }
-
-  const changeContentHandler = (title, description, video) => {
-    setTitleHeader(title);
-    setDescription(description);
-    setVideoUrl(video);
-  };
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
+        {console.log("detail", detail)}
+        {console.log(detail.contents)}
         {/* Header start */}
-
-        {content && (
+        {detail && (
           <header className={styles.header}>
             <Breadcrumb className={styles.breadcrumb}>
               <Breadcrumb.Item href="#" active>
-                {isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}
+                {detail.title}
               </Breadcrumb.Item>
-              <Breadcrumb.Item href="#">{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</Breadcrumb.Item>
+              <Breadcrumb.Item href="#">{detail.contents && detail.contents[0].title}</Breadcrumb.Item>
             </Breadcrumb>
-            <h1 className={styles.title}>{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</h1>
+            <h1 className={styles.title}>{detail.contents && detail.contents[0].title}</h1>
           </header>
         )}
         {/* Header end */}
@@ -81,50 +65,30 @@ const ContentVideoMain = () => {
         {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
-            {contentLoading ? (
-              <Loader />
-            ) : (
-              <ReactPlayer
-                className={styles["video-player"]}
-                controls
-                url={videoUrl ? videoUrl : filteredContents[0].video ? filteredContents[0].video : videoUrl}
-                width="90%"
-                height="450px"
-                playing={true}
-              />
-            )}
+            <ReactPlayer className={styles["video-player"]} controls url={detail.contents && detail.contents[0].video} width="90%" height="450px" playing={true} />
             <div className={styles["content-list"]}>
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <>
-                  <h2>Content</h2>
-                  <ul>
-                    {filteredContents?.map((content) => {
-                      return (
-                        <li
-                          className={styles["content-video"]}
-                          key={content.id}
-                          onClick={() => changeContentHandler(content.title, content.description, content.video)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <span>
-                            <img src={play} alt="play" />
-                          </span>
-                          {content.title}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </>
-              )}
+              <>
+                <h2>Content</h2>
+                <ul>
+                  {detail.contents?.map((content) => {
+                    return (
+                      <li className={styles["content-video"]} key={content.id} style={{ cursor: "pointer" }}>
+                        <span>
+                          <img src={play} alt="play" />
+                        </span>
+                        {content.title}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
             </div>
           </section>
           <section className={styles["description-wrapper"]}>
             <div className={styles.description}>
               <h2>Description</h2>
-              {/* {isLoading ? null : console.log(filteredContents[0])} */}
-              {isLoading ? <Loader /> : <p>{description ? description : filteredContents ? filteredContents[0].title : ""} </p>}
+              
+              <p>{detail.contents && detail.contents[0].description}</p>
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
