@@ -9,6 +9,7 @@ import styles from "../styles/Home.module.css";
 
 const Home = () => {
   let token = localStorage.getItem("token");
+
   return (
     <>
       <NavbarComponent />

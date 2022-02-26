@@ -19,12 +19,12 @@ export const getCourseDetail = (id) => {
     };
   };
 
-  export const getRelatedCourse = () => {
+  export const getRelatedCourse = (data) => {
     return (dispatch) => {
       dispatch({ type: actions.RELATED_COURSE_REQUEST });
       //API CALL
       axios
-        .get(`${API}api/v1/course/fetch?limit=4`)
+      .get(`https://lektur-apps.herokuapp.com/api/v1/course/fetch?category=${data}`)
         .then((response) => {
           dispatch({
             type: actions.RELATED_COURSE_SUCCESS,
