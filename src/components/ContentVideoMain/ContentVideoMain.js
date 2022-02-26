@@ -31,15 +31,16 @@ const ContentVideoMain = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // (async function () {
-    //   await dispatch(getCourseDetail(params.courseId));
-    //   await dispatch(getRelatedCourse(detail.category));
-    // })();
     dispatch(getCourseDetail(params.courseId));
-    dispatch(getRelatedCourse());
   }, [dispatch]);
 
-  console.log(detail)
+  useEffect(() => {
+    if (detail.category?.name) {
+      dispatch(getRelatedCourse(detail.category?.name));
+    }
+  }, [detail.category?.name]);
+
+  console.log(detail);
 
   const changeContentHandler = (title, url, description, materials) => {
     setTitleHeader(title);
