@@ -32,7 +32,6 @@ export const getEnrolledCoursesAction = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.result);
         dispatch({ type: GET_STUDENT_COURSE, payload: res.data.result });
       })
       .catch((error) => {

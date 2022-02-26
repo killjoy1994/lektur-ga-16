@@ -2,7 +2,7 @@ import * as actions from "../../types/index";
 
 const initialState = {
   content: null,
-  isLoading: false,
+  isLoading: true,
 };
 
 const getContentReducer = (state = initialState, action) => {
