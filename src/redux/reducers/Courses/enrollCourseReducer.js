@@ -14,10 +14,8 @@ const enrollCourseReducer = (state = initialState, action) => {
             next = b.id;
           return curr - next;
         });
-        return data
+        return data;
       });
-
-      console.log(sortedData);
 
       return {
         state,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,8 +12,12 @@ import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
 // import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
+import Loader from "../Loader/Loader";
 import { useEffect } from "react";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
+import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
+import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
+import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
 
 let dummyData = {
   src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
@@ -27,95 +31,100 @@ let dummyData = {
 };
 
 const ContentVideoMain = () => {
-  const { content, isLoading } = useSelector((state) => state.getContent);
+  const { content, isLoading: contentLoading } = useSelector((state) => state.getContent);
+  const { contentList, isLoading } = useSelector((state) => state.getContents);
+
+  const [titleHeader, setTitleHeader] = useState("");
+  const [description, setDescription] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+  const [material, setMaterial] = useState({});
 
   const params = useParams();
   const dispatch = useDispatch();
 
-  console.log(params);
-
   useEffect(() => {
     dispatch(getContentAction(params.courseId));
-  }, []);
+    dispatch(getContentsAction());
+  }, [dispatch]);
+
+  let filteredContents;
+  if (content) {
+    filteredContents = contentList.filter((contentItem) => {
+      return contentItem["course_id"] === content.id;
+    });
+  }
+
+  const changeContentHandler = (title, description, video) => {
+    setTitleHeader(title);
+    setDescription(description);
+    setVideoUrl(video);
+  };
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         {/* Header start */}
-        <header className={styles.header}>
-          <Breadcrumb className={styles.breadcrumb}>
-            <Breadcrumb.Item href="#" active>
-              React Crash Cource
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="#">Lesson #1 : What is React?</Breadcrumb.Item>
-          </Breadcrumb>
-          <h1 className={styles.title}>Lesson #1 : What is React?</h1>
-        </header>
+
+        {content && (
+          <header className={styles.header}>
+            <Breadcrumb className={styles.breadcrumb}>
+              <Breadcrumb.Item href="#" active>
+                {isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}
+              </Breadcrumb.Item>
+              <Breadcrumb.Item href="#">{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</Breadcrumb.Item>
+            </Breadcrumb>
+            <h1 className={styles.title}>{isLoading ? "" : titleHeader ? titleHeader : filteredContents[0].title}</h1>
+          </header>
+        )}
         {/* Header end */}
 
         {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
-            <ReactPlayer
-              className={styles["video-player"]}
-              controls
-              url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-              width="100%"
-              height="450px"
-              playing={true}
-            />
+            {contentLoading ? (
+              <Loader />
+            ) : (
+              <ReactPlayer
+                className={styles["video-player"]}
+                controls
+                url={videoUrl ? videoUrl : filteredContents[0].video ? filteredContents[0].video : videoUrl}
+                width="90%"
+                height="450px"
+                playing={true}
+              />
+            )}
             <div className={styles["content-list"]}>
-              <h2>Content</h2>
-              <ul>
-                <li className={styles.playing}>
-                  <span>
-                    <img src={playBlue} alt="on play" />
-                  </span>
-                  Lesson #1: What is React
-                </li>
-                <li>
-                  <span>
-                    <img src={play} alt="play" />
-                  </span>
-                  Lesson #2: Create React App
-                </li>
-                <li>
-                  <span>
-                    <img src={play} alt="play" />
-                  </span>
-                  Lesson #3: Css in Reset
-                </li>
-                <li className={styles.lock}>
-                  <span>
-                    <img src={lock} alt="lock" />
-                  </span>
-                  Lesson #4: Lorem Ipsum
-                </li>
-                <li className={styles.lock}>
-                  <span>
-                    <img src={lock} alt="lock" />
-                  </span>
-                  Lesson #5: Lorem Ipsum
-                </li>
-                <li className={styles.lock}>
-                  <span>
-                    <img src={lock} alt="lock" />
-                  </span>
-                  Lesson #6: Lorem Ipsum
-                </li>
-              </ul>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
+                  <h2>Content</h2>
+                  <ul>
+                    {filteredContents?.map((content) => {
+                      return (
+                        <li
+                          className={styles["content-video"]}
+                          key={content.id}
+                          onClick={() => changeContentHandler(content.title, content.description, content.video)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <span>
+                            <img src={play} alt="play" />
+                          </span>
+                          {content.title}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              )}
             </div>
           </section>
           <section className={styles["description-wrapper"]}>
             <div className={styles.description}>
               <h2>Description</h2>
-              <p>
-                Nascetur consequat quam tellus sed convallis amet, nunc. Venenatis, eget faucibus iaculis facilisi pellentesque eleifend mattis vel.
-                Nunc euismod morbi lectus aliquam pretium, pharetra, tellus orci. Lobortis at nulla dictum risus amet. Nunc dolor sit vitae arcu
-                facilisis eu. Tortor, turpis arcu in est. Ullamcorper fringilla ut tempus nulla dolor lorem proin porta neque. Neque eu lorem ultrices
-                id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet. Vitae sodales
-                rhoncus, et ut ut. Amet, porttitor adipiscing nullam mauris. Lobortis interdum imperdiet mauris pharetra risus proin etiam est.
-              </p>
+              {/* {isLoading ? null : console.log(filteredContents[0])} */}
+              {isLoading ? <Loader /> : <p>{description ? description : filteredContents ? filteredContents[0].title : ""} </p>}
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
@@ -124,12 +133,6 @@ const ContentVideoMain = () => {
                   <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                   <label className="form-check-label" htmlFor="flexCheckDefault">
                     Read course material : <a href="#">React and Open Source.pdf</a>
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
-                  <label className="form-check-label" htmlFor="flexCheckChecked">
-                    Read course material : <a href="#">React and Open Source 2.pdf</a>
                   </label>
                 </div>
               </div>

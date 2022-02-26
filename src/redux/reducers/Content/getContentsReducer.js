@@ -1,8 +1,8 @@
 import * as actions from "../../types";
 
 const initialState = {
-  contentArr: [],
-  isLoading: false,
+  contentList: [],
+  isLoading: true,
   error: "",
 };
 
@@ -16,7 +16,7 @@ const getContentsReducer = (state = initialState, action) => {
     case actions.FETCH_CONTENTS_SUCCESS:
       return {
         ...state,
-        contentArr: [...action.payload],
+        contentList: [...action.payload],
         isLoading: false,
       };
     case actions.FETCH_CONTENTS_FAILED:
