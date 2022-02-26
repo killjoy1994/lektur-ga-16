@@ -66,6 +66,13 @@ ul {
 }
 
 /*responsive*/
+/* @media (min-width: 1400px) {
+  .footer {
+    min-width: 1400px;
+    margin: auto;
+  }
+} */
+
 @media (max-width: 795px) {
   .section_left {
     width: 50%;

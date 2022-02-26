@@ -129,7 +129,7 @@ function Detail() {
                 <>
                   <div className={styles["card-list"]}>
                     {relatedCourse?.map((course) => (
-                      // <a href={"/detail/" + course.id} key={course.id}>
+                      <a href={"/detail/" + course.id} key={course.id}>
                       <Card
                         key={course.id}
                         src={course.image}
@@ -140,7 +140,7 @@ function Detail() {
                         description={course.description}
                         category={course.category?.name}
                       />
-                      // </a>
+                       </a>
                     ))}
                   </div>
                 </>

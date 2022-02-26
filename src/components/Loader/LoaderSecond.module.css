@@ -1,0 +1,23 @@
+/* To center the spinner*/
+.pos-center {
+    position: relative;
+  }
+  
+  .loader-second {
+    border: 10px solid #e9e8e8;
+    border-top: 10px solid #ef9c27;
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -6,13 +6,17 @@
 .navbar-brand {
   padding-right: 2rem;
 }
-
+.loadin-nav {
+  box-sizing: border-box;
+  position: relative;
+  left: 20px;
+}
 .navbar-brand img.logo-navbar {
   height: auto;
   width: 132px;
   margin-bottom: 9px;
 }
-.container-fluid img.logo-navbar{
+.container-fluid img.logo-navbar {
   height: auto;
   width: 132px;
   margin-bottom: 9px;
@@ -20,7 +24,7 @@
 form.wrapper-search {
   width: 34rem;
 }
-form.wrapper-search.mobile{
+form.wrapper-search.mobile {
   display: none;
 }
 
@@ -42,7 +46,7 @@ form.wrapper-search.mobile{
   left: -75px;
   margin-top: 0.11rem;
 }
-.dropdown-item:hover{
+.dropdown-item:hover {
   color: #ef9c27;
   background: none;
 }
@@ -58,13 +62,13 @@ form.wrapper-search.mobile{
   color: #ef9c27;
 }
 
-.nav-btn-logout{
+.nav-btn-logout {
   background: white;
   border: none;
   color: black;
   font-weight: bold;
 }
-.nav-btn-logout:hover{
+.nav-btn-logout:hover {
   color: #ef9c27;
 }
 .navbar-light .navbar-nav .nav-link.nav-btn-signup {
@@ -80,6 +84,12 @@ form.wrapper-search.mobile{
   font-weight: bold;
   color: #ef9c27;
 }
+/* @media (min-width: 1400px) {
+  .navbar {
+    width: 1400px;
+    margin: auto;
+  }
+} */
 @media (max-width: 1310px) {
   form.wrapper-search {
     width: 30rem;
@@ -89,7 +99,6 @@ form.wrapper-search.mobile{
   form.wrapper-search {
     width: 28rem;
   }
-  
 }
 
 @media (max-width: 1165px) {
@@ -133,7 +142,7 @@ form.wrapper-search.mobile{
   .navbar-brand {
     padding-right: 0px;
   }
-  .form-control{
+  .form-control {
     font-size: 13px;
   }
   form.wrapper-search {
@@ -148,12 +157,12 @@ form.wrapper-search.mobile{
 @media (max-width: 536px) {
   .navbar-brand img.logo-navbar {
     width: 120px;
-   
   }
   form.wrapper-search {
     display: none;
   }
-  form.wrapper-search.mobile{
+  form.wrapper-search.mobile {
     display: flex;
+    width: 100%;
   }
 }
