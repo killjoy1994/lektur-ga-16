@@ -49,7 +49,7 @@ export default function FormLogin() {
         icon: 'success',
         title: 'Login success!',
         showConfirmButton: false,
-        timer: 1500
+        timer: 500
       })
       // masukin token ke localStorage
       localStorage.setItem('token', response.data.result.token);
