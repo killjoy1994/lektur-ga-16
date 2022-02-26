@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import NavbarComponent from "../../components/Header/NavbarComponent";
-// import Card from "../components/CourseCards/Card";
 import styles from "../../styles/SearchCourse.module.css";
 import SearchList from "./SearchList";
 import Loader from "../../components/Loader/Loader";

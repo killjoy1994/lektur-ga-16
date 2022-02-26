@@ -6,19 +6,26 @@
 .navbar-brand {
   padding-right: 2rem;
 }
-
+.loadin-nav {
+  box-sizing: border-box;
+  position: relative;
+  left: 20px;
+}
 .navbar-brand img.logo-navbar {
   height: auto;
   width: 132px;
   margin-bottom: 9px;
 }
-.container-fluid img.logo-navbar{
+.container-fluid img.logo-navbar {
   height: auto;
   width: 132px;
   margin-bottom: 9px;
 }
 form.wrapper-search {
   width: 34rem;
+}
+form.wrapper-search.mobile {
+  display: none;
 }
 
 .input-group-append .btn-searching {
@@ -39,6 +46,10 @@ form.wrapper-search {
   left: -75px;
   margin-top: 0.11rem;
 }
+.dropdown-item:hover {
+  color: #ef9c27;
+  background: none;
+}
 .navbar-right .garis {
   border: 1px solid black;
 }
@@ -51,13 +62,13 @@ form.wrapper-search {
   color: #ef9c27;
 }
 
-.nav-btn-logout{
+.nav-btn-logout {
   background: white;
   border: none;
   color: black;
   font-weight: bold;
 }
-.nav-btn-logout:hover{
+.nav-btn-logout:hover {
   color: #ef9c27;
 }
 .navbar-light .navbar-nav .nav-link.nav-btn-signup {
@@ -73,6 +84,12 @@ form.wrapper-search {
   font-weight: bold;
   color: #ef9c27;
 }
+/* @media (min-width: 1400px) {
+  .navbar {
+    width: 1400px;
+    margin: auto;
+  }
+} */
 @media (max-width: 1310px) {
   form.wrapper-search {
     width: 30rem;
@@ -82,9 +99,6 @@ form.wrapper-search {
   form.wrapper-search {
     width: 28rem;
   }
-  /* .navbar-right {
-    gap: 1rem;
-  } */
 }
 
 @media (max-width: 1165px) {
@@ -119,11 +133,17 @@ form.wrapper-search {
   .navbar-right .garis {
     display: none;
   }
+  .dropdown-menu[data-bs-popper] {
+    width: 100px;
+  }
 }
 
 @media (max-width: 580px) {
   .navbar-brand {
     padding-right: 0px;
+  }
+  .form-control {
+    font-size: 13px;
   }
   form.wrapper-search {
     width: 15rem;
@@ -132,5 +152,17 @@ form.wrapper-search {
 @media (max-width: 544px) {
   .navbar .container-fluid {
     gap: 10px;
+  }
+}
+@media (max-width: 536px) {
+  .navbar-brand img.logo-navbar {
+    width: 120px;
+  }
+  form.wrapper-search {
+    display: none;
+  }
+  form.wrapper-search.mobile {
+    display: flex;
+    width: 100%;
   }
 }

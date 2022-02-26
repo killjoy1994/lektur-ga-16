@@ -10,7 +10,6 @@ export const getSearchCourse = (input) => {
     axios
       .get(`${API}api/v1/course/fetch?keyword=${input}`)
       .then((response) => {
-        console.log(response.data.result);
         dispatch({
           type: actions.SEARCH_COURSE_SUCCESS,
           payload: response.data.result,
@@ -18,7 +17,6 @@ export const getSearchCourse = (input) => {
         });
       })
       .catch((err) => {
-        console.log("error:", err.response.data.message);
         dispatch({
           type: actions.SEARCH_COURSE_FAILED,
           payload: err,
