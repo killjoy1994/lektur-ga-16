@@ -19,6 +19,7 @@ function Detail() {
   const params = useParams();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     dispatch(getCourseDetail(params.id));
   }, [dispatch]);
@@ -129,17 +130,16 @@ function Detail() {
                   <div className={styles["card-list"]}>
                     {relatedCourse?.map((course) => (
                       // <a href={"/detail/" + course.id} key={course.id}>
-                      <a href={`/detail/${course.id}`} key={course.id}>
-                        <Card
-                          src={course.image}
-                          title={course.title}
-                          author={course.by?.fullName}
-                          videos={course.contents?.length}
-                          materials={course.contents?.length}
-                          description={course.description}
-                          category={course.category?.name}
-                        />
-                      </a>
+                      <Card
+                        key={course.id}
+                        src={course.image}
+                        title={course.title}
+                        author={course.by?.fullName}
+                        videos={course.contents?.length}
+                        materials={course.contents?.length}
+                        description={course.description}
+                        category={course.category?.name}
+                      />
                       // </a>
                     ))}
                   </div>

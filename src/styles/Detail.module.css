@@ -147,6 +147,7 @@
   background-size: cover;
 }
 
+
 .popup_detail .p1 {
   color: #61d3a4;
   margin-bottom: 10px;
@@ -189,11 +190,6 @@
   min-height: 350px;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-}
-
-.card-list a {
-  max-width: 18vw;
-  color: #140b0b;
 }
 
 .cards h2 {
