@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
 
@@ -19,23 +19,11 @@ import { getContentsAction } from "../../redux/actions/Content/getContentsAction
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
 
-let dummyData = {
-  src: "https://images.unsplash.com/photo-1643662372195-49a2b4ab6278?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-  title: "Create Cinematic Music Video",
-  author: "John Doe",
-  videos: 15,
-  materials: 3,
-  description:
-    "Vestibulum fusce parturient urna a molestie orci. Lectus id quisque amet et vel elementum morbi cursus. Amet sagittis semper mauris diam orci facilisis...",
-  category: "Art & Humanity",
-};
-
 const ContentVideoMain = () => {
   const [titleHeader, setTitleHeader] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [description, setDescription] = useState("");
   const [materials, setMaterials] = useState([]);
-  const [isActive, setIsActive] = useState(false);
 
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
 
@@ -43,21 +31,22 @@ const ContentVideoMain = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async function () {
-      await dispatch(getCourseDetail(params.courseId));
-      await dispatch(getRelatedCourse(detail.category));
-    })();
+    // (async function () {
+    //   await dispatch(getCourseDetail(params.courseId));
+    //   await dispatch(getRelatedCourse(detail.category));
+    // })();
+    dispatch(getCourseDetail(params.courseId));
+    dispatch(getRelatedCourse());
   }, [dispatch]);
+
+  console.log(detail)
 
   const changeContentHandler = (title, url, description, materials) => {
     setTitleHeader(title);
     setVideoUrl(url);
     setDescription(description);
     setMaterials(materials);
-    setIsActive(true);
   };
-
-  let materialTotal = 0;
 
   return (
     <main className={styles.main}>
@@ -89,7 +78,7 @@ const ContentVideoMain = () => {
             />
             <div className={styles["content-list"]}>
               <>
-                <h2 style={{ position: "sticky", top: 0, background: "#fff" }}>Content</h2>
+                <h2>Content</h2>
                 <ul>
                   {detail.contents?.map((content) => {
                     return (
@@ -159,22 +148,23 @@ const ContentVideoMain = () => {
         <div className={styles["card-container"]}>
           <h2>Related Course</h2>
           <div className={styles["card-list"]}>
-            {console.log(relatedCourse)}
-            {relatedCourse?.map(course => {
-              // for(let i = 0; i < course.contents.material.length; i++) {
-              //   materialTotal++
-              // }
+            {relatedCourse?.map((course) => {
+              let materialsCount = 0;
+              course.contents.forEach((content) => {
+                return (materialsCount += content.materials.length);
+              });
               return (
-                <Card
-                key={course.id}
-                  src={course.image}
-                  title={course.title}
-                  author={course.by.fullName}
-                  videos={course.contents.length}
-                  materials={5}
-                  description={course.description}
-                  category={course.category.name}
-                />
+                <Link to={`/detail/${course.id}`} key={course.id}>
+                  <Card
+                    src={course.image}
+                    title={course.title}
+                    author={course.by.fullName}
+                    videos={course.contents.length}
+                    materials={materialsCount}
+                    description={course.description}
+                    category={course.category.name}
+                  />
+                </Link>
               );
             })}
           </div>

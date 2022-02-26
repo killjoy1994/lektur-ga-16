@@ -191,6 +191,11 @@
   gap: 20px;
 }
 
+.card-list a {
+  max-width: 20vw;
+  color: #000;
+}
+
 .cards h2 {
   font-size: 1rem;
   font-weight: 700;
