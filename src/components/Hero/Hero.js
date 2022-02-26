@@ -10,7 +10,7 @@ const Hero = () => {
   const { courseList } = useSelector((state) => state.courses);
 
   //get random course
-  let course = courseList[8];
+  let course = courseList[6];
 
   let counted = 0;
   course?.contents.forEach((content) => {
@@ -34,12 +34,12 @@ const Hero = () => {
               <div className={styles["video-detail"]}>
                 <div className={styles.description}>
                   <div className={styles["description-left"]}>
-                    <p className={styles.amount}>10 Enrolled</p>
+                    <p className={styles.amount}>4 Enrolled</p>
                     <h3>{course.title}</h3>
                     <p className={styles.author}>{course.by.fullName}</p>
                   </div>
                   <div className={styles["description-right"]}>
-                    <p>5 Study Material</p>
+                    <p>{counted} Study Material</p>
                     <p>{course.contents.length} Learning Videos</p>
                   </div>
                 </div>
