@@ -1,29 +1,54 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../assests/logo.png";
+import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import styles from "../../styles/Footer.module.css";
-
+import LoaderSecond from "../Loader/LoaderSecond";
 
 const Footer = () => {
+  const { courseList, isLoading } = useSelector((state) => state.courses);
+  const dispatch = useDispatch();
+
+  //getCategory
+  useEffect(() => {
+    dispatch(getCoursesAction());
+  }, [dispatch]);
+
+  // Category
+  const uniqCategory = [];
+  courseList.filter((course) => {
+    if (!uniqCategory.includes(course.category.name)) {
+      uniqCategory.push(course.category.name);
+    }
+  });
+  console.log(uniqCategory);
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.footer_section}>
           <div className={styles.section_left}>
             <h4>COURSE</h4>
-            <ul>
-              <li>
-                <a href="/">Business</a>
-              </li>
-              <li>
-                <a href="/">Technology</a>
-              </li>
-              <li>
-                <a href="/">Graphic Design</a>
-              </li>
-              <li>
-                <a href="/">Self Development</a>
-              </li>
-            </ul>
+            {isLoading ? (
+              <LoaderSecond />
+            ) : (
+              <>
+                <ul>
+                  <li>
+                    <a href={"/categories/" + uniqCategory[0]}>{uniqCategory[0]}</a>
+                  </li>
+                  <li>
+                    <a href={"/categories/" + uniqCategory[1]}>{uniqCategory[1]}</a>
+                  </li>
+                  <li>
+                    <a href={"/categories/" + uniqCategory[2]}>{uniqCategory[2]}</a>
+                  </li>
+                  <li>
+                    <a href={"/categories/" + uniqCategory[3]}>{uniqCategory[3]}</a>
+                  </li>
+                </ul>
+              </>
+            )}
           </div>
           <div className={styles.section_left}>
             <h4>TEACH</h4>
