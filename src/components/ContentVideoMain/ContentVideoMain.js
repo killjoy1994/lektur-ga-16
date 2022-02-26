@@ -34,9 +34,10 @@ const ContentVideoMain = () => {
   const [titleHeader, setTitleHeader] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
   const [description, setDescription] = useState("");
-  const [materials, setMaterials] = useState("");
+  const [materials, setMaterials] = useState([]);
+  const [isActive, setIsActive] = useState(false);
 
-  const { detail, isLoading } = useSelector((state) => state.courseDetail);
+  const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -44,23 +45,23 @@ const ContentVideoMain = () => {
   useEffect(() => {
     (async function () {
       await dispatch(getCourseDetail(params.courseId));
-      // await dispatch(getRelatedCourse());
+      await dispatch(getRelatedCourse(detail.category));
     })();
   }, [dispatch]);
-
 
   const changeContentHandler = (title, url, description, materials) => {
     setTitleHeader(title);
     setVideoUrl(url);
     setDescription(description);
-    setMaterials(materials)
-  }
+    setMaterials(materials);
+    setIsActive(true);
+  };
+
+  let materialTotal = 0;
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        {console.log("detail", detail)}
-        {console.log(detail.contents)}
         {/* Header start */}
         {detail && (
           <header className={styles.header}>
@@ -88,7 +89,7 @@ const ContentVideoMain = () => {
             />
             <div className={styles["content-list"]}>
               <>
-                <h2>Content</h2>
+                <h2 style={{ position: "sticky", top: 0, background: "#fff" }}>Content</h2>
                 <ul>
                   {detail.contents?.map((content) => {
                     return (
@@ -117,27 +118,32 @@ const ContentVideoMain = () => {
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
-              {console.log(materials)}
-              {/* {materials.map((material) => {
-                <div className="check-box-form" className={styles.rounded}>
-                  <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label className="form-check-label" htmlFor="flexCheckDefault">
-                      {material.name} : <a href={material.url}>{material.name}.pdf</a>
-                    </label>
-                  </div>
-                </div>;
-              }) ||
-                detail.contents.materials.map((material) => {
-                  <div className="check-box-form" className={styles.rounded}>
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                      <label className="form-check-label" htmlFor="flexCheckDefault">
-                        {material.name} : <a href={material.url}>{material.name}.pdf</a>
-                      </label>
+              {(materials.length &&
+                materials.map((material) => {
+                  return (
+                    <div className="check-box-form" className={styles.rounded} key={material.id}>
+                      <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                          {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                        </label>
+                      </div>
                     </div>
-                  </div>;
-                })} */}
+                  );
+                })) ||
+                (detail.contents &&
+                  detail.contents[0].materials.map((material) => {
+                    return (
+                      <div className="check-box-form" className={styles.rounded} key={material.id}>
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                          <label className="form-check-label" htmlFor="flexCheckDefault">
+                            {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                          </label>
+                        </div>
+                      </div>
+                    );
+                  }))}
               <button className={styles["btn-aside"]}>
                 <img src={playWhite} alt="next button" />
                 Next Lesson: Create React App
@@ -153,42 +159,24 @@ const ContentVideoMain = () => {
         <div className={styles["card-container"]}>
           <h2>Related Course</h2>
           <div className={styles["card-list"]}>
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
-            <Card
-              src={dummyData.src}
-              title={dummyData.title}
-              author={dummyData.author}
-              videos={dummyData.videos}
-              materials={dummyData.materials}
-              description={dummyData.description}
-              category={dummyData.category}
-            />
+            {console.log(relatedCourse)}
+            {relatedCourse?.map(course => {
+              // for(let i = 0; i < course.contents.material.length; i++) {
+              //   materialTotal++
+              // }
+              return (
+                <Card
+                key={course.id}
+                  src={course.image}
+                  title={course.title}
+                  author={course.by.fullName}
+                  videos={course.contents.length}
+                  materials={5}
+                  description={course.description}
+                  category={course.category.name}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
