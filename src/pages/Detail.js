@@ -7,7 +7,7 @@ import NavbarComponent from "../components/Header/NavbarComponent";
 import Footer from "../components/Footer";
 import { getCourseDetail, getRelatedCourse } from "../redux/actions/Courses/getCourseDetailAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
 import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
