@@ -18,6 +18,8 @@ import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actio
 import { uploadImageAction } from "../../redux/actions/User/updateUserProfile";
 import { Link } from "react-router-dom";
 
+let token = localStorage.getItem("token");
+
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
   const { user, isLoading } = useSelector((state) => state.userProfile);
@@ -34,7 +36,6 @@ const DashboardCourse = () => {
   const [showMaterialModal, setShowMaterialModal] = useState(false);
 
   const dispatch = useDispatch();
-  let token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(getEnrolledCoursesAction());
@@ -98,7 +99,7 @@ const DashboardCourse = () => {
     await dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    await dispatch(getUserProfileAction());
+    await dispatch(getUserProfileAction(token));
     await setTimeout(() => setEdit(false), 0);
   };
 

@@ -13,6 +13,11 @@ const getPopUpContentReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case GET_POP_UP_CONTENT_SUCCESS:
+      //sort payload data
+      action.payload.contents.sort((a, b) => {
+        return a.id - b.id;
+      });
+
       return {
         ...state,
         content: { ...action.payload },
