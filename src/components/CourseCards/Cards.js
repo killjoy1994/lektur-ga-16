@@ -16,7 +16,7 @@ const Cards = ({ courseList }) => {
 
         let materialsCount = 0;
         course.contents.forEach(material => {
-          console.log(material)
+          // console.log(material)
           return materialsCount += material.materials.length
         })
 
