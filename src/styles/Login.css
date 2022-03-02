@@ -2,7 +2,7 @@
 
 .page-login {
   background-image: url("../assests/hero-bg.png");
-  width: 100%;
+  /* width: 100%; */
   height: 470px;
   background-size: cover;
   /* position: absolute; */
@@ -181,7 +181,12 @@
   width: 32px;
   height: 32px;
 }
-
+@media (min-width: 1600px) {
+  .page-login {
+    width: 1600px;
+    margin: auto;
+  }
+}
 
 
 @media screen and (max-width: 360px){
