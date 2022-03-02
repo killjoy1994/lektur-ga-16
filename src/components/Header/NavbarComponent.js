@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assests/logo.png";
 import { getSearchCourse } from "../../redux/actions/Courses/getSearchCourseAction";
 import logOut from "../../assests/logOut.png";
 import { userLogOut } from "../../redux/actions/User/userAuthAction";
 import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAction";
-import Loader from "../Loader/Loader";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import LoaderSecond from "../Loader/LoaderSecond";
 
@@ -53,7 +52,7 @@ const NavbarComponent = () => {
     navigate("/");
   };
   return (
-    <Navbar bg="light" expand="lg" className="navbar shadow">
+    <Navbar bg="white" expand="lg" className="navbar">
       <Container fluid>
         <Navbar.Brand href="/">
           <img src={logo} alt="logo" className="logo-navbar" />
@@ -91,8 +90,8 @@ const NavbarComponent = () => {
               <>
                 {isLoading ? (
                   <div className="loading-nav">
-              <LoaderSecond />
-            </div>
+                    <LoaderSecond />
+                  </div>
                 ) : (
                   <>
                     {/* IsLogin */}

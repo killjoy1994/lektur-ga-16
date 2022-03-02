@@ -23,3 +23,9 @@
   text-align: center;
   color: rgb(117, 114, 114);
 }
+@media (min-width: 1600px) {
+  .category-container {
+    width: 1600px;
+    margin: auto;
+  }
+}
