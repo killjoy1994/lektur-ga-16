@@ -22,7 +22,6 @@ const Footer = () => {
       uniqCategory.push(course.category.name);
     }
   });
-
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>

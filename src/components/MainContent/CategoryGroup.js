@@ -36,9 +36,9 @@ const CategoryGroup = () => {
         );
       })}
       <Swiper
-        slidesPerView={2}
+        slidesPerView={3}
         speed={500}
-        spaceBetween={15}
+        spaceBetween={24}
         freeMode={true}
         pagination={{
           clickable: true,
