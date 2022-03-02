@@ -24,6 +24,7 @@ const ContentVideoMain = () => {
   const [videoUrl, setVideoUrl] = useState("");
   const [description, setDescription] = useState("");
   const [materials, setMaterials] = useState([]);
+  const [activeId, setActiveId] = useState(undefined);
 
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
 
@@ -84,13 +85,15 @@ const ContentVideoMain = () => {
                   {detail.contents?.map((content) => {
                     return (
                       <li
-                        className={styles["content-video"]}
+                        className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
                         key={content.id}
-                        style={{ cursor: "pointer" }}
-                        onClick={() => changeContentHandler(content.title, content.video, content.description, content.materials)}
+                        onClick={() => {
+                          setActiveId(content.id);
+                          changeContentHandler(content.title, content.video, content.description, content.materials);
+                        }}
                       >
                         <span>
-                          <img src={play} alt="play" />
+                          <img src={activeId === content.id ? playBlue : play} alt="play" />
                         </span>
                         {content.title}
                       </li>
