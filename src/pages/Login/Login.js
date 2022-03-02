@@ -43,7 +43,7 @@ export default function FormLogin() {
       data: data,
     })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       Swal.fire({
         position: 'top-end',
         icon: 'success',
