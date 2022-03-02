@@ -34,7 +34,7 @@ const NavbarComponent = () => {
     e.preventDefault();
     if (searchText !== "") {
       dispatch(getSearchCourse(searchText));
-      navigate("/search");
+      navigate("/search/" + searchText);
     }
   };
 
