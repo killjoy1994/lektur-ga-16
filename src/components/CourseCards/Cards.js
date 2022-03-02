@@ -5,20 +5,18 @@ import Card from "./Card";
 import styles from "../../styles/Cards.module.css";
 
 const Cards = ({ courseList }) => {
-  
   return (
     <div className={styles.cards}>
       {courseList.map((course) => {
         let videosCount = 0;
-        course.contents.forEach(content => {
-          return videosCount++ 
-        })
+        course.contents.forEach((content) => {
+          return videosCount++;
+        });
 
         let materialsCount = 0;
-        course.contents.forEach(material => {
-          // console.log(material)
-          return materialsCount += material.materials.length
-        })
+        course.contents.forEach((material) => {
+          return (materialsCount += material.materials.length);
+        });
 
         return (
           <Link to={"/detail/" + course.id} key={course.id}>
