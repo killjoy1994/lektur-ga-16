@@ -2,8 +2,9 @@
   margin-top: 20px;
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(4, minmax(180px, 300px));
-  gap: 32px;
+  justify-content: center;
+  grid-template-columns: repeat(4, minmax(180px, 350px));
+  gap: 80px 30px;
 }
 
 .cards a {
