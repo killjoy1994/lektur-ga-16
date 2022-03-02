@@ -93,8 +93,8 @@ function Detail() {
                       <h5>Content</h5>
                       <ul style={{ padding: "0" }}>
                         <li>
-                          {detailContents?.map((content, index) => (
-                            <div className={styles.list_contents} key={index}>
+                          {detailContents?.map((content) => (
+                            <div className={styles.list_contents} key={content.id}>
                               <p>{content.title}</p>
                             </div>
                           ))}

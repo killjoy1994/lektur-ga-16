@@ -1,0 +1,91 @@
+.main {
+  background-image: url("../assests/hero-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper-invite {
+  border: 1px solid black;
+  width: 400px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  gap: 1rem;
+  padding: 0 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.description {
+  width: 90%;
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 3%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.description h3 {
+  color: #16213b;
+  font-weight: bold;
+}
+.description p {
+  color: #999999;
+  width: 70%;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.btn-course {
+  width: 90%;
+  background-color: #16213b;
+  color: white;
+  font-weight: 500;
+  height: 40px;
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+  border: transparent;
+  border-radius: 5px;
+}
+
+.btn-signup {
+  width: 90%;
+  background-color: white;
+  color: #16213b;
+  font-weight: 500;
+  height: 40px;
+  transition: transform 0.2s cubic-bezier(0.235, 0, 0.05, 0.95);
+  border-radius: 5px;
+  border-color: #16213b;
+}
+.btn-signup:hover,
+.btn-course:hover {
+  transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
+  font-weight: bold;
+}
+@media (min-width: 1600px) {
+  .main {
+    width: 1600px;
+    margin: auto;
+  }
+}
+@media (max-width: 420px) {
+  .wrapper-invite {
+    height: 250px;
+  }
+  .description h3 {
+    font-size: 18px;
+  }
+  .description p {
+    font-size: 12px;
+  }
+  .btn-course,
+  .btn-signup {
+    width: 80%;
+    height: 30px;
+  }
+}
