@@ -28,7 +28,7 @@ const CourseList = () => {
   return (
     <div className={styles.cards} style={{ position: "relative", justifyContent: "start" }}>
       {isLoading ? (
-        <Loader style={{ position: "absolute", top: "50%", left: "50%" }} />
+        <Loader />
       ) : (
         filteredCategory.map((course) => {
           return (
