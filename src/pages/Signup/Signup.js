@@ -68,7 +68,6 @@ function Signup() {
       .then((response) => {
         console.log(response);
         Swal.fire({
-          position: 'top-end',
           icon: 'success',
           title: 'Signup success!',
           showConfirmButton: false,
