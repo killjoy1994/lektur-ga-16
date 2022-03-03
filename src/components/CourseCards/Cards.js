@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import Card from "./Card";
 import styles from "../../styles/Cards.module.css";
 
-const Cards = ({ courseList }) => {
+const Cards = ({ courseList, style }) => {
   return (
-    <div className={styles.cards}>
+    <div className={styles.cards} style={style}>
       {courseList.map((course) => {
         let videosCount = 0;
         course.contents.forEach((content) => {

@@ -26,23 +26,27 @@ const CourseList = () => {
   });
 
   return (
-    <div className={styles.cards}>
-      {isLoading ?<Loader/> :filteredCategory.map((course) => {
-        return (
-          <Link to={"/detail/" + course.id} key={course.id}>
-            <Card
-              src={course.image}
-              title={course.title}
-              author={course.by.fullName}
-              videos={"15"}
-              materials={"4"}
-              description={course.description}
-              category={course.category.name}
-              id={course.id}
-            />
-          </Link>
-        );
-      })}
+    <div className={styles.cards} style={{ position: "relative", justifyContent: "start" }}>
+      {isLoading ? (
+        <Loader style={{ position: "absolute", top: "50%", left: "50%" }} />
+      ) : (
+        filteredCategory.map((course) => {
+          return (
+            <Link to={"/detail/" + course.id} key={course.id}>
+              <Card
+                src={course.image}
+                title={course.title}
+                author={course.by.fullName}
+                videos={"15"}
+                materials={"4"}
+                description={course.description}
+                category={course.category.name}
+                id={course.id}
+              />
+            </Link>
+          );
+        })
+      )}
     </div>
   );
 };
