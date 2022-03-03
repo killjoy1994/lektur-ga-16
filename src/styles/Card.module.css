@@ -53,9 +53,10 @@
 }
 
 .card-category {
+  color: rgba(0, 0, 0, 0.699);
   padding: 12px 10px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   background: rgba(240, 166, 62, 0.2);
 }
 
