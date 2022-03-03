@@ -79,6 +79,14 @@
   outline: 0;
 }
 
+/* .field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+} */
+
 .login-page .login-form span {
   color: rgb(236, 46, 46);
 }
