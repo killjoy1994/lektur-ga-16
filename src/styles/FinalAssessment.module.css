@@ -4,10 +4,8 @@
 }
 
 .container_head {
-  /* width: 1050px; */
   max-width: 75%;
   margin: 0 auto;
-  /* border: 1px solid black; */
 }
 
 .breadcrumb {
@@ -25,14 +23,12 @@
 
 .assessment_box {
   max-width: 75%;
-  /* width: 1050px; */
-  /* min-height: 1442px; */
-  height: max-content;
+  max-height: 1400px;
   background: white;
-  /* border: 2px solid red; */
   margin: 0 auto;
   box-sizing: border-box;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 
 .assessment_box h6 {
@@ -44,14 +40,12 @@
 
 .question_list {
   width: 95%;
-  /* height: 268px; */
   height: max-content;
   border-top: 1px solid#E5E5E5;
   margin: 0 auto;
   box-sizing: border-box;
   padding-left: 20px;
   box-sizing: border-box;
-  /* border: 1px solid black; */
   padding-bottom: 30px;
 }
 
@@ -60,7 +54,6 @@
 }
 .box_question {
   width: 70%;
-  /* border: 1px solid black; */
   display: flex;
   gap: 1rem;
   padding-top: 20px;
@@ -75,13 +68,11 @@
 .answer_list {
   width: 67%;
   margin-left: 30px;
-  /* border: 1px solid black; */
 }
 .answer_list input {
   margin-right: 10px;
 }
 .button {
-  /* border: 2px solid red; */
   margin: 54px auto;
   width: 75%;
   display: flex;
@@ -94,9 +85,9 @@
   color: white;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1600px) {
   .wrapper_assessment {
-    width: 1400px;
+    width: 1600px;
     margin: auto;
   }
 }

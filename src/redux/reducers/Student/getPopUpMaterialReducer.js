@@ -13,6 +13,11 @@ const getPopUpMaterialReducer = (state = initalState, action) => {
         isLoading: true,
       };
     case GET_POP_UP_MATERIAL_SUCCESS:
+      //sort payload data
+      action.payload.sort((a, b) => {
+        return a.title[18] - b.title[18];
+      });
+      
       return {
         ...state,
         materialList: [...action.payload],
