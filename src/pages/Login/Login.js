@@ -45,11 +45,10 @@ export default function FormLogin() {
     .then((response) => {
       console.log(response);
       Swal.fire({
-        position: 'top-end',
         icon: 'success',
         title: 'Login success!',
         showConfirmButton: false,
-        timer: 500
+        timer: 1500
       })
       // masukin token ke localStorage
       localStorage.setItem('token', response.data.result.token);
@@ -119,10 +118,10 @@ export default function FormLogin() {
                       <p> Login with :</p>
                       <div className="icons-container">
                         <div className="icons-facebook">
-                          <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
-                            {" "}
-                            <img src={facebookIcon} />{" "}
-                          </a>
+                            <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
+                              {" "}
+                              <img src={facebookIcon} />{" "}
+                            </a>
                         </div>
                         <div className="icons-google">
                           <a href="https://lektur-apps.herokuapp.com/api/v1/user/google">
