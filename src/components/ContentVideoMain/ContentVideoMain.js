@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
@@ -13,7 +12,6 @@ import lock from "../../assests/lock.svg";
 // import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
 import Loader from "../Loader/Loader";
-import { useEffect } from "react";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
 import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
@@ -59,11 +57,15 @@ const ContentVideoMain = () => {
     setMaterials(materials);
   };
 
+  const filteredCourse = enrolledCourses?.filter((course) => {
+    return course.id === content?.course_id;
+  })[0];
+
+  console.log("filtered course", filteredCourse);
+
   const filteredContents = contentList?.filter((contentItem) => {
     return contentItem.course_id === content?.course_id;
   });
-
-  console.log(content);
 
   return (
     <main className={styles.main}>
