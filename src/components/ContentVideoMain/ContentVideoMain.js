@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
@@ -13,11 +12,11 @@ import lock from "../../assests/lock.svg";
 // import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
 import Loader from "../Loader/Loader";
-import { useEffect } from "react";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
 import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
+import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 
 const ContentVideoMain = () => {
   const [titleHeader, setTitleHeader] = useState("");
@@ -26,10 +25,20 @@ const ContentVideoMain = () => {
   const [materials, setMaterials] = useState([]);
   const [activeId, setActiveId] = useState(undefined);
 
+  // Redux global state
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
+  const { content, isLoading: contentLoading } = useSelector((state) => state.getContent);
+  const { contentList, isLoading: contentsLoading } = useSelector((state) => state.getContents);
+  const { enrolledCourses } = useSelector((state) => state.enrollCourse);
 
   const params = useParams();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getEnrolledCoursesAction());
+    dispatch(getContentAction(params.courseId));
+    dispatch(getContentsAction());
+  }, []);
 
   useEffect(() => {
     dispatch(getCourseDetail(params.courseId));
@@ -41,8 +50,6 @@ const ContentVideoMain = () => {
     }
   }, [detail.category?.name]);
 
-  console.log(detail);
-
   const changeContentHandler = (title, url, description, materials) => {
     setTitleHeader(title);
     setVideoUrl(url);
@@ -50,19 +57,29 @@ const ContentVideoMain = () => {
     setMaterials(materials);
   };
 
+  const filteredCourse = enrolledCourses?.filter((course) => {
+    return course.id === content?.course_id;
+  })[0];
+
+  console.log("filtered course", filteredCourse);
+
+  const filteredContents = contentList?.filter((contentItem) => {
+    return contentItem.course_id === content?.course_id;
+  });
+
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         {/* Header start */}
-        {detail && (
+        {content && (
           <header className={styles.header}>
-            <Breadcrumb className={styles.breadcrumb}>
+            {/* <Breadcrumb className={styles.breadcrumb}>
               <Breadcrumb.Item href="#" active>
-                {titleHeader || detail.title}
+                {titleHeader || content.title}
               </Breadcrumb.Item>
               <Breadcrumb.Item href="#">{titleHeader || (detail.contents && detail.contents[0].title)}</Breadcrumb.Item>
-            </Breadcrumb>
-            <h1 className={styles.title}>{titleHeader || (detail.contents && detail.contents[0].title)}</h1>
+            </Breadcrumb> */}
+            <h1 className={styles.title}>{titleHeader || content?.title}</h1>
           </header>
         )}
         {/* Header end */}
@@ -82,7 +99,7 @@ const ContentVideoMain = () => {
               <>
                 <h2>Content</h2>
                 <ul>
-                  {detail.contents?.map((content) => {
+                  {filteredContents.map((content) => {
                     return (
                       <li
                         className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
@@ -107,14 +124,14 @@ const ContentVideoMain = () => {
             <div className={styles.description}>
               <h2>Description</h2>
 
-              <p>{description || (detail.contents && detail.contents[0].description)}</p>
+              <p>{description || content?.description}</p>
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
               {(materials.length &&
                 materials.map((material) => {
                   return (
-                    <div className="check-box-form" className={styles.rounded} key={material.id}>
+                    <div className={`check-box-form ${styles.rounded}`} key={material.id}>
                       <div className="form-check">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                         <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -124,19 +141,18 @@ const ContentVideoMain = () => {
                     </div>
                   );
                 })) ||
-                (detail.contents &&
-                  detail.contents[0].materials.map((material) => {
-                    return (
-                      <div className="check-box-form" className={styles.rounded} key={material.id}>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                          <label className="form-check-label" htmlFor="flexCheckDefault">
-                            {material.name} : <a href={material.url}>{material.name}.pdf</a>
-                          </label>
-                        </div>
+                content?.materials.map((material) => {
+                  return (
+                    <div className={`check-box-form ${styles.rounded}`} key={material.url}>
+                      <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                          {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                        </label>
                       </div>
-                    );
-                  }))}
+                    </div>
+                  );
+                })}
               <button className={styles["btn-aside"]}>
                 <img src={playWhite} alt="next button" />
                 Next Lesson: Create React App

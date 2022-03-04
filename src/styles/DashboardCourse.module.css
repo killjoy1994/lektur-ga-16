@@ -166,6 +166,12 @@
   border-bottom: 1px solid #ddd;
 }
 
+.waiting {
+  position: relative;
+  justify-self: center;
+  color: rgba(153, 153, 153, 1);
+}
+
 /* course-control left side */
 
 .course-control-left {
@@ -203,6 +209,7 @@
   border: none;
   background: transparent;
   padding: 0;
+  text-align: left;
 }
 
 .course-detail h3 {
@@ -232,7 +239,7 @@
 /* Progress Bar */
 .progress {
   margin-top: 8px;
-  width: 70%;
+  width: 250px;
   height: 8px;
   border-radius: 0;
   background-color: rgba(240, 166, 62, 0.2);
@@ -245,7 +252,7 @@
 }
 
 .progress-btn {
-  width: 70%;
+  width: 250px;
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -335,6 +342,19 @@
 @media (min-width: 800px) and (max-width: 1100px) {
   .progress-btn {
     font-size: 0.8rem;
+    width: 200px;
+  }
+  .progress {
+    width: 200px;
   }
 }
 
+@media (min-width: 500px) and (max-width: 799px) {
+  .progress-btn {
+    font-size: 0.6rem;
+    width: 160px;
+  }
+  .progress {
+    width: 160px;
+  }
+}
