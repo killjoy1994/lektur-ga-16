@@ -53,7 +53,9 @@
   flex-wrap: wrap;
   overflow: hidden;
 }
-
+.content1:hover{
+  cursor: pointer;
+}
 .detail_box .p1 {
   font-style: normal;
   font-weight: bold;
@@ -92,6 +94,7 @@
 }
 .list_contents:hover {
   background: #eaf7fe;
+  cursor: pointer;
 }
 
 .list_contents p {

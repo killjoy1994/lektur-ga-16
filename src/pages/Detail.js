@@ -7,7 +7,7 @@ import NavbarComponent from "../components/Header/NavbarComponent";
 import Footer from "../components/Footer";
 import { getCourseDetail, getRelatedCourse } from "../redux/actions/Courses/getCourseDetailAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
 import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
@@ -65,7 +65,7 @@ function Detail() {
                           setPopUpDetail(true);
                           dispatch(postEnrollCourseAction(params.id));
                         } else {
-                          navigate("/login");
+                          navigate("/login" );
                         }
                       }}
                     >
@@ -80,10 +80,12 @@ function Detail() {
                 ) : (
                   <>
                     <div className={styles.content1}>
+                      <Link to={`/course-content/${detail?.id}`}>
                       <div>
                         <p className={styles.p1}>{detail.contents?.length}</p>
                         <p className={styles.p2}>Learning Videos</p>
                       </div>
+                      </Link>
                       <div>
                         <p className={styles.p1}>{detail.contents?.length}</p>
                         <p className={styles.p2}>Study Material</p>
