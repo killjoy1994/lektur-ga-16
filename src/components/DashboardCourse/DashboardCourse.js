@@ -34,7 +34,6 @@ const DashboardCourse = () => {
   //show modal State
   const [showContentModal, setShowContentModal] = useState(false);
   const [showMaterialModal, setShowMaterialModal] = useState(false);
-  console.log(enrolledCourses);
 
   const dispatch = useDispatch();
 
