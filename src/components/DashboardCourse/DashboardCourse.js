@@ -34,6 +34,7 @@ const DashboardCourse = () => {
   //show modal State
   const [showContentModal, setShowContentModal] = useState(false);
   const [showMaterialModal, setShowMaterialModal] = useState(false);
+  console.log(enrolledCourses);
 
   const dispatch = useDispatch();
 
@@ -140,7 +141,11 @@ const DashboardCourse = () => {
     <>
       {enrolledCourses.map((course) => {
         return (
-          <div className={styles["course-control"]} key={course.id}>
+          <div
+            className={styles["course-control"]}
+            key={course.id}
+            style={course.status.status === 0 ? { justifyContent: "space-between" } : { justifyContent: "flex-start" }}
+          >
             <div className={styles["course-control-left"]}>
               <div className={styles["img-course-wrapper"]}>
                 <img src={course.image} alt={course.title} />
@@ -151,19 +156,23 @@ const DashboardCourse = () => {
                 <button onClick={() => materialModalHandler(course.id)}>See course materials</button>
               </div>
             </div>
-            <div className={styles["course-control-right"]}>
-              {/* <ProgressBar now={20} className={styles.progress} /> */}
-              <div className={styles.progress}>
-                <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
+            {course.status.status === 0 ? (
+              <p className={styles.waiting}>Waiting for approval...</p>
+            ) : (
+              <div className={styles["course-control-right"]}>
+                {/* <ProgressBar now={20} className={styles.progress} /> */}
+                <div className={styles.progress}>
+                  <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
+                </div>
+                <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
+                  {course.progress.length}/{course.contents.length} Course Complete
+                </button>
+                <Link to={`/course-content/${course.id}`} className={styles["progress-btn"]}>
+                  <img src={playWhite} alt="play button" />
+                  {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
+                </Link>
               </div>
-              <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
-                {course.progress.length}/{course.contents.length} Course Complete
-              </button>
-              <Link to={`/course-content/${course.id}`} className={styles["progress-btn"]}>
-                <img src={playWhite} alt="play button" />
-                {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
-              </Link>
-            </div>
+            )}
           </div>
         );
       })}
