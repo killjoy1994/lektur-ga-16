@@ -45,11 +45,10 @@ export default function FormLogin() {
     .then((response) => {
       // console.log(response);
       Swal.fire({
-        position: 'top-end',
         icon: 'success',
         title: 'Login success!',
         showConfirmButton: false,
-        timer: 500
+        timer: 1500
       })
       // masukin token ke localStorage
       localStorage.setItem('token', response.data.result.token);

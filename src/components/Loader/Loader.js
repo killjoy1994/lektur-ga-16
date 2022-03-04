@@ -2,9 +2,9 @@ import React from "react";
 
 import "./loader.css";
 
-const Loader = () => {
+const Loader = (props) => {
   return (
-    <div className="loader-wrapper">
+    <div className="loader-wrapper" style={props.style}>
       <div className="loader">Loading...</div>;
     </div>
   );
