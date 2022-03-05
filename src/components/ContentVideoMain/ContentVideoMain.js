@@ -21,8 +21,7 @@ import postStudentProgress from "../../redux/actions/Student/postStudentProgress
 
 const ContentVideoMain = () => {
   const [contentId, setContentId] = useState(undefined);
-  const [titleHeader, setTitleHeader] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
+
   const [description, setDescription] = useState("");
   const [materials, setMaterials] = useState([]);
   const [activeId, setActiveId] = useState(undefined);
@@ -54,8 +53,7 @@ const ContentVideoMain = () => {
 
   const changeContentHandler = (id, title, url, description, materials) => {
     setContentId(id);
-    setTitleHeader(title);
-    setVideoUrl(url);
+
     setDescription(description);
     setMaterials(materials);
   };
@@ -78,8 +76,19 @@ const ContentVideoMain = () => {
   // Handler for video ended
   const videoEndHandler = () => {
     // console.log("Ended");
-    dispatch(postStudentProgress(content?.course_id, contentId + 1));
+    dispatch(postStudentProgress(content?.course_id, content?.id + 1));
   };
+
+  //Next button
+  let idx = contentList.filter((data) => {
+    if (data.id === content?.id) {
+      console.log("data ", data.id);
+      console.log("content ", content?.id);
+      return data;
+    }
+  });
+
+  console.log(idx)
 
   return (
     <main className={styles.main}>
@@ -93,7 +102,7 @@ const ContentVideoMain = () => {
               </Breadcrumb.Item>
               <Breadcrumb.Item href="#">{titleHeader || (detail.contents && detail.contents[0].title)}</Breadcrumb.Item>
             </Breadcrumb> */}
-            <h1 className={styles.title}>{titleHeader || content?.title}</h1>
+            <h1 className={styles.title}>{content?.title}</h1>
           </header>
         )}
         {/* Header end */}
@@ -105,7 +114,7 @@ const ContentVideoMain = () => {
             <ReactPlayer
               className={styles["video-player"]}
               controls
-              url={videoUrl || content?.video}
+              url={content?.video}
               width="90%"
               height="450px"
               onEnded={videoEndHandler}
@@ -126,7 +135,7 @@ const ContentVideoMain = () => {
                           key={content.id}
                           onClick={() => {
                             setActiveId(content.id);
-                            changeContentHandler(content.id, content.title, content.video, content.description, content.materials);
+                            dispatch(getContentAction(content.id));
                           }}
                         >
                           <span>
@@ -201,7 +210,6 @@ const ContentVideoMain = () => {
                 })}
               <button className={styles["btn-aside"]}>
                 <img src={playWhite} alt="next button" />
-                {content.title}
               </button>
             </div>
           </section>
