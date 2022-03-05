@@ -178,33 +178,35 @@
   align-items: center;
 }
 
-.icons-facebook {
-  border: 1px solid #16213b;
-  border-radius: 4px;
-  /* width: 35px;
-  height: 35px; */
-  margin-right: 10px;
-}
 
 .icons-google {
   border: 1px solid #16213b;
   border-radius: 4px;
   width: 45px;
   height: 38px;
+  margin-right: 10px;
+  background: white;
+  align-items: center;
+}
+
+.icons-facebook {
+  border: 1px solid #16213b;
+  border-radius: 4px;
+  width: 45px;
+  height: 38px;
+  background: white;
 }
 
 .icons-facebook img {
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  margin: 0;
+  width: 39px;
+  height: 39px;
+  align-self: center;
 }
 
 .icons-google img {
   width: 34px;
   height: 34px;
   align-items: center;
-  margin: 0;
 }
 
 
