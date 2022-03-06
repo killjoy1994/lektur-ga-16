@@ -180,7 +180,12 @@ select:hover {
   width: 100%;
   padding: 120px;
 }
-
+@media (min-width: 1600px) {
+  .signup-hero {
+    width: 1600px;
+    margin: auto;
+  }
+}
 @media screen and (max-width: 500px){
   .signup{
     width: 320px;

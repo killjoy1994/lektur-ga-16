@@ -7,18 +7,24 @@ import NavbarComponent from "../components/Header/NavbarComponent";
 import Footer from "../components/Footer";
 import { getCourseDetail, getRelatedCourse } from "../redux/actions/Courses/getCourseDetailAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
-import { postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
+import { getEnrolledCoursesAction, postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
+import Swal from "sweetalert2";
 
 function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
   const { detail, isLoading, error, relatedCourse } = useSelector((state) => state.courseDetail);
+  const { enrolledCourses } = useSelector((state) => state.enrollCourse);
+
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(getEnrolledCoursesAction());
+  }, [dispatch, Link]);
 
   useEffect(() => {
     dispatch(getCourseDetail(params.id));
@@ -38,9 +44,23 @@ function Detail() {
     return first - second;
   });
 
-  //user token
-  let token = localStorage.getItem("token");
+  //get materials
+  let totalMaterials = 0;
+  let allContents = detail.contents?.map((item) => item);
+  allContents?.map((material) => (totalMaterials += material.materials.length));
 
+  //get user token
+  let token = localStorage.getItem("token");
+  let tokenGoogle = localStorage.getItem("loginGoogle");
+  let tokenFb = localStorage.getItem("loginFacebook");
+  let isToken = token || tokenGoogle || tokenFb;
+  //cek all course enroll
+  let info = enrolledCourses.map((course) => course);
+  let infoEnroll = info.map((item) => item.id);
+  infoEnroll.includes(detail.id);
+  //cek approve from teacher
+  let infoContent = info.filter((item) => item.id === detail.id);
+  const approveTeacher = infoContent[0]?.status.status;
   return (
     <>
       <NavbarComponent />
@@ -61,7 +81,7 @@ function Detail() {
                     <button
                       className={styles.btn_detail}
                       onClick={() => {
-                        if (token !== "" && token !== null) {
+                        if (isToken !== "" && isToken !== null) {
                           setPopUpDetail(true);
                           dispatch(postEnrollCourseAction(params.id));
                         } else {
@@ -80,12 +100,48 @@ function Detail() {
                 ) : (
                   <>
                     <div className={styles.content1}>
-                      <div>
+                      <div
+                        onClick={() => {
+                          if (approveTeacher === 0) {
+                            Swal.fire({
+                              icon: "error",
+                              title: "Sorry...",
+                              text: "The course has not been approved by the teacher!",
+                            });
+                          } else if (infoEnroll) {
+                            Swal.fire({
+                              icon: "error",
+                              title: "Opsss...",
+                              text: "You haven't enrolled the course!",
+                            });
+                          } else {
+                            navigate("/student-dashboard");
+                          }
+                        }}
+                      >
                         <p className={styles.p1}>{detail.contents?.length}</p>
                         <p className={styles.p2}>Learning Videos</p>
                       </div>
-                      <div>
-                        <p className={styles.p1}>{detail.contents?.length}</p>
+                      <div
+                        onClick={() => {
+                          if (approveTeacher === 0) {
+                            Swal.fire({
+                              icon: "error",
+                              title: "Sorry...",
+                              text: "The course has not been approved by the teacher!",
+                            });
+                          } else if (infoEnroll) {
+                            Swal.fire({
+                              icon: "error",
+                              title: "Opsss...",
+                              text: "You haven't enrolled the course!",
+                            });
+                          } else {
+                            navigate("/student-dashboard");
+                          }
+                        }}
+                      >
+                        <p className={styles.p1}>{totalMaterials}</p>
                         <p className={styles.p2}>Study Material</p>
                       </div>
                     </div>
@@ -95,7 +151,27 @@ function Detail() {
                         <li>
                           {detailContents?.map((content) => (
                             <div className={styles.list_contents} key={content.id}>
-                              <p>{content.title}</p>
+                              <p
+                                onClick={() => {
+                                  if (approveTeacher === 0) {
+                                    Swal.fire({
+                                      icon: "error",
+                                      title: "Sorry...",
+                                      text: "The course has not been approved by the teacher!",
+                                    });
+                                  } else if (infoEnroll) {
+                                    Swal.fire({
+                                      icon: "error",
+                                      title: "Opsss...",
+                                      text: "You haven't enrolled the course!",
+                                    });
+                                  } else {
+                                    navigate("/course-content/" + content?.id);
+                                  }
+                                }}
+                              >
+                                {content.title}
+                              </p>
                             </div>
                           ))}
                         </li>
@@ -130,17 +206,17 @@ function Detail() {
                   <div className={styles["card-list"]}>
                     {relatedCourse?.map((course) => (
                       <a href={"/detail/" + course.id} key={course.id}>
-                      <Card
-                        key={course.id}
-                        src={course.image}
-                        title={course.title}
-                        author={course.by?.fullName}
-                        videos={course.contents?.length}
-                        materials={course.contents?.length}
-                        description={course.description}
-                        category={course.category?.name}
-                      />
-                       </a>
+                        <Card
+                          key={course.id}
+                          src={course.image}
+                          title={course.title}
+                          author={course.by?.fullName}
+                          videos={course.contents?.length}
+                          materials={course.contents?.length}
+                          description={course.description}
+                          category={course.category?.name}
+                        />
+                      </a>
                     ))}
                   </div>
                 </>
