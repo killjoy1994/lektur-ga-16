@@ -34,7 +34,6 @@ const DashboardCourse = () => {
   //show modal State
   const [showContentModal, setShowContentModal] = useState(false);
   const [showMaterialModal, setShowMaterialModal] = useState(false);
-  console.log(enrolledCourses);
 
   const dispatch = useDispatch();
 
@@ -140,6 +139,8 @@ const DashboardCourse = () => {
   let courses = (
     <>
       {enrolledCourses.map((course) => {
+        let barWidth = Math.floor((course?.progress.length / course.contents.length) * 100);
+
         return (
           <div
             className={styles["course-control"]}
@@ -153,7 +154,7 @@ const DashboardCourse = () => {
               <div className={styles["course-detail"]}>
                 <h3>{course.title}</h3>
                 <p>By {course.by.fullName}</p>
-                <button onClick={() => materialModalHandler(course.id)}>See course materials</button>
+                {course.status.status === 0 ? null : <button onClick={() => materialModalHandler(course.id)}>See course materials</button>}
               </div>
             </div>
             {course.status.status === 0 ? (
@@ -162,14 +163,16 @@ const DashboardCourse = () => {
               <div className={styles["course-control-right"]}>
                 {/* <ProgressBar now={20} className={styles.progress} /> */}
                 <div className={styles.progress}>
-                  <div className={styles["progress-bar"]} style={{ width: `${course.progress.length}%` }}></div>
+                  <div className={styles["progress-bar"]} style={{ width: `${barWidth}%` }}></div>
                 </div>
                 <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                   {course.progress.length}/{course.contents.length} Course Complete
                 </button>
-                <Link to={`/course-content/${course.id}`} className={styles["progress-btn"]}>
+                <Link to={`/course-content/${course.progress[course.progress.length - 1].content.id}`} className={styles["progress-btn"]}>
                   <img src={playWhite} alt="play button" />
-                  {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
+                  {course.progress[course.progress.length - 1].content.title < 25
+                    ? course.progress[course.progress.length - 1].content.title.trim()
+                    : `${course.progress[course.progress.length - 1].content.title.slice(0, 20).trim()}...`}
                 </Link>
               </div>
             )}

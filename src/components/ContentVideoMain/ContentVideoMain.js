@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
@@ -10,19 +9,19 @@ import playBlue from "../../assests/play-blue.svg";
 import playWhite from "../../assests/play-white.svg";
 import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
-// import check from "../../assests/green-check.svg";
+import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
 import Loader from "../Loader/Loader";
-import { useEffect } from "react";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
 import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
 import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
 import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
+import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
 const ContentVideoMain = () => {
-  const [titleHeader, setTitleHeader] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
+  const [contentId, setContentId] = useState(undefined);
+
   const [description, setDescription] = useState("");
   const [materials, setMaterials] = useState([]);
   const [activeId, setActiveId] = useState(undefined);
@@ -52,18 +51,44 @@ const ContentVideoMain = () => {
     }
   }, [detail.category?.name]);
 
-  const changeContentHandler = (title, url, description, materials) => {
-    setTitleHeader(title);
-    setVideoUrl(url);
+  const changeContentHandler = (id, title, url, description, materials) => {
+    setContentId(id);
+
     setDescription(description);
     setMaterials(materials);
   };
+
+  const filteredCourse = enrolledCourses?.filter((course) => {
+    return course.id === content?.course_id;
+  })[0];
+
+  const progressContent = filteredCourse?.progress.map((content) => {
+    // console.log(content);
+    return content.content.id;
+  });
+
+  console.log(progressContent);
 
   const filteredContents = contentList?.filter((contentItem) => {
     return contentItem.course_id === content?.course_id;
   });
 
-  console.log(content);
+  // Handler for video ended
+  const videoEndHandler = () => {
+    // console.log("Ended");
+    dispatch(postStudentProgress(content?.course_id, content?.id + 1));
+  };
+
+  //Next button
+  let idx = contentList.filter((data) => {
+    if (data.id === content?.id) {
+      console.log("data ", data.id);
+      console.log("content ", content?.id);
+      return data;
+    }
+  });
+
+  console.log(idx)
 
   return (
     <main className={styles.main}>
@@ -77,7 +102,7 @@ const ContentVideoMain = () => {
               </Breadcrumb.Item>
               <Breadcrumb.Item href="#">{titleHeader || (detail.contents && detail.contents[0].title)}</Breadcrumb.Item>
             </Breadcrumb> */}
-            <h1 className={styles.title}>{titleHeader || content?.title}</h1>
+            <h1 className={styles.title}>{content?.title}</h1>
           </header>
         )}
         {/* Header end */}
@@ -85,34 +110,66 @@ const ContentVideoMain = () => {
         {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
+            {/* {console.log(content)} */}
             <ReactPlayer
               className={styles["video-player"]}
               controls
-              url={videoUrl || (detail.contents && detail.contents[0].video)}
+              url={content?.video}
               width="90%"
               height="450px"
-              // playing={true}
+              onEnded={videoEndHandler}
+              playing={true}
             />
             <div className={styles["content-list"]}>
               <>
                 <h2>Content</h2>
                 <ul>
                   {filteredContents.map((content) => {
-                    return (
-                      <li
-                        className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
-                        key={content.id}
-                        onClick={() => {
-                          setActiveId(content.id);
-                          changeContentHandler(content.title, content.video, content.description, content.materials);
-                        }}
-                      >
-                        <span>
-                          <img src={activeId === content.id ? playBlue : play} alt="play" />
-                        </span>
-                        {content.title}
-                      </li>
-                    );
+                    if (progressContent?.includes(content.id)) {
+                      //Kondisi ntuk tombol check hijau
+                      let compeleted = progressContent.slice(0, progressContent.length - 1);
+
+                      return (
+                        <li
+                          className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
+                          key={content.id}
+                          onClick={() => {
+                            setActiveId(content.id);
+                            dispatch(getContentAction(content.id));
+                          }}
+                        >
+                          <span>
+                            <img src={compeleted.includes(content.id) ? check : activeId === content.id ? playBlue : play} alt="play" />
+                          </span>
+                          {content.title}
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li className={`${styles.disabled}`} key={content.id}>
+                          <span>
+                            <img src={lock} alt="lock" />
+                          </span>
+                          {content.title}
+                        </li>
+                      );
+                    }
+
+                    // return (
+                    //   <li
+                    //     className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
+                    //     key={content.id}
+                    //     onClick={() => {
+                    //       setActiveId(content.id);
+                    //       changeContentHandler(content.title, content.video, content.description, content.materials);
+                    //     }}
+                    //   >
+                    //     <span>
+                    //       <img src={activeId === content.id ? playBlue : play} alt="play" />
+                    //     </span>
+                    //     {content.title}
+                    //   </li>
+                    // );
                   })}
                 </ul>
               </>
@@ -153,7 +210,6 @@ const ContentVideoMain = () => {
                 })}
               <button className={styles["btn-aside"]}>
                 <img src={playWhite} alt="next button" />
-                Next Lesson: Create React App
               </button>
             </div>
           </section>
