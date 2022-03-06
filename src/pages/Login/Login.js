@@ -5,6 +5,9 @@ import axios from 'axios';
 import Swal from "sweetalert2";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { authentication } from '../../config/configFirebase';
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
+
 
 import { API } from '../../api';
 
@@ -68,6 +71,20 @@ export default function FormLogin() {
     })
   };
 
+  const handleLogin = async (provider) => {
+    const result = await signInWithPopup(authentication, 
+    provider);
+    if(result.user !== "") navigate("/")
+    localStorage.setItem('loginGoogle', result);
+  };
+
+  const handleOnClick = async (provider) => {
+    const result = await signInWithPopup(authentication,
+    provider);
+    if(result.user !== "") navigate("/")
+    localStorage.setItem('loginFacebook', result);
+  };
+
   
   return (
     <>
@@ -117,17 +134,15 @@ export default function FormLogin() {
                       <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
-                        <div className="icons-facebook">
-                          <a href='https://lektur-apps.herokuapp.com/api/v1/user/facebook'>
-                            {" "}
-                            <img src={facebookIcon} />{" "}
-                          </a>
-                        </div>
                         <div className="icons-google">
-                          <a href="https://lektur-apps.herokuapp.com/api/v1/user/google">
-                            {" "}
-                            <img src={googleIcon} />{" "}
-                          </a>
+                          <button className='icons-google' onClick={() => handleLogin(new GoogleAuthProvider())}>
+                          <img src={googleIcon} />
+                          </button>
+                        </div>
+                        <div className="icons-facebook">
+                          <button className='icons-facebook' onClick={() => handleOnClick(new FacebookAuthProvider())}>
+                          <img src={facebookIcon} />
+                          </button>
                         </div>
                       </div>
                     </div>
