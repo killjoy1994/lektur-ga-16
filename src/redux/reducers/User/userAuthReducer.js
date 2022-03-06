@@ -24,7 +24,7 @@ export const userAuthReducer = (state = initialState, action) => {
         case USER_LOGOUT :
             return {
                 ...state,
-                isAuth: localStorage.removeItem("token")
+                isAuth: localStorage.removeItem("token") || localStorage.removeItem("loginGoogle") || localStorage.removeItem("loginFacebook") 
             }
         default:
             return state

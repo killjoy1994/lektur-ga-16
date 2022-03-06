@@ -7,7 +7,7 @@ const CourseInvitation = () => {
     <>
       <NavbarComponent />
       <main className={styles.main}>
-        <div className={styles["wrapper-invite"]}>
+        <div className={`${styles["wrapper-invite"]} shadow`}>
           <div className={styles.description}>
             <h3>Course Invitation</h3>
             <p>You have been invited to a class, if you don't have access to go to course then please sign up first</p>

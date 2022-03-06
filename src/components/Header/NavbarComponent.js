@@ -17,8 +17,11 @@ const NavbarComponent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
+  //get token
   let token = localStorage.getItem("token");
-
+  let tokenGoogle = localStorage.getItem("loginGoogle");
+  let tokenFb = localStorage.getItem("loginFacebook");
+  let isToken = token || tokenGoogle || tokenFb;
   useEffect(() => {
     if (token) {
       dispatch(getUserProfileAction(token));
@@ -28,13 +31,13 @@ const NavbarComponent = () => {
   //getCategory
   useEffect(() => {
     dispatch(getCoursesAction());
-  }, []);
+  }, [dispatch]);
 
   const submitSearchText = (e) => {
     e.preventDefault();
     if (searchText !== "") {
       dispatch(getSearchCourse(searchText));
-      navigate("/search");
+      navigate("/search/" + searchText);
     }
   };
 
@@ -86,7 +89,7 @@ const NavbarComponent = () => {
               ))}
             </NavDropdown>
 
-            {token !== "" && token !== null ? (
+            {isToken !== "" && isToken !== null ? (
               <>
                 {isLoading ? (
                   <div className="loading-nav">
