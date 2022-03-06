@@ -49,8 +49,11 @@ function Detail() {
   let allContents = detail.contents?.map((item) => item);
   allContents?.map((material) => (totalMaterials += material.materials.length));
 
-  //user token
+  //get user token
   let token = localStorage.getItem("token");
+  let tokenGoogle = localStorage.getItem("loginGoogle");
+  let tokenFb = localStorage.getItem("loginFacebook");
+  let isToken = token || tokenGoogle || tokenFb;
   //cek all course enroll
   let info = enrolledCourses.map((course) => course);
   let infoEnroll = info.map((item) => item.id);
@@ -78,7 +81,7 @@ function Detail() {
                     <button
                       className={styles.btn_detail}
                       onClick={() => {
-                        if (token !== "" && token !== null) {
+                        if (isToken !== "" && isToken !== null) {
                           setPopUpDetail(true);
                           dispatch(postEnrollCourseAction(params.id));
                         } else {
