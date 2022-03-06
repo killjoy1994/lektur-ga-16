@@ -169,22 +169,24 @@ const DashboardCourse = () => {
                 <button onClick={() => contentModalHandler(course.id)} className={styles["completed-task"]}>
                   {course.progress.length}/{course.contents.length} Course Complete
                 </button>
-                
+
                 {course.progress.length === 0 ? (
-                  <Link to={`/course-content/${course.contents[0].id}`}  className={styles["progress-btn"]} onClick={() => {
-                    dispatch(postStudentProgress(course.id, course.contents[0].id));
-                  }}>
+                  <Link
+                    to={`/course-content/${course.contents[0].id}`}
+                    className={styles["progress-btn"]}
+                    onClick={() => {
+                      dispatch(postStudentProgress(course.id, course.contents[0].id));
+                    }}
+                  >
                     <img src={playWhite} alt="play button" />
-                    {course.contents[0].title < 25
-                      ? course.contents[0].title.trim()
-                      : `${course.contents[0].title.slice(0, 20).trim()}...`}
+                    {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
                   </Link>
                 ) : (
-                  <Link to={`/course-content/${course.progress[course.progress.length - 1]?.content.id}`} className={styles["progress-btn"]}>
+                  <Link to={`/course-content/${course.progress[0]?.content.id}`} className={styles["progress-btn"]}>
                     <img src={playWhite} alt="play button" />
-                    {course.progress[course.progress.length - 1].content.title < 25
-                      ? course.progress[course.progress.length - 1].content.title.trim()
-                      : `${course.progress[course.progress.length - 1].content.title.slice(0, 20).trim()}...`}
+                    {course.progress[0].content.title < 25
+                      ? course.progress[0].content.title.trim()
+                      : `${course.progress[0].content.title.slice(0, 20).trim()}...`}
                   </Link>
                 )}
               </div>
