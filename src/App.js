@@ -4,6 +4,7 @@ import "./App.css";
 import StudentDashboard from "./pages/StudentDashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
+import LupaPassword from "./pages/LupaPassword/LupaPassword";
 import Signup from "./pages/Signup/Signup";
 import Detail from "./pages/Detail";
 import ContentVideo from "./pages/ContentVideo";
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/lupa-password" element={<LupaPassword />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/registered" element={<SuccessRegister />} />
         <Route path="/final-assessment" element={<FinalAssessment />} />

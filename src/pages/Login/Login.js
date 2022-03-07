@@ -3,7 +3,7 @@ import { Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
 import axios from 'axios';
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authentication } from '../../config/configFirebase';
 import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
@@ -147,7 +147,9 @@ export default function FormLogin() {
                       </div>
                     </div>
                     <div className="login-right">
-                      <div className="forget-pass">Forgot Password?</div>
+                      <div className="forget-pass">
+                        <Link to="/lupa-password">Forgot Password?</Link>
+                      </div>
                       <div className="btn-login">
                         <Button type="submit" className="login-button color-#ffffff border-radius-1">
                           {/* {reqLoading ? <Spinner animation="border"/> : "Login"} */} Login
