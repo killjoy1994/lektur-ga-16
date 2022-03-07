@@ -11,6 +11,7 @@ import play from "../../assests/on-play.svg";
 import lock from "../../assests/lock.svg";
 import check from "../../assests/green-check.svg";
 import Card from "../../components/CourseCards/Card";
+import assessment from "../../assests/assessment.svg";
 import Loader from "../Loader/Loader";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
 import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
@@ -20,15 +21,9 @@ import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCour
 import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
 const ContentVideoMain = () => {
-  const [contentId, setContentId] = useState(undefined);
-
-  const [description, setDescription] = useState("");
-  const [materials, setMaterials] = useState([]);
-  const [activeId, setActiveId] = useState(undefined);
-
   // Redux global state
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
-  const { content, isLoading: contentLoading } = useSelector((state) => state.getContent);
+  const { content: contentRedux, isLoading: contentLoading } = useSelector((state) => state.getContent);
   const { contentList, isLoading: contentsLoading } = useSelector((state) => state.getContents);
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
 
@@ -39,62 +34,66 @@ const ContentVideoMain = () => {
     dispatch(getEnrolledCoursesAction());
     dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
+    dispatch(getCourseDetail(1));
   }, []);
 
   useEffect(() => {
-    dispatch(getCourseDetail(params.courseId));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (detail.category?.name) {
-      dispatch(getRelatedCourse(detail.category?.name));
+    if (detail?.category?.name) {
+      dispatch(getRelatedCourse(detail?.category?.name));
     }
-  }, [detail.category?.name]);
-
-  const changeContentHandler = (id, title, url, description, materials) => {
-    setContentId(id);
-
-    setDescription(description);
-    setMaterials(materials);
-  };
+  }, [detail?.category?.name]);
 
   const filteredCourse = enrolledCourses?.filter((course) => {
-    return course.id === content?.course_id;
+    return course.id === contentRedux?.course_id;
   })[0];
 
-  const progressContent = filteredCourse?.progress.map((content) => {
-    // console.log(content);
-    return content.content.id;
-  });
-
-  console.log(progressContent);
+  const progressContent = filteredCourse?.progress
+    .map((content) => {
+      // console.log(content);
+      return content.content.id;
+    })
+    .reverse();
 
   const filteredContents = contentList?.filter((contentItem) => {
-    return contentItem.course_id === content?.course_id;
+    return contentItem.course_id === contentRedux?.course_id;
+  });
+
+  const filteredContentsId = filteredContents.map((data) => {
+    return data.id;
   });
 
   // Handler for video ended
   const videoEndHandler = () => {
-    // console.log("Ended");
-    dispatch(postStudentProgress(content?.course_id, content?.id + 1));
+    if (!progressContent.includes(contentRedux?.id + 1) && progressContent.length !== filteredCourse.contents.length) {
+      dispatch(postStudentProgress(contentRedux?.course_id, contentRedux?.id + 1));
+    }
+
+    // Auto play next video
+    if (filteredContentsId.includes(contentRedux?.id + 1)) {
+      dispatch(getContentAction(contentRedux?.id + 1));
+    }
   };
 
   //Next button
   let idx = contentList.filter((data) => {
-    if (data.id === content?.id) {
-      console.log("data ", data.id);
-      console.log("content ", content?.id);
+    if (data.id === contentRedux?.id + 1) {
       return data;
     }
   });
 
-  console.log(idx)
+  // Button next Onclick Handler
+
+  const nextContentHandler = () => {
+    if (contentRedux?.id !== progressContent?.length || progressContent?.length !== filteredCourse?.contents.length) {
+      dispatch(getContentAction(contentRedux.id + 1));
+    }
+  };
 
   return (
     <main className={styles.main}>
       <div className={styles.container}>
         {/* Header start */}
-        {content && (
+        {contentRedux && (
           <header className={styles.header}>
             {/* <Breadcrumb className={styles.breadcrumb}>
               <Breadcrumb.Item href="#" active>
@@ -102,7 +101,7 @@ const ContentVideoMain = () => {
               </Breadcrumb.Item>
               <Breadcrumb.Item href="#">{titleHeader || (detail.contents && detail.contents[0].title)}</Breadcrumb.Item>
             </Breadcrumb> */}
-            <h1 className={styles.title}>{content?.title}</h1>
+            <h1 className={styles.title}>{contentRedux?.title}</h1>
           </header>
         )}
         {/* Header end */}
@@ -110,38 +109,44 @@ const ContentVideoMain = () => {
         {/* Video player and description start*/}
         <div className={styles["course-wrapper"]}>
           <section className={styles.content}>
-            {/* {console.log(content)} */}
             <ReactPlayer
               className={styles["video-player"]}
               controls
-              url={content?.video}
+              url={contentRedux?.video}
               width="90%"
               height="450px"
               onEnded={videoEndHandler}
-              playing={true}
+              // playing={true}
             />
             <div className={styles["content-list"]}>
               <>
                 <h2>Content</h2>
                 <ul>
-                  {filteredContents.map((content) => {
+                  {filteredContents?.map((content) => {
+                    console.log(progressContent);
                     if (progressContent?.includes(content.id)) {
-                      //Kondisi ntuk tombol check hijau
-                      let compeleted = progressContent.slice(0, progressContent.length - 1);
-
+                      let completed = progressContent.slice(0, progressContent.length - 1);
                       return (
                         <li
-                          className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
+                          className={`${styles["content-video"]} ${contentRedux?.id === content.id ? styles.active : ""}`}
                           key={content.id}
                           onClick={() => {
-                            setActiveId(content.id);
                             dispatch(getContentAction(content.id));
                           }}
                         >
                           <span>
-                            <img src={compeleted.includes(content.id) ? check : activeId === content.id ? playBlue : play} alt="play" />
+                            <img
+                              src={
+                                completed.includes(content.id) || progressContent.length === filteredCourse.contents.length
+                                  ? check
+                                  : contentRedux.id === content.id
+                                  ? playBlue
+                                  : play
+                              }
+                              alt="play"
+                            />
                           </span>
-                          {content.title}
+                          {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
                         </li>
                       );
                     } else {
@@ -150,26 +155,10 @@ const ContentVideoMain = () => {
                           <span>
                             <img src={lock} alt="lock" />
                           </span>
-                          {content.title}
+                          {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
                         </li>
                       );
                     }
-
-                    // return (
-                    //   <li
-                    //     className={`${styles["content-video"]} ${activeId === content.id ? styles.active : ""}`}
-                    //     key={content.id}
-                    //     onClick={() => {
-                    //       setActiveId(content.id);
-                    //       changeContentHandler(content.title, content.video, content.description, content.materials);
-                    //     }}
-                    //   >
-                    //     <span>
-                    //       <img src={activeId === content.id ? playBlue : play} alt="play" />
-                    //     </span>
-                    //     {content.title}
-                    //   </li>
-                    // );
                   })}
                 </ul>
               </>
@@ -178,25 +167,23 @@ const ContentVideoMain = () => {
           <section className={styles["description-wrapper"]}>
             <div className={styles.description}>
               <h2>Description</h2>
-
-              <p>{description || content?.description}</p>
+              <p>{contentRedux?.description}</p>
             </div>
             <div className={styles["read-materials"]}>
               <h2>What’s Next?</h2>
-              {(materials.length &&
-                materials.map((material) => {
-                  return (
-                    <div className={`check-box-form ${styles.rounded}`} key={material.id}>
-                      <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label className="form-check-label" htmlFor="flexCheckDefault">
-                          {material.name} : <a href={material.url}>{material.name}.pdf</a>
-                        </label>
-                      </div>
+              {contentRedux?.materials.map((material) => {
+                return (
+                  <div className={`check-box-form ${styles.rounded}`} key={material.url}>
+                    <div className="form-check">
+                      <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                      <label className="form-check-label" htmlFor="flexCheckDefault">
+                        {material.name} : <a href={material.url}>{material.name}.pdf</a>
+                      </label>
                     </div>
-                  );
-                })) ||
-                content?.materials.map((material) => {
+                  </div>
+                );
+              }) ||
+                contentRedux?.materials.map((material) => {
                   return (
                     <div className={`check-box-form ${styles.rounded}`} key={material.url}>
                       <div className="form-check">
@@ -208,9 +195,18 @@ const ContentVideoMain = () => {
                     </div>
                   );
                 })}
-              <button className={styles["btn-aside"]}>
-                <img src={playWhite} alt="next button" />
-              </button>
+              {progressContent?.length === filteredCourse?.contents?.length &&
+              contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
+                <Link to="/final-assessment" className={styles["btn-aside"]} style={{ color: "white" }}>
+                  <img src={assessment} alt="final assessment" />
+                  Take Final Assessment
+                </Link>
+              ) : (
+                <button className={styles["btn-aside"]} onClick={nextContentHandler}>
+                  <img src={playWhite} alt="next button" />
+                  Next lesson : {idx[0]?.title.slice(0, 20)}
+                </button>
+              )}
             </div>
           </section>
         </div>

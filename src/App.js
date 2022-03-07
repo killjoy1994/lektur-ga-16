@@ -16,7 +16,6 @@ import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 import SuccessRegister from "./pages/successRegister/successRegister";
 import CourseInvitation from "./pages/CourseInvitation";
-// import NavbarComponent from "./components/Header/NavbarComponent";
 
 function App() {
   return (
@@ -29,7 +28,7 @@ function App() {
         <Route path="/registered" element={<SuccessRegister />} />
         <Route path="/final-assessment" element={<FinalAssessment />} />
         <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
-        <Route path="/search" element={<SearchCourse />} />
+        <Route path="/search/:input" element={<SearchCourse />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />
         <Route path="/course-invitation" element={<CourseInvitation />} />
