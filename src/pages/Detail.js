@@ -60,6 +60,7 @@ function Detail() {
   infoEnroll.includes(detail.id);
   //cek approve from teacher
   let infoContent = info.filter((item) => item.id === detail.id);
+  console.log(infoContent);
   const approveTeacher = infoContent[0]?.status.status;
   return (
     <>
@@ -108,12 +109,6 @@ function Detail() {
                               title: "Sorry...",
                               text: "The course has not been approved by the teacher!",
                             });
-                          } else if (infoEnroll) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Opsss...",
-                              text: "You haven't enrolled the course!",
-                            });
                           } else {
                             navigate("/student-dashboard");
                           }
@@ -129,12 +124,6 @@ function Detail() {
                               icon: "error",
                               title: "Sorry...",
                               text: "The course has not been approved by the teacher!",
-                            });
-                          } else if (infoEnroll) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Opsss...",
-                              text: "You haven't enrolled the course!",
                             });
                           } else {
                             navigate("/student-dashboard");
@@ -158,12 +147,6 @@ function Detail() {
                                       icon: "error",
                                       title: "Sorry...",
                                       text: "The course has not been approved by the teacher!",
-                                    });
-                                  } else if (infoEnroll) {
-                                    Swal.fire({
-                                      icon: "error",
-                                      title: "Opsss...",
-                                      text: "You haven't enrolled the course!",
                                     });
                                   } else {
                                     navigate("/course-content/" + content?.id);
