@@ -31,7 +31,7 @@ export const postEnrollCourseAction = (id) => {
   };
 };
 
-export const getEnrolledCoursesAction = () => {
+export const getEnrolledCoursesAction = (token) => {
   return (dispatch) => {
     dispatch({ type: GET_STUDENT_COURSE_REQUEST });
     axios

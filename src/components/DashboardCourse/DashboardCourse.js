@@ -40,7 +40,7 @@ const DashboardCourse = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getEnrolledCoursesAction());
+    dispatch(getEnrolledCoursesAction(token));
   }, [dispatch]);
 
   useEffect(() => {
