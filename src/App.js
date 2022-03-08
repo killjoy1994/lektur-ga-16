@@ -26,8 +26,8 @@ function App() {
         <Route path="/lupa-password" element={<LupaPassword />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/registered" element={<SuccessRegister />} />
-        <Route path="/final-assessment" element={<FinalAssessment />} />
-        <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
+        {/* <Route path="/final-assessment" element={<FinalAssessment />} />
+        <Route path="/final-assessment-result" element={<FinalAssessmentResult />} /> */}
         <Route path="/search/:input" element={<SearchCourse />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/categories/:name" element={<Categories />} />

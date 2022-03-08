@@ -20,6 +20,8 @@ import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/g
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
+const token = localStorage.getItem("token");
+
 const ContentVideoMain = () => {
   // Redux global state
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
@@ -31,31 +33,31 @@ const ContentVideoMain = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getEnrolledCoursesAction());
+    dispatch(getEnrolledCoursesAction(token));
     dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
-    dispatch(getCourseDetail(1));
+    // dispatch(getCourseDetail(1));
   }, []);
 
-  useEffect(() => {
-    if (detail?.category?.name) {
-      dispatch(getRelatedCourse(detail?.category?.name));
-    }
-  }, [detail?.category?.name]);
+  // useEffect(() => {
+  //   if (detail?.category?.name) {
+  //     dispatch(getRelatedCourse(detail?.category?.name));
+  //   }
+  // }, [detail?.category?.name]);
 
+  // Untuk cari progress tiap course
   const filteredCourse = enrolledCourses?.filter((course) => {
-    return course.id === contentRedux?.course_id;
+    return course.id === contentRedux?.course.id;
   })[0];
+  console.log(filteredCourse);
 
-  const progressContent = filteredCourse?.progress
-    .map((content) => {
-      // console.log(content);
-      return content.content.id;
-    })
-    .reverse();
+  const progressContent = filteredCourse?.progress.map((content) => {
+    // console.log(content);
+    return content.content.id;
+  });
 
   const filteredContents = contentList?.filter((contentItem) => {
-    return contentItem.course_id === contentRedux?.course_id;
+    return contentItem.course.id === contentRedux?.course.id;
   });
 
   const filteredContentsId = filteredContents.map((data) => {
@@ -65,7 +67,7 @@ const ContentVideoMain = () => {
   // Handler for video ended
   const videoEndHandler = () => {
     if (!progressContent.includes(contentRedux?.id + 1) && progressContent.length !== filteredCourse.contents.length) {
-      dispatch(postStudentProgress(contentRedux?.course_id, contentRedux?.id + 1));
+      dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id + 1));
     }
 
     // Auto play next video
@@ -88,6 +90,8 @@ const ContentVideoMain = () => {
       dispatch(getContentAction(contentRedux.id + 1));
     }
   };
+
+  // console.log(contentRedux);
 
   return (
     <main className={styles.main}>
@@ -123,7 +127,7 @@ const ContentVideoMain = () => {
                 <h2>Content</h2>
                 <ul>
                   {filteredContents?.map((content) => {
-                    console.log(progressContent);
+                    // console.log(progressContent);
                     if (progressContent?.includes(content.id)) {
                       let completed = progressContent.slice(0, progressContent.length - 1);
                       return (
