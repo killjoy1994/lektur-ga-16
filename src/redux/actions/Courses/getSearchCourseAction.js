@@ -3,7 +3,7 @@ import * as actions from "../../types";
 import axios from "axios";
 
 export const getSearchCourse = (input) => {
-  console.log(input);
+  // console.log(input);
   return (dispatch) => {
     dispatch({ type: actions.SEARCH_COURSE_REQUEST });
     //API CALL
