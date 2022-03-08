@@ -10,9 +10,10 @@ import {
   POST_ENROLL_COURSE_SUCCESS,
 } from "../../types";
 
-const token = localStorage.getItem("token");
+
 
 export const postEnrollCourseAction = (id) => {
+  const token = localStorage.getItem("token");
   return (dispatch) => {
     dispatch({ type: POST_ENROLL_COURSE_REQUEST });
     axios
