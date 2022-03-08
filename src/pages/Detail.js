@@ -27,7 +27,7 @@ function Detail() {
   let isToken = token || tokenGoogle || tokenFb;
   useEffect(() => {
     if (isToken !== null) {
-      dispatch(getEnrolledCoursesAction());
+      dispatch(getEnrolledCoursesAction(isToken));
     }
   }, [dispatch]);
 
@@ -90,7 +90,10 @@ function Detail() {
                             title: "Opsss...",
                             text: "Log In and Start Learning!",
                           });
+                          setTimeout(()=>{
                           navigate("/login");
+
+                          }, 3000)
                         }
                       }}
                     >

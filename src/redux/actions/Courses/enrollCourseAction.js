@@ -23,7 +23,7 @@ export const postEnrollCourseAction = (id) => {
   };
 };
 
-export const getEnrolledCoursesAction = () => {
+export const getEnrolledCoursesAction = (token) => {
   return (dispatch) => {
     axios
       .get(API + "api/v1/student/content/unlocked/fetch", {

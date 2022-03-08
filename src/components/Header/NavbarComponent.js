@@ -23,8 +23,8 @@ const NavbarComponent = () => {
   let tokenFb = localStorage.getItem("loginFacebook");
   let isToken = token || tokenGoogle || tokenFb;
   useEffect(() => {
-    if (token) {
-      dispatch(getUserProfileAction(token));
+    if (isToken !== null) {
+      dispatch(getUserProfileAction(isToken));
     }
   }, [dispatch]);
 
@@ -89,7 +89,7 @@ const NavbarComponent = () => {
               ))}
             </NavDropdown>
 
-            {isToken !== "" && isToken !== null ? (
+            {isToken !== null ? (
               <>
                 {isLoading ? (
                   <div className="loading-nav">
