@@ -36,14 +36,16 @@ const ContentVideoMain = () => {
     dispatch(getEnrolledCoursesAction(token));
     dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
-    // dispatch(getCourseDetail(1));
+    // dispatch(getCourseDetail(contentRedux?.course?.category?.name));
   }, []);
 
-  // useEffect(() => {
-  //   if (detail?.category?.name) {
-  //     dispatch(getRelatedCourse(detail?.category?.name));
-  //   }
-  // }, [detail?.category?.name]);
+  console.log(contentRedux?.course?.category?.name)
+
+  useEffect(() => {
+    if (contentRedux?.course?.category?.name) {
+      dispatch(getRelatedCourse(contentRedux.course.category.name));
+    }
+  }, [contentRedux?.course?.category?.name]);
 
   // Untuk cari progress tiap course
   const filteredCourse = enrolledCourses?.filter((course) => {
