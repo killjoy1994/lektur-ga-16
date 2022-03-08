@@ -7,8 +7,8 @@ export default function SearchList({ data }) {
 
   return (
     <div className={styles.cards}>
-      {data?.map((course, index) => (
-        <Link to={"/detail/" + course.id} key={index}>
+      {data?.map((course) => (
+        <Link to={"/detail/" + course.id} key={course.id}>
           <Card src={course.image} title={course.title} author={course.by.fullName} videos={course.contents.length} materials={course.contents.length} description={course.description} category={course.category.name} id={course.id} />
         </Link>
       ))}
