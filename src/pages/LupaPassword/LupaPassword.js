@@ -37,26 +37,26 @@ const LupaPassword = () => {
                 <div className='container'>
                     <div className='col-md-4'>
                         <div className='card'>
-                            <div className='title'>Forgot Password?</div>
-                                {
-                                    alert && (
-                                        <div className='alert alert-primary'>
-                                            <p>{alert}</p>
-                                        </div>
-                                    )
-                                }
-                                {
-                                    error && (
-                                        <div className='alert alert-primary'>
-                                            <p>{error}</p>
-                                        </div>
-                                    )
-                                }
+                            <div className='title'>Forgot password?</div>
                                 <div className='card-body'>
                                     <div className='form-group'>
                                         <label>Email</label>
                                         <input type="text" placeholder='Enter your email..' className='form-control' value={email} onChange={changeEmail} />
                                     </div>
+                                    {
+                                    alert && (
+                                        <div className='alert alert-primary'>
+                                            <p>{alert}</p>
+                                        </div>
+                                    )
+                                    }
+                                    {
+                                        error && (
+                                            <div className='alert alert-danger'>
+                                                <p>{error}</p>
+                                            </div>
+                                        )
+                                    }
                                     <button className='btn-forgot' onClick={send}>Submit</button>
                                 </div>
                             </div>

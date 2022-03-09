@@ -64,23 +64,23 @@ function ResetPassword() {
         console.log(values)
         const errors = {};
         const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
-        if (!values.password) {
-            errors.password = "Password is required!";
-        } else if (values.password < 4) {
-            errors.password = "Password must be more than 4 characters";
-        } else if (values.password > 20) {
-            errors.password = "Password cannot exceed than 20 characters";
-        } else if (!regex.test(values.password)) {
-            errors.password = "must contain 6 characters, one uppercase, one lowercase, one number and one special case character";
+        if (!values.newPassword) {
+            errors.newPassword = "Password is required!";
+        } else if (values.newPassword < 4) {
+            errors.newPassword = "Password must be more than 4 characters";
+        } else if (values.newPassword > 20) {
+            errors.newPassword = "Password cannot exceed than 20 characters";
+        } else if (!regex.test(values.newPassword)) {
+            errors.newPassword = "must contain 6 characters, one uppercase, one lowercase, one number and one special case character";
         }
-        if (!values.confirm_password) {
-            errors.confirm_password = "Password is required!";
-        } else if (values.confirm_password < 4) {
-            errors.confirm_password = "Password must be more than 4 characters";
-        } else if (values.confirm_password > 20) {
-            errors.confirm_password = "Password cannot exceed than 20 characters";
-        } else if (!regex.test(values.confirm_password)) {
-            errors.password = "must contain 6 characters, one uppercase, one lowercase, one number and one special case character";
+        if (!values.confirmPassword) {
+            errors.confirmPassword = "Password is required!";
+        } else if (values.confirmPassword < 4) {
+            errors.confirmPassword = "Password must be more than 4 characters";
+        } else if (values.confirmPassword > 20) {
+            errors.confirmPassword = "Password cannot exceed than 20 characters";
+        } else if (!regex.test(values.confirmPassword)) {
+            errors.confirmPassword = "must contain 6 characters, one uppercase, one lowercase, one number and one special case character";
         }
         return errors;
     }
@@ -91,7 +91,7 @@ function ResetPassword() {
                 <div className="reset">
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <div className="reset-title">Reset Password</div>
+                            <div className="reset-title">Change password</div>
                         </div>
                         <div className="form">
                             <div className="field">
