@@ -19,6 +19,7 @@ export const uploadImageAction = (data) => {
       .then((res) => {
         console.log(res);
         dispatch({ type: UPLOAD_PROFILE_IMAGE });
+        
       })
       .catch((error) => {
         console.log(error);
