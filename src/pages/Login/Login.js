@@ -19,12 +19,12 @@ import Footer from "../../components/Footer";
 import { userSigninAction } from "../../redux/actions/User/userAuthAction";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid format email").required("Required"),
+  email: Yup.string().email("Invalid format email").required("Email is required!"),
   password: Yup.string()
-    .required("Required")
+    .required("Password is required!")
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
-      "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+      "must contain 6 characters, one uppercase, one lowercase, one number and one special case character"
     ),
 });
 
