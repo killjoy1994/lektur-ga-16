@@ -15,8 +15,7 @@ import assessment from "../../assests/assessment.svg";
 import Loader from "../Loader/Loader";
 import { getContentAction } from "../../redux/actions/Content/getContentAction";
 import { getContentsAction } from "../../redux/actions/Content/getContentsAction";
-import { getCoursesAction } from "../../redux/actions/Courses/getCoursesAction";
-import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
+import { getRelatedCourse } from "../../redux/actions/Courses/getCourseDetailAction";
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
@@ -36,10 +35,7 @@ const ContentVideoMain = () => {
     dispatch(getEnrolledCoursesAction(token));
     dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
-    // dispatch(getCourseDetail(contentRedux?.course?.category?.name));
   }, []);
-
-  console.log(contentRedux?.course?.category?.name)
 
   useEffect(() => {
     if (contentRedux?.course?.category?.name) {
@@ -51,7 +47,7 @@ const ContentVideoMain = () => {
   const filteredCourse = enrolledCourses?.filter((course) => {
     return course.id === contentRedux?.course.id;
   })[0];
-  console.log(filteredCourse);
+  // console.log(filteredCourse);
 
   const progressContent = filteredCourse?.progress.map((content) => {
     // console.log(content);

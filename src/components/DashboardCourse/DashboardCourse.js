@@ -175,9 +175,9 @@ const DashboardCourse = () => {
                   <Link
                     to={`/course-content/${course.contents[0].id}`}
                     className={styles["progress-btn"]}
-                    onClick={() => {
-                      dispatch(postStudentProgress(course.id, course.contents[0].id));
-                    }}
+                    // onClick={() => {
+                    //   dispatch(postStudentProgress(course.id, course.contents[0].id));
+                    // }}
                   >
                     <img src={playWhite} alt="play button" />
                     {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
@@ -315,8 +315,12 @@ const DashboardCourse = () => {
               <div style={{ marginTop: "22%" }}>
                 <Loader />
               </div>
-            ) : (
+            ) : enrolledCourses?.length !== 0 ? (
               <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
+            ) : (
+              <p className={styles["no-courses"]}>
+                You haven't enrolled any courses yet. Please select any <Link to="/">here.</Link>
+              </p>
             )}
           </div>
         </div>

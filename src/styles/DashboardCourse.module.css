@@ -218,6 +218,12 @@
 }
 
 /* Course control right side */
+.no-courses {
+  text-align: center;
+  font-size: 20px;
+  padding-top: 20px;
+}
+
 .course-control-right {
   width: 50%;
   height: 100%;
