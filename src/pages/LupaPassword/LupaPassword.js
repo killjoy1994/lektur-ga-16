@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import Footer from '../../components/Footer';
-import NavbarComponent from '../../components/Header/NavbarComponent';
+
 
 import '../../styles/lupaPassword.css';
-import { Button } from 'react-bootstrap';
+
 
 const LupaPassword = () => {
     const[email, setEmail] = useState("");
@@ -27,46 +26,45 @@ const LupaPassword = () => {
                 setAlert('Please check your email')
                 setTimeout(() => {
                     setAlert('')
-                }, 3000)
+                }, 1000)
             })
         }
-    }
+    };
 
     return (
         <>
-        <NavbarComponent />
             <div className='page-forgot'>
                 <div className='container'>
-                            <div className='col-md-4'>
-                                <div className='card'>
-                                    {
-                                        alert && (
-                                            <div className='alert alert-primary'>
-                                                <p>{alert}</p>
-                                            </div>
-                                        )
-                                    }
-                                    {
-                                        error && (
-                                            <div className='alert alert-primary'>
-                                                <p>{error}</p>
-                                            </div>
-                                        )
-                                    }
-                                    <div className='card-body'>
-                                        <div className='form-group'>
-                                            <label>Email</label>
-                                            <input type="text" placeholder='Enter your email..' className='form-control' value={email} onChange={changeEmail} />
+                    <div className='col-md-4'>
+                        <div className='card'>
+                            <div className='title'>Forgot Password?</div>
+                                {
+                                    alert && (
+                                        <div className='alert alert-primary'>
+                                            <p>{alert}</p>
                                         </div>
-                                        <button className='btn-forgot' onClick={send}>Send</button>
+                                    )
+                                }
+                                {
+                                    error && (
+                                        <div className='alert alert-primary'>
+                                            <p>{error}</p>
+                                        </div>
+                                    )
+                                }
+                                <div className='card-body'>
+                                    <div className='form-group'>
+                                        <label>Email</label>
+                                        <input type="text" placeholder='Enter your email..' className='form-control' value={email} onChange={changeEmail} />
                                     </div>
+                                    <button className='btn-forgot' onClick={send}>Submit</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div> 
-            <Footer />
         </>
-    )
+    );
 };
 
 export default LupaPassword;
