@@ -20,6 +20,8 @@ import { getCourseDetail, getRelatedCourse } from "../../redux/actions/Courses/g
 import { getEnrolledCoursesAction } from "../../redux/actions/Courses/enrollCourseAction";
 import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
+const token = localStorage.getItem("token");
+
 const ContentVideoMain = () => {
   // Redux global state
   const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
@@ -31,31 +33,34 @@ const ContentVideoMain = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getEnrolledCoursesAction());
+    dispatch(getEnrolledCoursesAction(token));
     dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
-    dispatch(getCourseDetail(1));
+    // dispatch(getCourseDetail(contentRedux?.course?.category?.name));
   }, []);
-
+  
+  console.log(contentRedux?.course?.category?.name);
+  
   useEffect(() => {
-    if (detail?.category?.name) {
-      dispatch(getRelatedCourse(detail?.category?.name));
+    if (contentRedux?.course?.category?.name) {
+      dispatch(getRelatedCourse(contentRedux.course.category.name));
     }
-  }, [detail?.category?.name]);
-
+  }, [contentRedux?.course?.category?.name]);
+  
+  // Untuk cari progress tiap course
   const filteredCourse = enrolledCourses?.filter((course) => {
-    return course.id === contentRedux?.course_id;
+    return course.id === contentRedux?.course.id;
   })[0];
-
-  const progressContent = filteredCourse?.progress
-    .map((content) => {
-      // console.log(content);
-      return content.content.id;
-    })
-    .reverse();
+  console.log(filteredCourse);
+const getIdCourse = filteredCourse?.id
+console.log(getIdCourse);
+  const progressContent = filteredCourse?.progress.map((content) => {
+    // console.log(content);
+    return content.content.id;
+  });
 
   const filteredContents = contentList?.filter((contentItem) => {
-    return contentItem.course_id === contentRedux?.course_id;
+    return contentItem.course.id === contentRedux?.course.id;
   });
 
   const filteredContentsId = filteredContents.map((data) => {
@@ -65,7 +70,7 @@ const ContentVideoMain = () => {
   // Handler for video ended
   const videoEndHandler = () => {
     if (!progressContent.includes(contentRedux?.id + 1) && progressContent.length !== filteredCourse.contents.length) {
-      dispatch(postStudentProgress(contentRedux?.course_id, contentRedux?.id + 1));
+      dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id + 1));
     }
 
     // Auto play next video
@@ -88,6 +93,8 @@ const ContentVideoMain = () => {
       dispatch(getContentAction(contentRedux.id + 1));
     }
   };
+
+  // console.log(contentRedux);
 
   return (
     <main className={styles.main}>
@@ -123,7 +130,7 @@ const ContentVideoMain = () => {
                 <h2>Content</h2>
                 <ul>
                   {filteredContents?.map((content) => {
-                    console.log(progressContent);
+                    // console.log(progressContent);
                     if (progressContent?.includes(content.id)) {
                       let completed = progressContent.slice(0, progressContent.length - 1);
                       return (
@@ -135,16 +142,7 @@ const ContentVideoMain = () => {
                           }}
                         >
                           <span>
-                            <img
-                              src={
-                                completed.includes(content.id) || progressContent.length === filteredCourse.contents.length
-                                  ? check
-                                  : contentRedux.id === content.id
-                                  ? playBlue
-                                  : play
-                              }
-                              alt="play"
-                            />
+                            <img src={completed.includes(content.id) || progressContent.length === filteredCourse.contents.length ? check : contentRedux.id === content.id ? playBlue : play} alt="play" />
                           </span>
                           {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
                         </li>
@@ -195,9 +193,8 @@ const ContentVideoMain = () => {
                     </div>
                   );
                 })}
-              {progressContent?.length === filteredCourse?.contents?.length &&
-              contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
-                <Link to="/final-assessment" className={styles["btn-aside"]} style={{ color: "white" }}>
+              {progressContent?.length === filteredCourse?.contents?.length && contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
+                <Link to={"/final-assessment/" + getIdCourse} className={styles["btn-aside"]} style={{ color: "white" }}>
                   <img src={assessment} alt="final assessment" />
                   Take Final Assessment
                 </Link>
@@ -225,15 +222,7 @@ const ContentVideoMain = () => {
               });
               return (
                 <Link to={`/detail/${course.id}`} key={course.id}>
-                  <Card
-                    src={course.image}
-                    title={course.title}
-                    author={course.by.fullName}
-                    videos={course.contents.length}
-                    materials={materialsCount}
-                    description={course.description}
-                    category={course.category.name}
-                  />
+                  <Card src={course.image} title={course.title} author={course.by.fullName} videos={course.contents.length} materials={materialsCount} description={course.description} category={course.category.name} />
                 </Link>
               );
             })}

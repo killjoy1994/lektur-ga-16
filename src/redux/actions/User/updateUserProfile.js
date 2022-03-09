@@ -1,27 +1,23 @@
 import axios from "axios";
 import { API } from "../../../api";
-import { UPDATE_USER, UPLOAD_PROFILE_IMAGE } from "../../types";
+import { UPDATE_USER, UPLOAD_PROFILE_IMAGE_FAILED, UPLOAD_PROFILE_IMAGE_PENDING, UPLOAD_PROFILE_IMAGE_SUCCESS } from "../../types";
 
 let token = localStorage.getItem("token");
 
 export const uploadImageAction = (data) => {
-  console.log("Upload Action data: ", data)
   const formData = new FormData();
   formData.append("image", data);
-  
+
   return (dispatch) => {
+    dispatch({ type: UPLOAD_PROFILE_IMAGE_PENDING });
     axios
-      .put(
-        API + "api/v1/user/upload",
-        formData,
-        { headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" } }
-      )
+      .put(API + "api/v1/user/upload", formData, { headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" } })
       .then((res) => {
         console.log(res);
-        dispatch({ type: UPLOAD_PROFILE_IMAGE });
-        
+        dispatch({ type: UPLOAD_PROFILE_IMAGE_SUCCESS });
       })
       .catch((error) => {
+        dispatch({ type: UPLOAD_PROFILE_IMAGE_FAILED, payload: error });
         console.log(error);
       });
   };

@@ -2,12 +2,46 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import NavbarComponent from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 import styles from "../../styles/FinalAssessment.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getAssessment } from "../../redux/actions/Assessment/assessmentAction";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 {
   /* <CustomRadio checked={true} correct={false} /> */
 }
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
+  const { assessment } = useSelector((state) => state.assessments);
+  const [answerStudent, setAnswerStudent] = useState([]);
+  const dispatch = useDispatch();
+  let jawaban = [];
+
+  const params = useParams();
+  useEffect(() => {
+    dispatch(getAssessment(params.id));
+  }, [dispatch]);
+  // console.log(assessment);
+  const questions = assessment?.assessment?.questions;
+  // console.log(questions);
+
+  const handleAnswer = (e) => {
+    const bySoal = [
+      {
+        name: e.target.name,
+        value: e.target.value,
+      },
+    ];
+    const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
+    cekJawaban.push(...bySoal);
+    jawaban = [];
+    jawaban.push(...cekJawaban);
+    // jawaban.sort();
+    console.log(jawaban);
+  };
+
+  console.log(answerStudent);
+  const handleSubmit = () => {};
+
   return (
     <>
       <NavbarComponent />
@@ -15,140 +49,44 @@ function FinalAssessment() {
         <header className={styles.container_head}>
           <Breadcrumb className={styles.breadcrumb}>
             <Breadcrumb.Item href="#" active>
-              React Crash Cource
+              {assessment?.title}
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Final Assessment</Breadcrumb.Item>
           </Breadcrumb>
           <h1 className={styles.title}>Final Assessment</h1>
         </header>
         <div className={styles.assessment_box}>
-          <h6>5 Questions</h6>
+          <h6>{assessment?.assessment?.questions?.length} Questions</h6>
 
-          <div className={styles.question_list}>
-            <div className={styles.box_question}>
-              <p>1.</p>
-              <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
+          {/* {correct ===  'exampleRadios1' ? 'x' :  */}
+          {/* // } */}
+          {questions?.map((question, idx) => (
+            <div className={styles.question_list} key={question?.id}>
+              <div className={styles.box_question}>
+                <p>{idx + 1}.</p>
+                <p className={styles.question}>{question?.question}</p>
+              </div>
+              <p className={styles.answer}>Answer</p>
+              <div className={styles.answer_list}>
+                {question?.options?.map((option) => (
+                  <div key={option.id}>
+                    <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={handleAnswer} />
+                    <label htmlFor={option?.id}>{option?.option}</label>
+                    {/* <br /> */}
+                  </div>
+                ))}
+              </div>
             </div>
-            <p className={styles.answer}>Answer</p>
-            <div className={styles.answer_list}>
-              {/* {correct ===  'exampleRadios1' ? 'x' :  */}
-              <input type="radio" name="soal1" id="pilihanA" value="A" />
-              {/* // } */}
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal1" id="pilihanB" value="B" />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal1" id="pilihanC" value="C" />
-              <label for="pilihanC">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal1" id="pilihanD" value="D" />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal1" id="pilihanE" value="E" />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
-            </div>
-          </div>
-          <div className={styles.question_list}>
-            <div className={styles.box_question}>
-              <p>2.</p>
-              <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
-            </div>
-            <p className={styles.answer}>Answer</p>
-            <div className={styles.answer_list}>
-              <input type="radio" name="soal2" id="pilihanA" value="A" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal2" id="pilihanB" value="B" />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal2" id="pilihanC" value="C" />
-              <label for="pilihanC">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal2" id="pilihanD" value="D" />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal2" id="pilihanE" value="E" />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
-            </div>
-          </div>
-          <div className={styles.question_list}>
-            <div className={styles.box_question}>
-              <p>3.</p>
-              <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
-            </div>
-            <p className={styles.answer}>Answer</p>
-            <div className={styles.answer_list}>
-              <input type="radio" name="soal3" id="pilihanA" value="A" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal3" id="pilihanB" value="B" />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal3" id="pilihanC" value="C" />
-              <label for="pilihanC">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal3" id="pilihanD" value="D" />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal3" id="pilihanE" value="E" />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
-            </div>
-          </div>
-          <div className={styles.question_list}>
-            <div className={styles.box_question}>
-              <p>4.</p>
-              <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
-            </div>
-            <p className={styles.answer}>Answer</p>
-            <div className={styles.answer_list}>
-              <input type="radio" name="soal4" id="pilihanA" value="A" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal4" id="pilihanB" value="B" />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal4" id="pilihanC" value="C" />
-              <label for="pilihanC">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal4" id="pilihanD" value="D" />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal4" id="pilihanE" value="E" />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
-            </div>
-          </div>
-          <div className={styles.question_list}>
-            <div className={styles.box_question}>
-              <p>5.</p>
-              <p className={styles.question}>Neque eu lorem ultrices id. Et mattis lacus fermentum id nec, aenean enim, curabitur. Enim, donec quis odio ut enim scelerisque id erat laoreet?</p>
-            </div>
-            <p className={styles.answer}>Answer</p>
-            <div className={styles.answer_list}>
-              <input type="radio" name="soal5" id="pilihanA" value="A" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal5" id="pilihanB" value="B" />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal5" id="pilihanC" value="C" />
-              <label for="pilihanC">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal5" id="pilihanD" value="D" />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
-              <br />
-              <input type="radio" name="soal5" id="pilihanE" value="E" />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
-            </div>
-          </div>
+          ))}
         </div>
+
         <div className={styles.button}>
-          <Link to='/final-assessment-result'>
-          <button>Submit Assessment</button>
+          <Link to="/final-assessment-result">
+            <button onClick={handleSubmit}>Submit Assessment</button>
           </Link>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
