@@ -38,21 +38,22 @@ const ContentVideoMain = () => {
     dispatch(getContentsAction());
     // dispatch(getCourseDetail(contentRedux?.course?.category?.name));
   }, []);
-
-  console.log(contentRedux?.course?.category?.name)
-
+  
+  console.log(contentRedux?.course?.category?.name);
+  
   useEffect(() => {
     if (contentRedux?.course?.category?.name) {
       dispatch(getRelatedCourse(contentRedux.course.category.name));
     }
   }, [contentRedux?.course?.category?.name]);
-
+  
   // Untuk cari progress tiap course
   const filteredCourse = enrolledCourses?.filter((course) => {
     return course.id === contentRedux?.course.id;
   })[0];
   console.log(filteredCourse);
-
+const getIdCourse = filteredCourse?.id
+console.log(getIdCourse);
   const progressContent = filteredCourse?.progress.map((content) => {
     // console.log(content);
     return content.content.id;
@@ -141,16 +142,7 @@ const ContentVideoMain = () => {
                           }}
                         >
                           <span>
-                            <img
-                              src={
-                                completed.includes(content.id) || progressContent.length === filteredCourse.contents.length
-                                  ? check
-                                  : contentRedux.id === content.id
-                                  ? playBlue
-                                  : play
-                              }
-                              alt="play"
-                            />
+                            <img src={completed.includes(content.id) || progressContent.length === filteredCourse.contents.length ? check : contentRedux.id === content.id ? playBlue : play} alt="play" />
                           </span>
                           {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
                         </li>
@@ -201,9 +193,8 @@ const ContentVideoMain = () => {
                     </div>
                   );
                 })}
-              {progressContent?.length === filteredCourse?.contents?.length &&
-              contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
-                <Link to="/final-assessment" className={styles["btn-aside"]} style={{ color: "white" }}>
+              {progressContent?.length === filteredCourse?.contents?.length && contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
+                <Link to={"/final-assessment/" + getIdCourse} className={styles["btn-aside"]} style={{ color: "white" }}>
                   <img src={assessment} alt="final assessment" />
                   Take Final Assessment
                 </Link>
@@ -231,15 +222,7 @@ const ContentVideoMain = () => {
               });
               return (
                 <Link to={`/detail/${course.id}`} key={course.id}>
-                  <Card
-                    src={course.image}
-                    title={course.title}
-                    author={course.by.fullName}
-                    videos={course.contents.length}
-                    materials={materialsCount}
-                    description={course.description}
-                    category={course.category.name}
-                  />
+                  <Card src={course.image} title={course.title} author={course.by.fullName} videos={course.contents.length} materials={materialsCount} description={course.description} category={course.category.name} />
                 </Link>
               );
             })}

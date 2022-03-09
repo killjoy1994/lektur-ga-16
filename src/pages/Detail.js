@@ -12,6 +12,7 @@ import Loader from "../components/Loader/Loader";
 import Errorpage from "../errorPage/ErrorPage";
 import { getEnrolledCoursesAction, postEnrollCourseAction } from "../redux/actions/Courses/enrollCourseAction";
 import Swal from "sweetalert2";
+import ButtonEnroll from "../components/ButtonEnroll";
 
 function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
@@ -77,8 +78,9 @@ function Detail() {
                     <p>{detail.category?.name}</p>
                     <h3>{detail.title}</h3>
                     <p>By {detail.by?.fullName}</p>
-
-                    <button
+                   
+                    <ButtonEnroll token={isToken} infoContent={infoContent} approveTeacher={approveTeacher} setPopUpDetail={setPopUpDetail} />
+                    {/* <button
                       className={infoContent.length === 0 || isToken === null ? styles.btn_detail : styles.btn_detail_enroll}
                       onClick={() => {
                         if (isToken !== null) {
@@ -89,16 +91,16 @@ function Detail() {
                             icon: "info",
                             title: "Opsss...",
                             text: "Log In and Start Learning!",
+                          }).then(({ isConfirmed }) => {
+                            if (isConfirmed) {
+                              navigate("/login");
+                            }
                           });
-                          setTimeout(()=>{
-                          navigate("/login");
-
-                          }, 3000)
                         }
                       }}
                     >
                       ENROLL NOW
-                    </button>
+                    </button> */}
                   </>
                 )}
               </div>
@@ -110,7 +112,7 @@ function Detail() {
                     <div
                       className={styles.content1}
                       onClick={() => {
-                        if (approveTeacher === 0) {
+                        if (approveTeacher === 0 && isToken !== null) {
                           Swal.fire({
                             icon: "info",
                             title: "Sorry...",
@@ -144,7 +146,7 @@ function Detail() {
                             <div className={styles.list_contents} key={content.id}>
                               <p
                                 onClick={() => {
-                                  if (approveTeacher === 0) {
+                                  if (approveTeacher === 0 && isToken !== null) {
                                     Swal.fire({
                                       icon: "info",
                                       title: "Sorry...",
@@ -216,7 +218,7 @@ function Detail() {
           </div>
           {/* Cards gallery end */}
           <div>
-            <Modal show={popUpDetail} onHide={() => setPopUpDetail(false)} size="lg" centered>
+            <Modal show={popUpDetail} onHide={() => window.location.reload(setPopUpDetail(false))} size="lg" centered>
               <Modal.Header closeButton></Modal.Header>
               <Modal.Body>
                 <div className={styles.popup_contents}>

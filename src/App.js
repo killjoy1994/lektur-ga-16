@@ -34,7 +34,7 @@ function App() {
         <Route path="/course-invitation" element={<CourseInvitation />} />
         {/* Private Routes start*/}
         <Route element={<PrivateRoutes />}>
-          <Route path="/final-assessment" element={<FinalAssessment />} />
+          <Route path="/final-assessment/:id" element={<FinalAssessment />} />
           <Route path="/final-assessment-result" element={<FinalAssessmentResult />} />
           <Route path="/course-content" element={<ContentVideo />} />
           <Route path="/course-content/:courseId" element={<ContentVideo />} />
