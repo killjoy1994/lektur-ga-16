@@ -24,6 +24,7 @@ let token = localStorage.getItem("token");
 const DashboardCourse = () => {
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
   const { user, isLoading } = useSelector((state) => state.userProfile);
+  const { isLoading: updateLoading, error } = useSelector((state) => state.updateUserProfile);
 
   // State
   const [inputedName, setInputedName] = useState("");
@@ -39,7 +40,7 @@ const DashboardCourse = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getEnrolledCoursesAction());
+    dispatch(getEnrolledCoursesAction(token));
   }, [dispatch]);
 
   useEffect(() => {
@@ -92,16 +93,16 @@ const DashboardCourse = () => {
 
   //   Handle submit on profile change
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (selectedFile) {
-      await dispatch(uploadImageAction(selectedFile));
+      dispatch(uploadImageAction(selectedFile));
     }
-    await dispatch(updateProfileAction(inputedName, inputedEmail));
+    dispatch(updateProfileAction(inputedName, inputedEmail));
     setInputedName("");
     setInputedEmail("");
-    await dispatch(getUserProfileAction(token));
-    await setTimeout(() => setEdit(false), 0);
+    dispatch(getUserProfileAction(token));
+    setEdit(false);
   };
 
   /* Conditional render for User Profile start */
@@ -267,7 +268,7 @@ const DashboardCourse = () => {
       <main className={styles.dashboard}>
         <div className={styles.container}>
           <div className={styles["left-box"]}>
-            {isLoading ? (
+            {isLoading || updateLoading ? (
               <Loader />
             ) : (
               <form className={styles["user-profile"]} onSubmit={submitHandler}>

@@ -1,20 +1,19 @@
 import { Formik, Form, Field } from "formik";
 import { Button, Spinner } from "react-bootstrap";
 import * as Yup from "yup";
-import axios from 'axios';
+import axios from "axios";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { authentication } from '../../config/configFirebase';
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authentication } from "../../config/configFirebase";
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 
-
-import { API } from '../../api';
+import { API } from "../../api";
 
 import facebookIcon from "../../assests/facebook.svg";
 import googleIcon from "../../assests/google.svg";
 
-import '../../styles/Login.css';
+import "../../styles/Login.css";
 import Navbar from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 import { userSigninAction } from "../../redux/actions/User/userAuthAction";
@@ -30,61 +29,57 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function FormLogin() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const doLogin = (values) => {
     const data = {
       email: values.email,
       password: values.password,
-    }
+    };
 
     axios({
-      method: 'post',
+      method: "post",
       url: `${API}api/v1/user/login`,
       data: data,
     })
-    .then((response) => {
-      // console.log(response);
-      Swal.fire({
-        icon: 'success',
-        title: 'Login success!',
-        showConfirmButton: false,
-        timer: 1500
+      .then((response) => {
+        // console.log(response);
+        Swal.fire({
+          icon: "success",
+          title: "Login success!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // masukin token ke localStorage
+        localStorage.setItem("token", response.data.result.token);
+        dispatch(userSigninAction(response.data.result.user));
+        // redirect ke dashboard
+        navigate("/");
       })
-      // masukin token ke localStorage
-      localStorage.setItem('token', response.data.result.token);
-      dispatch(userSigninAction(response.data.result.user));
-      // redirect ke dashboard
-      navigate('/')
-    })
-    .catch((error) => {
-      console.log(error);
-      Swal.fire({
-        title: 'Error!',
-        text: 'Please, check your email and password again',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      })
-    })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: "Error!",
+          text: "Please, check your email and password again",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      });
   };
 
   const handleLogin = async (provider) => {
-    const result = await signInWithPopup(authentication, 
-    provider);
-    if(result.user !== "") navigate("/")
-    localStorage.setItem('loginGoogle', result);
+    const result = await signInWithPopup(authentication, provider);
+    if (result.user !== "") navigate("/");
+    localStorage.setItem("loginGoogle", result);
   };
 
   const handleOnClick = async (provider) => {
-    const result = await signInWithPopup(authentication,
-    provider);
-    if(result.user !== "") navigate("/")
-    localStorage.setItem('loginFacebook', result);
+    const result = await signInWithPopup(authentication, provider);
+    if (result.user !== "") navigate("/");
+    localStorage.setItem("loginFacebook", result);
   };
 
-  
   return (
     <>
       <Navbar />
@@ -111,9 +106,8 @@ export default function FormLogin() {
                   </p>
                   <div className="email-password-field">
                     <Field type="email" placeholder="Email" name="email" className="login-email" />
-                    
                   </div>
-                  {errors.email && touched.email && <div className="text-danger" >{errors.email}</div>}
+                  {errors.email && touched.email && <div className="text-danger">{errors.email}</div>}
                   <p className="password mt-5">
                     Password<span>*</span>
                   </p>
@@ -134,13 +128,25 @@ export default function FormLogin() {
                       <p> Login with :</p>
                       <div className="icons-container">
                         <div className="icons-google">
-                          <button className='icons-google' onClick={() => handleLogin(new GoogleAuthProvider())}>
-                          <img src={googleIcon} />
+                          <button className="icons-google" onClick={() => handleLogin(new GoogleAuthProvider())}>
+                            <img src={googleIcon} alt="google icon" />
                           </button>
                         </div>
                         <div className="icons-facebook">
-                          <button className='icons-facebook' onClick={() => handleOnClick(new FacebookAuthProvider())}>
-                          <img src={facebookIcon} />
+                          <button
+                            style={{ position: "relative" }}
+                            className="icons-facebook"
+                            onClick={() => handleOnClick(new FacebookAuthProvider())}
+                          >
+                            <img
+                              src={facebookIcon}
+                              style={{
+                                position: "absolute",
+                                left: "3px",
+                                top: "-1px",
+                              }}
+                              alt="facebook icon"
+                            />
                           </button>
                         </div>
                       </div>

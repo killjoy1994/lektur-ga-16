@@ -15,6 +15,7 @@ export default function SearchCourse() {
   useEffect(() => {
     dispatch(getSearchCourse(params.input));
   }, [dispatch, params.input]);
+
   return (
     <div className={styles.Category}>
       <NavbarComponent />

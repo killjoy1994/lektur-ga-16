@@ -34,6 +34,13 @@
   background-color: #ef9c27;
   color: #fff;
 }
+.btn_detail_enroll {
+  display: none;
+  padding: 0.5em 2em;
+  border-radius: 2px;
+  background-color: #ef9c27;
+  color: #fff;
+}
 
 .detail_box {
   height: 490px;

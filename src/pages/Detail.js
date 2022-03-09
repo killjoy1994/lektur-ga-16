@@ -17,14 +17,19 @@ function Detail() {
   const [popUpDetail, setPopUpDetail] = useState(false);
   const { detail, isLoading, error, relatedCourse } = useSelector((state) => state.courseDetail);
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
-
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-
+  //get user token
+  let token = localStorage.getItem("token");
+  let tokenGoogle = localStorage.getItem("loginGoogle");
+  let tokenFb = localStorage.getItem("loginFacebook");
+  let isToken = token || tokenGoogle || tokenFb;
   useEffect(() => {
-    dispatch(getEnrolledCoursesAction());
-  }, [dispatch, Link]);
+    if (isToken !== null) {
+      dispatch(getEnrolledCoursesAction(isToken));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getCourseDetail(params.id));
@@ -46,20 +51,14 @@ function Detail() {
 
   //get materials
   let totalMaterials = 0;
-  let allContents = detail.contents?.map((item) => item);
+  let allContents = detail.contents?.map((content) => content);
   allContents?.map((material) => (totalMaterials += material.materials.length));
 
-  //get user token
-  let token = localStorage.getItem("token");
-  let tokenGoogle = localStorage.getItem("loginGoogle");
-  let tokenFb = localStorage.getItem("loginFacebook");
-  let isToken = token || tokenGoogle || tokenFb;
   //cek all course enroll
   let info = enrolledCourses.map((course) => course);
-  let infoEnroll = info.map((item) => item.id);
-  infoEnroll.includes(detail.id);
+  let infoContent = info.filter((content) => content.id === detail.id);
+  // console.log(infoContent);
   //cek approve from teacher
-  let infoContent = info.filter((item) => item.id === detail.id);
   const approveTeacher = infoContent[0]?.status.status;
   return (
     <>
@@ -78,14 +77,23 @@ function Detail() {
                     <p>{detail.category?.name}</p>
                     <h3>{detail.title}</h3>
                     <p>By {detail.by?.fullName}</p>
+
                     <button
-                      className={styles.btn_detail}
+                      className={infoContent.length === 0 || isToken === null ? styles.btn_detail : styles.btn_detail_enroll}
                       onClick={() => {
-                        if (isToken !== "" && isToken !== null) {
+                        if (isToken !== null) {
                           setPopUpDetail(true);
-                          dispatch(postEnrollCourseAction(params.id));
+                          dispatch(postEnrollCourseAction(detail?.id));
                         } else {
+                          Swal.fire({
+                            icon: "info",
+                            title: "Opsss...",
+                            text: "Log In and Start Learning!",
+                          });
+                          setTimeout(()=>{
                           navigate("/login");
+
+                          }, 3000)
                         }
                       }}
                     >
@@ -99,48 +107,31 @@ function Detail() {
                   <Loader />
                 ) : (
                   <>
-                    <div className={styles.content1}>
-                      <div
-                        onClick={() => {
-                          if (approveTeacher === 0) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Sorry...",
-                              text: "The course has not been approved by the teacher!",
-                            });
-                          } else if (infoEnroll) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Opsss...",
-                              text: "You haven't enrolled the course!",
-                            });
-                          } else {
-                            navigate("/student-dashboard");
-                          }
-                        }}
-                      >
+                    <div
+                      className={styles.content1}
+                      onClick={() => {
+                        if (approveTeacher === 0) {
+                          Swal.fire({
+                            icon: "info",
+                            title: "Sorry...",
+                            text: "The course has not been approved by the teacher!",
+                          });
+                        } else if (infoContent.length === 0 || isToken === null) {
+                          Swal.fire({
+                            icon: "warning",
+                            title: "Opsss...",
+                            text: "You haven't enrolled the course!",
+                          });
+                        } else {
+                          navigate("/student-dashboard");
+                        }
+                      }}
+                    >
+                      <div>
                         <p className={styles.p1}>{detail.contents?.length}</p>
                         <p className={styles.p2}>Learning Videos</p>
                       </div>
-                      <div
-                        onClick={() => {
-                          if (approveTeacher === 0) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Sorry...",
-                              text: "The course has not been approved by the teacher!",
-                            });
-                          } else if (infoEnroll) {
-                            Swal.fire({
-                              icon: "error",
-                              title: "Opsss...",
-                              text: "You haven't enrolled the course!",
-                            });
-                          } else {
-                            navigate("/student-dashboard");
-                          }
-                        }}
-                      >
+                      <div>
                         <p className={styles.p1}>{totalMaterials}</p>
                         <p className={styles.p2}>Study Material</p>
                       </div>
@@ -155,13 +146,13 @@ function Detail() {
                                 onClick={() => {
                                   if (approveTeacher === 0) {
                                     Swal.fire({
-                                      icon: "error",
+                                      icon: "info",
                                       title: "Sorry...",
                                       text: "The course has not been approved by the teacher!",
                                     });
-                                  } else if (infoEnroll) {
+                                  } else if (infoContent.length === 0 || isToken === null) {
                                     Swal.fire({
-                                      icon: "error",
+                                      icon: "warning",
                                       title: "Opsss...",
                                       text: "You haven't enrolled the course!",
                                     });
@@ -212,7 +203,7 @@ function Detail() {
                           title={course.title}
                           author={course.by?.fullName}
                           videos={course.contents?.length}
-                          materials={course.contents?.length}
+                          materials={totalMaterials}
                           description={course.description}
                           category={course.category?.name}
                         />
