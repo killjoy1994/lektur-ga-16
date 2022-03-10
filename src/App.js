@@ -16,6 +16,7 @@ import Categories from "./pages/Categories/Categories";
 import PrivateRoutes from "./pages/PrivateRoutes/PrivateRoutes";
 import SuccessRegister from "./pages/successRegister/successRegister";
 import CourseInvitation from "./pages/CourseInvitation";
+import ResetPassword from "./pages/LupaPassword/ResetPassword";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/lupa-password" element={<LupaPassword />} />
+        <Route  path="/reset_password" element={<ResetPassword />}/>
         <Route path="/register" element={<Signup />} />
         <Route path="/registered" element={<SuccessRegister />} />
         {/* <Route path="/final-assessment" element={<FinalAssessment />} />

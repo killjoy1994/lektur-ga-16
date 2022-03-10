@@ -72,6 +72,7 @@
 .login-password {
   border: none;
   background: rgba(252, 252, 252, 1);
+  width: 450px;
 }
 
 .login-email:focus,

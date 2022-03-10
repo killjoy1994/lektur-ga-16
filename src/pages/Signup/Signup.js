@@ -66,7 +66,6 @@ function Signup() {
       data: inputedData,
     })
       .then((response) => {
-        console.log(response);
         Swal.fire({
           icon: 'success',
           title: 'Signup success!',
@@ -99,7 +98,7 @@ function Signup() {
   const validate = (values) => {
     console.log(values)
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
     if (!values.fullName) {
       errors.fullname = "Name is required!";
     }
@@ -114,6 +113,8 @@ function Signup() {
       errors.password = "Password must be more than 4 characters";
     } else if (values.password > 20) {
       errors.password = "Password cannot exceed than 20 characters";
+    } else if (!regex.test(values.password)) {
+      errors.password = "must contain 6 characters, one uppercase, one lowercase, one number and one special case character";
     }
     return errors;
   };

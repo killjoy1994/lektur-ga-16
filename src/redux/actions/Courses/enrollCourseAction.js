@@ -10,8 +10,6 @@ import {
   POST_ENROLL_COURSE_SUCCESS,
 } from "../../types";
 
-
-
 export const postEnrollCourseAction = (id) => {
   const token = localStorage.getItem("token");
   return (dispatch) => {
@@ -42,7 +40,6 @@ export const getEnrolledCoursesAction = (token) => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch({ type: GET_STUDENT_COURSE_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {
