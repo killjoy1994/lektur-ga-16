@@ -46,8 +46,9 @@ const ContentVideoMain = () => {
   const filteredCourse = enrolledCourses?.filter((course) => {
     return course.id === contentRedux?.course.id;
   })[0];
-  // console.log(filteredCourse);
-
+  console.log(filteredCourse);
+const getIdCourse = filteredCourse?.id
+console.log(getIdCourse);
   const progressContent = filteredCourse?.progress.map((content) => {
     // console.log(content);
     return content.content.id;
