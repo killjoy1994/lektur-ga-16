@@ -127,27 +127,22 @@ export default function FormLogin() {
                       <p>or</p>
                       <p> Login with :</p>
                       <div className="icons-container">
-                        <div className="icons-google">
-                          <button className="icons-google" onClick={() => handleLogin(new GoogleAuthProvider())}>
-                            <img src={googleIcon} alt="google icon" />
-                          </button>
+                        <div className="icons-google" style={{display: "flex"}} onClick={() => handleLogin(new GoogleAuthProvider())}>
+                            <img src={googleIcon} style={{margin: "0 auto"}} alt="google icon" />
                         </div>
-                        <div className="icons-facebook">
-                          <button
-                            style={{ position: "relative" }}
-                            className="icons-facebook"
-                            onClick={() => handleOnClick(new FacebookAuthProvider())}
-                          >
+                        <div className="icons-facebook" onClick={() => handleOnClick(new FacebookAuthProvider())}
+                          style={{ 
+                            position: "relative",
+                            padding: "1px"
+                          }}
+                        >
                             <img
                               src={facebookIcon}
                               style={{
-                                position: "absolute",
-                                left: "3px",
-                                top: "-1px",
+                      
                               }}
                               alt="facebook icon"
                             />
-                          </button>
                         </div>
                       </div>
                     </div>

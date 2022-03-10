@@ -16,12 +16,12 @@ function ResetPassword() {
     const navigate = useNavigate();
 
     const newPasswordHandler = (e) => {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setInputtedNewPassword(e.target.value);
     };
 
     const confirmPasswordHandler = (e) => {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setInputtedConfirmPassword(e.target.value);
     };
 
@@ -54,11 +54,11 @@ function ResetPassword() {
         setInputtedConfirmPassword("");
     };
 
-    useEffect(() => {
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
-            //console.log(inputData);
-        }
-    }, [formErrors]);
+    // useEffect(() => {
+    //     if (Object.keys(formErrors).length === 0 && isSubmit) {
+    //         //console.log(inputData);
+    //     }
+    // }, [formErrors]);
 
     const validati = (values) => {
         console.log(values)
@@ -93,7 +93,7 @@ function ResetPassword() {
                         <div>
                             <div className="reset-title">Change password</div>
                         </div>
-                        <div className="form">
+                        <div className="form-group">
                             <div className="field">
                                 <label>
                                     New Password
