@@ -10,6 +10,7 @@ export const getUserProfileAction = (token) => {
       .then((res) => {
         // console.log(res.data.result);
         dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: res.data.result });
+        
       })
       .catch((error) => {
         console.log(error);

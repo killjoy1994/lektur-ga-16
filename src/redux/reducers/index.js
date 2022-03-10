@@ -10,6 +10,7 @@ import getPopUpContentReducer from "./Student/getPopUpContentReducer";
 import { userAuthReducer } from "./User/userAuthReducer";
 import getContentReducer from "./Content/getContentReducer";
 import getContentsReducer from "./Content/getContentsReducer";
+import assessmentReducer from "./Asessment/assessmentReducer";
 
 const rootReducer = combineReducers({
   searchCourses: searchCourseReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   userAuth: userAuthReducer,
   getContent: getContentReducer,
   getContents: getContentsReducer,
+  assessments: assessmentReducer,
 });
 
 export default rootReducer;
