@@ -183,11 +183,11 @@ const DashboardCourse = () => {
                     {course.contents[0].title < 25 ? course.contents[0].title.trim() : `${course.contents[0].title.slice(0, 20).trim()}...`}
                   </Link>
                 ) : (
-                  <Link to={`/course-content/${course.progress[0]?.content.id}`} className={styles["progress-btn"]}>
+                  <Link to={`/course-content/${course.progress[course.progress.length - 1]?.content.id}`} className={styles["progress-btn"]}>
                     <img src={playWhite} alt="play button" />
-                    {course.progress[0].content.title < 25
-                      ? course.progress[0].content.title.trim()
-                      : `${course.progress[0].content.title.slice(0, 20).trim()}...`}
+                    {course.progress[course.progress.length - 1].content.title < 25
+                      ? course.progress[course.progress.length - 1].content.title.trim()
+                      : `${course.progress[course.progress.length - 1].content.title.slice(0, 20).trim()}...`}
                   </Link>
                 )}
               </div>
@@ -319,7 +319,7 @@ const DashboardCourse = () => {
               <div className={styles["right-box-body"]}>{selectedTitle === "courses" ? courses : assessment}</div>
             ) : (
               <p className={styles["no-courses"]}>
-                You haven't enrolled any courses yet. Please select any <Link to="/">here.</Link>
+                You haven't enrolled any courses yet. Back to <Link to="/">home</Link> to pick any.
               </p>
             )}
           </div>
