@@ -23,7 +23,7 @@ const token = localStorage.getItem("token");
 
 const ContentVideoMain = () => {
   // Redux global state
-  const { detail, isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
+  const { isLoading, relatedCourse } = useSelector((state) => state.courseDetail);
   const { content: contentRedux, isLoading: contentLoading } = useSelector((state) => state.getContent);
   const { contentList, isLoading: contentsLoading } = useSelector((state) => state.getContents);
   const { enrolledCourses } = useSelector((state) => state.enrollCourse);
@@ -33,10 +33,14 @@ const ContentVideoMain = () => {
 
   useEffect(() => {
     dispatch(getEnrolledCoursesAction(token));
-    dispatch(getContentAction(params.courseId));
     dispatch(getContentsAction());
   }, []);
 
+  useEffect(() => {
+    dispatch(getContentAction(params.courseId));
+  }, [params.courseId]);
+
+  //for related course
   useEffect(() => {
     if (contentRedux?.course?.category?.name) {
       dispatch(getRelatedCourse(contentRedux.course.category.name));
@@ -47,10 +51,8 @@ const ContentVideoMain = () => {
   const filteredCourse = enrolledCourses?.filter((course) => {
     return course.id === contentRedux?.course.id;
   })[0];
-  // console.log(filteredCourse);
 
   const progressContent = filteredCourse?.progress.map((content) => {
-    // console.log(content);
     return content.content.id;
   });
 
@@ -64,8 +66,11 @@ const ContentVideoMain = () => {
 
   // Handler for video ended
   const videoEndHandler = () => {
-    if (!progressContent.includes(contentRedux?.id + 1) && progressContent.length !== filteredCourse.contents.length) {
-      dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id + 1));
+    if (
+      contentRedux?.id === filteredContents[0]?.id ||
+      (!progressContent.includes(contentRedux?.id) && progressContent.length !== filteredCourse.contents.length)
+    ) {
+      dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id));
     }
 
     // Auto play next video
@@ -125,31 +130,27 @@ const ContentVideoMain = () => {
                 <h2>Content</h2>
                 <ul>
                   {filteredContents?.map((content) => {
-                    // console.log(progressContent);
-                    if (progressContent?.includes(content.id)) {
-                      let completed = progressContent.slice(0, progressContent.length - 1);
+                    if (filteredContents[0].id === content.id || progressContent?.includes(content.id)) {
+                      let completed = progressContent?.slice(0, progressContent.length);
+                      console.log(progressContent && progressContent);
                       return (
-                        <li
-                          className={`${styles["content-video"]} ${contentRedux?.id === content.id ? styles.active : ""}`}
-                          key={content.id}
-                          onClick={() => {
-                            dispatch(getContentAction(content.id));
-                          }}
-                        >
-                          <span>
-                            <img
-                              src={
-                                completed.includes(content.id) || progressContent.length === filteredCourse.contents.length
-                                  ? check
-                                  : contentRedux.id === content.id
-                                  ? playBlue
-                                  : play
-                              }
-                              alt="play"
-                            />
-                          </span>
-                          {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
-                        </li>
+                        <Link to={"/course-content/" + content.id} key={content.id} style={{ color: "#0a0a0f" }}>
+                          <li className={`${styles["content-video"]} ${contentRedux?.id === content.id ? styles.active : ""}`}>
+                            <span>
+                              <img
+                                src={
+                                  completed?.includes(content.id) || progressContent?.length === filteredCourse.contents?.length
+                                    ? check
+                                    : contentRedux.id === content.id
+                                    ? playBlue
+                                    : play
+                                }
+                                alt="play"
+                              />
+                            </span>
+                            {content.title.length > 15 ? content.title.slice(0, 30) + "..." : content.title}
+                          </li>
+                        </Link>
                       );
                     } else {
                       return (
