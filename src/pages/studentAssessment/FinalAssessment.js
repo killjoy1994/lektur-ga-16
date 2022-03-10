@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
   const { assessment } = useSelector((state) => state.assessments);
-  const [answerStudent, setAnswerStudent] = useState([]);
+  const [answerStudent, setAnswerStudent] = useState({});
   const dispatch = useDispatch();
   let jawaban = [];
 
@@ -25,18 +25,22 @@ function FinalAssessment() {
   // console.log(questions);
 
   const handleAnswer = (e) => {
-    const bySoal = [
-      {
-        name: e.target.name,
-        value: e.target.value,
-      },
-    ];
-    const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
-    cekJawaban.push(...bySoal);
-    jawaban = [];
-    jawaban.push(...cekJawaban);
+    setAnswerStudent({
+      ...answerStudent,
+      [e.target.name]: e.target.value
+    })
+    // const bySoal = [
+    //   {
+    //     name: e.target.name,
+    //     value: e.target.value,
+    //   },
+    // ];
+    // const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
+    // cekJawaban.push(...bySoal);
+    // jawaban = [];
+    // jawaban.push(...cekJawaban);
     // jawaban.sort();
-    console.log(jawaban);
+    // console.log(jawaban);
   };
 
   console.log(answerStudent);
@@ -69,11 +73,13 @@ function FinalAssessment() {
               <p className={styles.answer}>Answer</p>
               <div className={styles.answer_list}>
                 {question?.options?.map((option) => (
-                  <div key={option.id}>
-                    <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={handleAnswer} />
-                    <label htmlFor={option?.id}>{option?.option}</label>
-                    {/* <br /> */}
-                  </div>
+                  <label htmlFor={option?.id} key={option.id}>
+                      <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={(e)=>handleAnswer(e)} />
+                      
+                      {option?.option}</label>
+                  
+                  // <div key={option.id}>
+                  // </div>
                 ))}
               </div>
             </div>
