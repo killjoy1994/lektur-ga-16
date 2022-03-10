@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import ReactPlayer from "react-player";
 
@@ -30,6 +30,7 @@ const ContentVideoMain = () => {
 
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getEnrolledCoursesAction(token));
@@ -38,6 +39,7 @@ const ContentVideoMain = () => {
 
   useEffect(() => {
     dispatch(getContentAction(params.courseId));
+    dispatch(getEnrolledCoursesAction(token));
   }, [params.courseId]);
 
   //for related course
@@ -56,26 +58,19 @@ const ContentVideoMain = () => {
     return content.content.id;
   });
 
-  const filteredContents = contentList?.filter((contentItem) => {
-    return contentItem.course.id === contentRedux?.course.id;
-  });
+  console.log(progressContent);
 
-  const filteredContentsId = filteredContents.map((data) => {
-    return data.id;
-  });
+  console.log(filteredCourse?.contents[filteredCourse?.contents.length - 1].id);
 
   // Handler for video ended
   const videoEndHandler = () => {
-    if (
-      contentRedux?.id === filteredContents[0]?.id ||
-      (!progressContent.includes(contentRedux?.id) && progressContent.length !== filteredCourse.contents.length)
-    ) {
+    if (!progressContent.includes(contentRedux?.id)) {
       dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id));
     }
 
     // Auto play next video
-    if (filteredContentsId.includes(contentRedux?.id + 1)) {
-      dispatch(getContentAction(contentRedux?.id + 1));
+    if (contentRedux?.id !== filteredCourse?.contents?.[filteredCourse?.contents?.length - 1].id) {
+      navigate(`/course-content/${contentRedux?.id + 1}`);
     }
   };
 
@@ -89,8 +84,11 @@ const ContentVideoMain = () => {
   // Button next Onclick Handler
 
   const nextContentHandler = () => {
+    if (!progressContent.includes(contentRedux?.id)) {
+      dispatch(postStudentProgress(contentRedux?.course.id, contentRedux?.id));
+    }
     if (contentRedux?.id !== progressContent?.length || progressContent?.length !== filteredCourse?.contents.length) {
-      dispatch(getContentAction(contentRedux.id + 1));
+      navigate(`/course-content/${contentRedux?.id + 1}`);
     }
   };
 
@@ -129,17 +127,16 @@ const ContentVideoMain = () => {
               <>
                 <h2>Content</h2>
                 <ul>
-                  {filteredContents?.map((content) => {
-                    if (filteredContents[0].id === content.id || progressContent?.includes(content.id)) {
+                  {filteredCourse?.contents?.map((content) => {
+                    if (filteredCourse?.contents[0]?.id === content.id || contentRedux?.id === content.id || progressContent?.includes(content.id)) {
                       let completed = progressContent?.slice(0, progressContent.length);
-                      console.log(progressContent && progressContent);
                       return (
                         <Link to={"/course-content/" + content.id} key={content.id} style={{ color: "#0a0a0f" }}>
                           <li className={`${styles["content-video"]} ${contentRedux?.id === content.id ? styles.active : ""}`}>
                             <span>
                               <img
                                 src={
-                                  completed?.includes(content.id) || progressContent?.length === filteredCourse.contents?.length
+                                  completed?.includes(content.id) || progressContent?.length === filteredCourse?.contents?.length
                                     ? check
                                     : contentRedux.id === content.id
                                     ? playBlue
@@ -199,7 +196,7 @@ const ContentVideoMain = () => {
                   );
                 })}
               {progressContent?.length === filteredCourse?.contents?.length &&
-              contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
+              contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id || contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
                 <Link to="/final-assessment" className={styles["btn-aside"]} style={{ color: "white" }}>
                   <img src={assessment} alt="final assessment" />
                   Take Final Assessment
