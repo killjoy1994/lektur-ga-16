@@ -40,9 +40,9 @@ export const getAssessmentAnswer = (id) => {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res.data.result);
         dispatch({ type: actions.GET_ASSESSMET_ANSWER_SUCCESS, 
-          // payload: res.data.result
+          payload: res.data.result
         });
       })
       .catch((error) => {
