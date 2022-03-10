@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-import '../../styles/lupaPassword.css';
+// import '../../styles/lupaPassword.css';
 
 
 const LupaPassword = () => {
