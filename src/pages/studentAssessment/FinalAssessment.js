@@ -6,17 +6,15 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getAssessment, getAssessmentAnswer } from "../../redux/actions/Assessment/assessmentAction";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-{
-  /* <CustomRadio checked={true} correct={false} /> */
-}
+import Swal from "sweetalert2";
+
+
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
   const { assessment, assessmentAnswer } = useSelector((state) => state.assessments);
   const [answerStudent, setAnswerStudent] = useState([]);
-  const [score, setScore] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let jawaban = [];
 
   const params = useParams();
   useEffect(() => {
@@ -26,36 +24,34 @@ function FinalAssessment() {
   //get assessment
   // const questions = assessment?.assessment?.questions;
   const questions = assessmentAnswer?.assessment?.questions;
-  const kunciJawaban = questions?.map((item) => item.remarks);
-  const questionId = questions?.map((item) => item.id);
-  // console.log(questions);
-  // console.log(kunciJawaban);
+
   const handleAnswer = (e) => {
     const isCorrect = questions.find((question) => question.id == e.target.name && question.remarks === e.target.value);
     const isExist = answerStudent.find((answer) => answer.id === e.target.name);
+
     if (isCorrect && !isExist) {
       setAnswerStudent([...answerStudent, { id: e.target.name, remarks: e.target.value }]);
+    } else {
+      if (isExist) {
+        const selected = answerStudent.filter((answer) => answer.id !== e.target.name);
+        setAnswerStudent(selected);
+      }
     }
   };
+  // console.log(answerStudent);
 
-  // 
-  // console.log(questions);
-  // const bySoal = [
-  //   {
-  //     name: e.target.name,
-  //     value: e.target.value,
-  //   },
-  // ];
-  // const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
-  // cekJawaban.push(...bySoal);
-  // jawaban = [];
-  // jawaban.push(...cekJawaban);
-  // jawaban.sort();
-  // console.log(jawaban);
-  console.log(answerStudent);
   const handleSubmit = () => {
-    navigate("/final-assessment-result", { state: { score: (answerStudent.length / 10) * 100 + "%", answer: answerStudent.length, questions: assessmentAnswer?.assessment?.questions?.length } });
-    setScore((answerStudent.length / 10) * 100 + "%");
+    // navigate("/final-assessment-result", { state: { score: (answerStudent.length / 10) * 100 + "%", answer: answerStudent.length, questions: assessmentAnswer?.assessment?.questions?.length } });
+    Swal.fire({
+      icon: "info",
+      title: "Score: " + (answerStudent.length / 10) * 100 + "%",
+      text: answerStudent.length + "/" + assessmentAnswer?.assessment?.questions?.length + " Question Correct",
+      footer: "ASSESSMENT RESULT",
+    }).then(({ isConfirmed }) => {
+      if (isConfirmed) {
+        navigate("/");
+      }
+    });
   };
 
   return (
@@ -75,8 +71,6 @@ function FinalAssessment() {
         <div className={styles.assessment_box}>
           <h6>{assessment?.assessment?.questions?.length} Questions</h6>
 
-          {/* {correct ===  'exampleRadios1' ? 'x' :  */}
-          {/* // } */}
           {questions?.map((question, idx) => (
             <div className={styles.question_list} key={question?.id}>
               <div className={styles.box_question}>
@@ -97,17 +91,7 @@ function FinalAssessment() {
         </div>
 
         <div className={styles.button}>
-          {/* <Link
-            to={{
-              pathname: "/final-assessment-result",
-              state: 
-                score: (answerStudent.length / 10) * 100 + "%",
-                'cococo'
-              ,
-            }}
-          > */}
           <button onClick={handleSubmit}>Submit Assessment</button>
-          {/* </Link> */}
         </div>
       </div>
       <Footer />
