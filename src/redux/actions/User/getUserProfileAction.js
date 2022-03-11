@@ -13,7 +13,7 @@ export const getUserProfileAction = (token) => {
         
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: GET_USER_PROFILE_FAILED });
       });
   };

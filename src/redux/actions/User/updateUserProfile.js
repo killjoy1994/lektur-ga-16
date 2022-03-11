@@ -13,12 +13,12 @@ export const uploadImageAction = (data) => {
     axios
       .put(API + "api/v1/user/upload", formData, { headers: { Authorization: "Bearer " + token, "Content-Type": "multipart/form-data" } })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch({ type: UPLOAD_PROFILE_IMAGE_SUCCESS });
       })
       .catch((error) => {
         dispatch({ type: UPLOAD_PROFILE_IMAGE_FAILED, payload: error });
-        console.log(error);
+        // console.log(error);
       });
   };
 };
@@ -36,11 +36,11 @@ export const updateProfileAction = (name, email) => {
         }
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         dispatch({ type: UPDATE_USER });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 };
