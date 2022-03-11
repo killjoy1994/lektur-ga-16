@@ -24,7 +24,7 @@ export const getPopUpMaterialAction = (data) => {
         dispatch({ type: GET_POP_UP_MATERIAL_SUCCESS, payload: res.data.result.contents });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: GET_POP_UP_MATERIAL_FAILED });
       });
   };
@@ -40,7 +40,7 @@ export const getPopUpContentAction = (data) => {
         },
       })
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         dispatch({ type: GET_POP_UP_CONTENT_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {

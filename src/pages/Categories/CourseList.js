@@ -19,7 +19,7 @@ const CourseList = () => {
   }, []);
 
   const params = useParams();
-  console.log(params.name);
+  // console.log(params.name);
 
   const filteredCategory = courseList.filter((course) => {
     return course.category.name === params.name;

@@ -43,7 +43,7 @@ export const getEnrolledCoursesAction = (token) => {
         dispatch({ type: GET_STUDENT_COURSE_SUCCESS, payload: res.data.result });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: GET_STUDENT_COURSE_FAILED, payload: error });
       });
   };

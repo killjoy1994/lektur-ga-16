@@ -14,7 +14,7 @@ const postStudentProgress = (courseId, contentId) => {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         dispatch({ type: actions.POST_STUDENT_PROGRESS_SUCCESS });
       })
       .catch((error) => {

@@ -23,7 +23,7 @@ export const getAssessment = (id) => {
         dispatch({ type: actions.GET_ASSESSMET_SUCCESS, payload: res.data.result});
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: actions.GET_ASSESSMET_FAILED, payload: error });
       });
   };
@@ -46,7 +46,7 @@ export const getAssessmentAnswer = (id) => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         dispatch({ type: actions.GET_ASSESSMET_ANSWER_FAILED, payload: error });
       });
   };
