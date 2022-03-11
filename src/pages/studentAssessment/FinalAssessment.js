@@ -6,12 +6,13 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getAssessment, getAssessmentAnswer } from "../../redux/actions/Assessment/assessmentAction";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import Loader from "../../components/Loader/Loader";
 
+import Swal from "sweetalert2";
 
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
-  const { assessment, assessmentAnswer } = useSelector((state) => state.assessments);
+  const { assessment, assessmentAnswer, isLoading } = useSelector((state) => state.assessments);
   const [answerStudent, setAnswerStudent] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,43 +58,48 @@ function FinalAssessment() {
   return (
     <>
       <NavbarComponent />
-      <div className={styles.wrapper_assessment}>
-        <header className={styles.container_head}>
-          <Breadcrumb className={styles.breadcrumb}>
-            <Breadcrumb.Item href="#" active>
-              {/* {assessment?.title} */}
-              {assessmentAnswer?.title}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item href="#">Final Assessment</Breadcrumb.Item>
-          </Breadcrumb>
-          <h1 className={styles.title}>Final Assessment</h1>
-        </header>
-        <div className={styles.assessment_box}>
-          <h6>{assessment?.assessment?.questions?.length} Questions</h6>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.wrapper_assessment}>
+          <header className={styles.container_head}>
+            <Breadcrumb className={styles.breadcrumb}>
+              <Breadcrumb.Item href="#" active>
+                {/* {assessment?.title} */}
+                {assessmentAnswer?.title}
+              </Breadcrumb.Item>
+              <Breadcrumb.Item href="#">Final Assessment</Breadcrumb.Item>
+            </Breadcrumb>
+            <h1 className={styles.title}>Final Assessment</h1>
+          </header>
+          <div className={styles.assessment_box}>
+            {/* <h6>{assessment?.assessment?.questions?.length} Questions</h6> */}
+            <h6>{assessmentAnswer?.assessment?.questions?.length} Questions</h6>
 
-          {questions?.map((question, idx) => (
-            <div className={styles.question_list} key={question?.id}>
-              <div className={styles.box_question}>
-                <p>{idx + 1}.</p>
-                <p className={styles.question}>{question?.question}</p>
+            {questions?.map((question, idx) => (
+              <div className={styles.question_list} key={question?.id}>
+                <div className={styles.box_question}>
+                  <p>{idx + 1}.</p>
+                  <p className={styles.question}>{question?.question}</p>
+                </div>
+                <p className={styles.answer}>Answer</p>
+                <div className={styles.answer_list}>
+                  {question?.options?.map((option) => (
+                    <label htmlFor={option?.id} key={option.id}>
+                      <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={handleAnswer} />
+                      {option?.option}
+                    </label>
+                  ))}
+                </div>
               </div>
-              <p className={styles.answer}>Answer</p>
-              <div className={styles.answer_list}>
-                {question?.options?.map((option) => (
-                  <label htmlFor={option?.id} key={option.id}>
-                    <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={handleAnswer} />
-                    {option?.option}
-                  </label>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className={styles.button}>
-          <button onClick={handleSubmit}>Submit Assessment</button>
+          <div className={styles.button}>
+            <button onClick={handleSubmit}>Submit Assessment</button>
+          </div>
         </div>
-      </div>
+      )}
       <Footer />
     </>
   );

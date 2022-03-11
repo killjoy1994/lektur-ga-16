@@ -94,7 +94,8 @@ border-radius: 2px;
 }
 .button button:hover{
   transform: perspective(1px) scale3d(1.044, 1.044, 1) translateZ(0) !important;
-  font-weight: bold;
+  filter: brightness(115%);
+  
 }
 
 @media (min-width: 1600px) {
