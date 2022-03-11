@@ -2,8 +2,8 @@ import Breadcrumb from "react-bootstrap/Breadcrumb";
 import NavbarComponent from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
 import styles from "../../styles/FinalAssessment.module.css";
-import { Link, useParams } from "react-router-dom";
-import { getAssessment } from "../../redux/actions/Assessment/assessmentAction";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getAssessment, getAssessmentAnswer } from "../../redux/actions/Assessment/assessmentAction";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 {
@@ -11,36 +11,52 @@ import { useDispatch, useSelector } from "react-redux";
 }
 function FinalAssessment() {
   // const correct = 'exampleRadios1'
-  const { assessment } = useSelector((state) => state.assessments);
+  const { assessment, assessmentAnswer } = useSelector((state) => state.assessments);
   const [answerStudent, setAnswerStudent] = useState([]);
+  const [score, setScore] = useState(0);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let jawaban = [];
 
   const params = useParams();
   useEffect(() => {
-    dispatch(getAssessment(params.id));
+    // dispatch(getAssessment(params.id));
+    dispatch(getAssessmentAnswer(params.id));
   }, [dispatch]);
-  // console.log(assessment);
-  const questions = assessment?.assessment?.questions;
+  //get assessment
+  // const questions = assessment?.assessment?.questions;
+  const questions = assessmentAnswer?.assessment?.questions;
+  const kunciJawaban = questions?.map((item) => item.remarks);
+  const questionId = questions?.map((item) => item.id);
   // console.log(questions);
-
+  // console.log(kunciJawaban);
   const handleAnswer = (e) => {
-    const bySoal = [
-      {
-        name: e.target.name,
-        value: e.target.value,
-      },
-    ];
-    const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
-    cekJawaban.push(...bySoal);
-    jawaban = [];
-    jawaban.push(...cekJawaban);
-    // jawaban.sort();
-    console.log(jawaban);
+    const isCorrect = questions.find((question) => question.id == e.target.name && question.remarks === e.target.value);
+    const isExist = answerStudent.find((answer) => answer.id === e.target.name);
+    if (isCorrect && !isExist) {
+      setAnswerStudent([...answerStudent, { id: e.target.name, remarks: e.target.value }]);
+    }
   };
 
+  // 
+  // console.log(questions);
+  // const bySoal = [
+  //   {
+  //     name: e.target.name,
+  //     value: e.target.value,
+  //   },
+  // ];
+  // const cekJawaban = jawaban.filter((item) => item.name !== e.target.name);
+  // cekJawaban.push(...bySoal);
+  // jawaban = [];
+  // jawaban.push(...cekJawaban);
+  // jawaban.sort();
+  // console.log(jawaban);
   console.log(answerStudent);
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    navigate("/final-assessment-result", { state: { score: (answerStudent.length / 10) * 100 + "%", answer: answerStudent.length, questions: assessmentAnswer?.assessment?.questions?.length } });
+    setScore((answerStudent.length / 10) * 100 + "%");
+  };
 
   return (
     <>
@@ -49,7 +65,8 @@ function FinalAssessment() {
         <header className={styles.container_head}>
           <Breadcrumb className={styles.breadcrumb}>
             <Breadcrumb.Item href="#" active>
-              {assessment?.title}
+              {/* {assessment?.title} */}
+              {assessmentAnswer?.title}
             </Breadcrumb.Item>
             <Breadcrumb.Item href="#">Final Assessment</Breadcrumb.Item>
           </Breadcrumb>
@@ -69,11 +86,10 @@ function FinalAssessment() {
               <p className={styles.answer}>Answer</p>
               <div className={styles.answer_list}>
                 {question?.options?.map((option) => (
-                  <div key={option.id}>
+                  <label htmlFor={option?.id} key={option.id}>
                     <input type="radio" name={option?.question_id} id={option?.id} value={option?.option} onChange={handleAnswer} />
-                    <label htmlFor={option?.id}>{option?.option}</label>
-                    {/* <br /> */}
-                  </div>
+                    {option?.option}
+                  </label>
                 ))}
               </div>
             </div>
@@ -81,9 +97,17 @@ function FinalAssessment() {
         </div>
 
         <div className={styles.button}>
-          <Link to="/final-assessment-result">
-            <button onClick={handleSubmit}>Submit Assessment</button>
-          </Link>
+          {/* <Link
+            to={{
+              pathname: "/final-assessment-result",
+              state: 
+                score: (answerStudent.length / 10) * 100 + "%",
+                'cococo'
+              ,
+            }}
+          > */}
+          <button onClick={handleSubmit}>Submit Assessment</button>
+          {/* </Link> */}
         </div>
       </div>
       <Footer />

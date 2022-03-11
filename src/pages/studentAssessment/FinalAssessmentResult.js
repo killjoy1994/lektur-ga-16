@@ -4,10 +4,18 @@ import correct from "../../assests/correct.png";
 import wrong from "../../assests/wrong.png";
 import NavbarComponent from "../../components/Header/NavbarComponent";
 import Footer from "../../components/Footer";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-function FinalAssessmentResult() {
+function FinalAssessmentResult(props) {
   const benar = "pilihanC";
-
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!state.score) {
+      navigate("/final-assessment");
+    }
+  }, [state.score]);
   return (
     <>
       <NavbarComponent />
@@ -25,8 +33,8 @@ function FinalAssessmentResult() {
           <div className={styles.data_nilai}>
             <h1 className={styles.title}>Final Assessment Result</h1>
             <div className={styles.evaluation}>
-              <p className={styles.p1}>73%</p>
-              <p className={styles.p2}>11/15 Question Correct</p>
+              <p className={styles.p1}>{state?.score}</p>
+              <p className={styles.p2}>{state.answer}/{state.questions} Question Correct</p>
             </div>
           </div>
         </header>
@@ -41,21 +49,21 @@ function FinalAssessmentResult() {
             <p className={styles.answer}>Answer</p>
             <div className={styles.answer_list}>
               <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanA">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanB">Et mattis lacus fermentum id nec</label>
               <br />
               {benar === "pilihanC" ? <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} /> : <input type="radio" name="soal1" id="pilihanC" value="C" />}
-              <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              <label htmlFor="pilihanC" style={{ fontWeight: "bold" }}>
                 Et mattis lacus fermentum id nec
               </label>
               <br />
               <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanD">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanE">Et mattis lacus fermentum id nec</label>
             </div>
           </div>
           <div className={styles.question_list}>
@@ -67,22 +75,22 @@ function FinalAssessmentResult() {
             <p className={styles.answer}>Answer</p>
             <div className={styles.answer_list}>
               <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanA">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanB">Et mattis lacus fermentum id nec</label>
               <br />
               <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
               {/* <input type="radio" name="soal1" id="pilihanC" value="C" /> */}
-              <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              <label htmlFor="pilihanC" style={{ fontWeight: "bold" }}>
                 Et mattis lacus fermentum id nec
               </label>
               <br />
               <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanD">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanE">Et mattis lacus fermentum id nec</label>
             </div>
           </div>
           <div className={styles.question_list}>
@@ -94,22 +102,22 @@ function FinalAssessmentResult() {
             <p className={styles.answer}>Answer</p>
             <div className={styles.answer_list}>
               <input type="radio" name="soal1" id="pilihanA" value="A" disabled />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanA">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanB">Et mattis lacus fermentum id nec</label>
               <br />
               <img src={correct} alt="ceklist" style={{ marginRight: "10px" }} />
               {/* <input type="radio" name="soal1" id="pilihanC" value="C" /> */}
-              <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              <label htmlFor="pilihanC" style={{ fontWeight: "bold" }}>
                 Et mattis lacus fermentum id nec
               </label>
               <br />
               <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanD">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanE">Et mattis lacus fermentum id nec</label>
             </div>
           </div>
 
@@ -122,21 +130,21 @@ function FinalAssessmentResult() {
             <p className={styles.answer}>Answer</p>
             <div className={styles.answer_list}>
               <img src={wrong} alt="ceklist" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanA">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanB">Et mattis lacus fermentum id nec</label>
               <br />
               <img src={correct} alt="ceklist" />
-              <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              <label htmlFor="pilihanC" style={{ fontWeight: "bold" }}>
                 Et mattis lacus fermentum id nec
               </label>
               <br />
               <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanD">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanE">Et mattis lacus fermentum id nec</label>
             </div>
             <div className={styles.remark}>
               <p>Remark</p>
@@ -152,21 +160,21 @@ function FinalAssessmentResult() {
             <p className={styles.answer}>Answer</p>
             <div className={styles.answer_list}>
               <img src={wrong} alt="ceklist" />
-              <label for="pilihanA">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanA">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanB" value="B" disabled />
-              <label for="pilihanB">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanB">Et mattis lacus fermentum id nec</label>
               <br />
               <img src={correct} alt="ceklist" />
-              <label for="pilihanC" style={{ fontWeight: "bold" }}>
+              <label htmlFor="pilihanC" style={{ fontWeight: "bold" }}>
                 Et mattis lacus fermentum id nec
               </label>
               <br />
               <input type="radio" name="soal1" id="pilihanD" value="D" disabled />
-              <label for="pilihanD">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanD">Et mattis lacus fermentum id nec</label>
               <br />
               <input type="radio" name="soal1" id="pilihanE" value="E" disabled />
-              <label for="pilihanE">Et mattis lacus fermentum id nec</label>
+              <label htmlFor="pilihanE">Et mattis lacus fermentum id nec</label>
             </div>
             <div className={styles.remark}>
               <p>Remark</p>
