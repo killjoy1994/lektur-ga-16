@@ -14,7 +14,7 @@ function ResetPassword() {
     const [isSubmit, setIsSubmit] = useState(false);
 
     const validation = (values) => {
-    //   console.log(values);
+     
       const errors = {};
       const regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/;
       if (!values.newPassword) {
@@ -113,7 +113,7 @@ function ResetPassword() {
                             </div>
                             <p>{formErrors.confirm_password}</p>
 
-                            <button type='submit'>RESET MY PASSWORD</button>
+                            <a href="/login">RESET MY PASSWORD</a>
                         </div>
                     </form>    
                 </div>    
