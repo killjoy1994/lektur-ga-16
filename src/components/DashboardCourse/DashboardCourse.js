@@ -16,7 +16,7 @@ import { getUserProfileAction } from "../../redux/actions/User/getUserProfileAct
 import { updateProfileAction } from "../../redux/actions/User/updateUserProfile";
 import { getPopUpContentAction, getPopUpMaterialAction } from "../../redux/actions/Student/popUpAction";
 import { uploadImageAction } from "../../redux/actions/User/updateUserProfile";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import postStudentProgress from "../../redux/actions/Student/postStudentProgress";
 
 let token = localStorage.getItem("token");
@@ -36,7 +36,7 @@ const DashboardCourse = () => {
   //show modal State
   const [showContentModal, setShowContentModal] = useState(false);
   const [showMaterialModal, setShowMaterialModal] = useState(false);
-
+const {state} = useLocation()
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -206,16 +206,16 @@ const DashboardCourse = () => {
       {/* Taken test start*/}
       <div className={styles["assessment-control"]}>
         <div className={styles.detail}>
-          <h3 className={styles.title}>React Crash Course</h3>
-          <p className={styles.author}>Traversy Media</p>
-          <p className={styles.date}>Completed at: 28 January 2021 08:00pm</p>
+          <h3 className={styles.title}>{state?.title}</h3>
+          <p className={styles.author}>{state?.teacher}</p>
+          <p className={styles.date}>Completed at: {state?.date}</p>
         </div>
-        <div className={styles.completed}>
-          <p className={styles.number}>73%</p>
-          <p className={styles["correct-amount"]}>11/15 Question Correct</p>
-        </div>
+          <div className={styles.completed}>
+          <p className={styles.number}>{state?.score}</p> 
+          <p className={styles["correct-amount"]}>{state?.answer}/{state?.questions} Question Correct</p>
+        </div> 
       </div>
-      <div className={styles["assessment-control"]}>
+      {/* <div className={styles["assessment-control"]}>
         <div className={styles.detail}>
           <h3 className={styles.title}>React Crash Course</h3>
           <p className={styles.author}>Traversy Media</p>
@@ -225,11 +225,11 @@ const DashboardCourse = () => {
           <p className={styles.number}>73%</p>
           <p className={styles["correct-amount"]}>11/15 Question Correct</p>
         </div>
-      </div>
+      </div> */}
       {/* Taken test end */}
 
       {/* Untaken test start */}
-      <div className={styles["assessment-control"]}>
+      {/* <div className={styles["assessment-control"]}>
         <div className={styles.detail}>
           <h3 className={styles.title}>Create Cinematic Music Video</h3>
           <p className={styles.author}>John Doe</p>
@@ -254,7 +254,7 @@ const DashboardCourse = () => {
             Take test
           </a>
         </div>
-      </div>
+      </div> */}
       {/* Untaken test end */}
     </div>
   );

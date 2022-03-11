@@ -11,13 +11,13 @@ import Loader from "../../components/Loader/Loader";
 import Swal from "sweetalert2";
 
 function FinalAssessment() {
-  // const correct = 'exampleRadios1'
   const { assessment, assessmentAnswer, isLoading } = useSelector((state) => state.assessments);
   const [answerStudent, setAnswerStudent] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const params = useParams();
+
   useEffect(() => {
     // dispatch(getAssessment(params.id));
     dispatch(getAssessmentAnswer(params.id));
@@ -39,10 +39,11 @@ function FinalAssessment() {
       }
     }
   };
-  // console.log(answerStudent);
 
   const handleSubmit = () => {
     // navigate("/final-assessment-result", { state: { score: (answerStudent.length / 10) * 100 + "%", answer: answerStudent.length, questions: assessmentAnswer?.assessment?.questions?.length } });
+    let date = new Date();
+    date = date.toLocaleDateString("ind") + " " + date.getHours() + ":" + date.getMinutes();
     Swal.fire({
       icon: "info",
       title: "Score: " + (answerStudent.length / 10) * 100 + "%",
@@ -50,11 +51,19 @@ function FinalAssessment() {
       footer: "ASSESSMENT RESULT",
     }).then(({ isConfirmed }) => {
       if (isConfirmed) {
-        navigate("/");
+        navigate("/student-dashboard", {
+          state: {
+            score: (answerStudent.length / 10) * 100 + "%",
+            answer: answerStudent.length,
+            questions: assessmentAnswer?.assessment?.questions?.length,
+            title: assessmentAnswer?.title,
+            teacher: assessmentAnswer?.by?.fullName,
+            date: date,
+          },
+        });
       }
     });
   };
-
   return (
     <>
       <NavbarComponent />
