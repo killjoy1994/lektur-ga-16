@@ -198,7 +198,7 @@ console.log(getIdCourse);
                 })}
               {progressContent?.length === filteredCourse?.contents?.length &&
               contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id || contentRedux?.id === filteredCourse?.contents[filteredCourse?.contents.length - 1].id ? (
-                <Link to={"/final-assessment" + getIdCourse} className={styles["btn-aside"]} style={{ color: "white" }}>
+                <Link to={"/final-assessment/" + getIdCourse} className={styles["btn-aside"]} style={{ color: "white" }}>
                   <img src={assessment} alt="final assessment" />
                   Take Final Assessment
                 </Link>
