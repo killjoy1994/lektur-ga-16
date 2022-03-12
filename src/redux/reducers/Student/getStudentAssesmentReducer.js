@@ -14,7 +14,6 @@ const studentAssessmentsReducer = (state = initialState, action) => {
         isLoading: true,
       };
     case GET_STUDENT_ASSESSMENT_SUCCESS:
-        console.log(action.payload)
       return {
         ...state,
         studentAssessments: [...state.studentAssessments, ...action.payload],
